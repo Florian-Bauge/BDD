@@ -23,5 +23,16 @@
     background-color: orange;
     width: calc(100% - 200px);
     height: 450px;
+}
+
+.panel{
+    background-color: yellow;
+    width: 70%;
+    height: 80%;
+    position:relative;
+
+    margin:auto;
+    margin-top: 20px;
+
 
 }

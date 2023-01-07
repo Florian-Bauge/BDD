@@ -26,6 +26,36 @@
     <div class="other">
         <div class="content">
             <div class="panel">
+                <table>
+                    <tr>
+                        <td class="title">ID Commande</td>
+                        <td class="title">Client</td>
+                        <td class="title">Prix</td>
+                        <td class="title">Statut</td>
+                        <td class="title">Action</td>
+
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                    </tr>
+                    <?php
+                    foreach(getArrayRecapCommand("11") as $command){
+                    ?>
+                    <tr>
+                        <td><?php echo $command['id_commande'] ?></td>
+                        <td><?php echo $command['code_client'] ?></td>
+                        <td><?php echo $command['total'] ?></td>
+                        <td><?php echo $command['statut'] ?></td>
+                        <td>5</td>
+                    </tr>
+                    <?php
+                    }
+                    ?>
+                </table>
             </div>
         </div>
     </div>

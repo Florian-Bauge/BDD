@@ -10,7 +10,7 @@ point integer DEFAULT 0
 )ENGINE = InnoDB;
 
 CREATE TABLE points (
-id_point integer PRIMARY KEY,
+id_point integer PRIMARY KEY AUTO_INCREMENT,
 point integer NOT NULL,
 dateExp date,
 code_client integer REFERENCES client
@@ -39,7 +39,7 @@ PRIMARY KEY(id_item, id_livraison, id_commande)
 )ENGINE = InnoDB;
 
 CREATE TABLE item (
-id_item integer PRIMARY KEY,
+id_item integer PRIMARY KEY AUTO_INCREMENT,
 prixachat double NOT NULL,
 prixvente double NOT NULL,
 nom varchar(255) NOT NULL,
@@ -49,7 +49,7 @@ stock integer NOT NULL
 )ENGINE = InnoDB;
 
 CREATE TABLE livraison (
-id_delivery integer PRIMARY KEY,
+id_delivery integer PRIMARY KEY AUTO_INCREMENT,
 numeroColis varchar(255),
 dateVoulu date,
 dateLivrée date,
@@ -59,7 +59,7 @@ id_adresse integer REFERENCES Adresse
 )ENGINE = InnoDB;
 
 CREATE TABLE adresse (
-id_adresse integer PRIMARY KEY,
+id_adresse integer PRIMARY KEY AUTO_INCREMENT,
 nrue varchar(255) NOT NULL,
 rue varchar(255) NOT NULL,
 codepostal integer  NOT NULL,
@@ -70,30 +70,30 @@ code_client integer REFERENCES client
 )ENGINE = InnoDB;
 
 CREATE TABLE concierge (
-id_con integer PRIMARY KEY,
+id_con integer PRIMARY KEY AUTO_INCREMENT,
 nom varchar(255) NOT NULL,
 prenom varchar(255) NOT NULL
 )ENGINE = InnoDB;
 
 CREATE TABLE facture (
-id_fact integer PRIMARY KEY,
+id_fact integer PRIMARY KEY AUTO_INCREMENT,
 date date NOT NULL
 )ENGINE = InnoDB;
 
 CREATE TABLE paiement (
-id_paiment integer PRIMARY KEY,
+id_paiment integer PRIMARY KEY AUTO_INCREMENT,
 date date NOT NULL,
 cout double NOT NULL,
 id_transaction integer REFERENCES moyen
 )ENGINE = InnoDB;
 
 CREATE TABLE moyen (
-id_transaction integer PRIMARY KEY,
+id_transaction integer PRIMARY KEY AUTO_INCREMENT,
 nom varchar(255) NOT NULL
 )ENGINE = InnoDB;
 
 CREATE TABLE GrillePoint (
-id_membership integer PRIMARY KEY,
+id_membership integer PRIMARY KEY AUTO_INCREMENT,
 nom varchar(255) NOT NULL,
 minPoint integer NOT NULL,
 maxPoint integer NOT NULL,
@@ -101,8 +101,8 @@ multiplication double NOT NULL
 )ENGINE = InnoDB;
 
 
-CREATE TABLE GrilleRegleCREATE TABLE GrilleRegle (
-id_regle integer PRIMARY KEY,
+CREATE TABLE GrilleRegle (
+id_regle integer PRIMARY KEY AUTO_INCREMENT,
 intitule varchar(255) NOT NULL,
 point integer NOT NULL,
 valeur double NOT NULL,

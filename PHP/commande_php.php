@@ -1,15 +1,27 @@
 <?php
 include 'global.php';
 
-function getArrayRecapCommand(){
+function getArrayRecapCommand($text){
 
+    $array = array();
+	
+	$mysqli = Connect();
 
+	$sql = "SELECT id_commande, client.code_client, total, statut from commande INNER JOIN client ON commande.code_client=client.code_client;";
+	$array = array();
 
-}
-
-function searchCommand($text){
-
-
+	if ($result = $mysqli->query($sql)) {
+		//echo "<br>New record created successfully<br>";
+		while ($row = $result->fetch_assoc()){
+            $array[] = $row;
+		};
+        var_dump($array);
+	} else {
+		echo "Error: " . $sql . "<br>" . $mysqli->error;
+	}
+	$result->close();
+	//echo $array[0]['Name'];
+	return $array;
 
 }
 

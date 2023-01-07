@@ -60,7 +60,7 @@
 }
 
 .panel{
-    background-color: yellow;
+    background-color: #efef5d;
     width: 100%;
     height: calc(100% - 60px);
     position:relative;

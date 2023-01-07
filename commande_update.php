@@ -50,8 +50,12 @@
                         <td><?php echo $command['code_client'] ?></td>
                         <td><?php echo $command['total'] ?></td>
                         <td><?php echo $command['statut'] ?></td>
-                        <td><button> Modif </button>
-                            <button> Suppr </button></td>
+                        <td>
+                            <form method="post" action="commande_update.php">
+                                <button type="submit"> Modif </button>
+                            </form>
+                            <button> Suppr </button>
+                        </td>
                     </tr>
                     <?php
                     }

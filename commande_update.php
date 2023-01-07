@@ -29,11 +29,17 @@
                 <span> MODIFIER
                     <?php
                         echo $_GET['id'];
+                    $command = getArrayAllCommand($_GET['id']);
                     ?>
                 </span>
             </div>
             <div class="multi panel" style="width: 35%; height: 200px;">
-                <span>test</span>
+                <span>N°: </span><span><?php echo $command[0]['id_commande']; ?></span><br>
+                <br>
+                <span>Points Obtenus: </span><span><?php echo $command[0]['point']; ?></span><br>
+                <span>Total: </span><span><?php echo $command[0]['total']; ?></span><br>
+                <span>RAP: </span><span>N°</span><br>
+                <span>Géré par: </span><span><?php echo $command[0]['nom']." ".$command[0]['prenom']; ?></span><br>
             </div>
             <div class="multi panel" style="width: 28%; height: 200px;">
                 <span>test</span>

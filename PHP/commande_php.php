@@ -35,9 +35,32 @@ function exportCommands(){
     
 }
 
-function getArrayAllCommand(){
+function getArrayAllCommand($id){
 
 
+    $array = array();
+
+    $mysqli = Connect();
+
+    $sql = "SELECT * from commande 
+    LEFT OUTER JOIN client ON commande.code_client=client.code_client 
+    LEFT OUTER JOIN concierge ON concierge.id_con=commande.id_con   
+    WHERE commande.id_commande = $id
+;";
+    $array = array();
+
+    if ($result = $mysqli->query($sql)) {
+        //echo "<br>New record created successfully<br>";
+        while ($row = $result->fetch_assoc()){
+            $array[] = $row;
+        };
+        var_dump($array);
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    $result->close();
+    //echo $array[0]['Name'];
+    return $array;
 
 }
 

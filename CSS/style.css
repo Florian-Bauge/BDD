@@ -5,6 +5,30 @@
     height: 50px;
 }
 
+.search{
+    display:inline-block;
+    position:relative;
+    height:30px;
+    vertical-align: top;
+}
+
+#search_text{
+    width:350px;;
+}
+#search_button{
+    height:36px;
+    width:36px;
+    padding: 0px;
+}
+#search_img{
+    height:100%;
+    width:100%;
+}
+
+#search_button:hover {
+    cursor: pointer;
+}
+
 .page{
     background-color: green;
 

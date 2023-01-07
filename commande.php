@@ -5,6 +5,9 @@
     <title>Commande</title>
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
     <!--<script src="script.js"></script>-->
+    <?php
+        include 'PHP/commande_php.php';
+    ?>
 </head>
 <body>
 

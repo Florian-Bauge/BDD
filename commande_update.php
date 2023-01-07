@@ -24,46 +24,29 @@
         <button onclick="location.href='./client.html';"> Client </button></br>
     </div>
     <div class="other">
-        <div class="content">
-            <div class="panel">
-                <table>
-                    <tr>
-                        <td class="title">ID Commande</td>
-                        <td class="title">Client</td>
-                        <td class="title">Prix</td>
-                        <td class="title">Statut</td>
-                        <td class="title">Action</td>
-
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
-                        <td>5</td>
-                    </tr>
+        <div class="content inline">
+            <div class="panel title" style="width: 90%; height: 40px;">
+                <span> MODIFIER
                     <?php
-                    foreach(getArrayRecapCommand("11") as $command){
+                        echo $_GET['id'];
                     ?>
-                    <tr>
-                        <td><?php echo $command['id_commande'] ?></td>
-                        <td><?php echo $command['code_client'] ?></td>
-                        <td><?php echo $command['total'] ?></td>
-                        <td><?php echo $command['statut'] ?></td>
-                        <td>
-                            <form method="post" action="commande_update.php">
-                                <button type="submit"> Modif </button>
-                            </form>
-                            <button> Suppr </button>
-                        </td>
-                    </tr>
-                    <?php
-                    }
-                    ?>
-                </table>
+                </span>
             </div>
-            <button onclick="location.href='./commande.php';"> Article </button></br>
-            <button onclick="location.href='./commande.php';"> Exporter </button></br>
+            <div class="multi panel" style="width: 35%; height: 200px;">
+                <span>test</span>
+            </div>
+            <div class="multi panel" style="width: 28%; height: 200px;">
+                <span>test</span>
+            </div>
+            <div class="multi panel" style="width: 28%; height: 200px;">
+                <span>test</span>
+            </div>
+            <div class="multi panel" style="width: 45%; height: 200px;">
+                <span>test</span>
+            </div>
+            <div class="multi panel" style="width: 40%; height: 200px;">
+                <span>test</span>
+            </div>
         </div>
     </div>
 </div>

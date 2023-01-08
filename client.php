@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
     <!--<script src="script.js"></script>-->
     <?php
-            include 'PHP/commande_php.php';
+            include 'PHP/client_php.php';
         ?>
 </head>
 <body>
@@ -29,32 +29,39 @@
     </div>
     <div class="other">
         <div class="content">
-            <div class="panel">
-                <table>
+            <table class="panel">
+
                     <tr>
-                        <td class="title">Id Client<td>
-                        <td class="title">Nom<td>
-                        <td class="title">Mail<td>
-                        <td class="title">Numéro<td>
-                        <td class="title">Membership<td>
-                        <td class="title">Action<td>
+                        <td class="title">Id Client</td>
+                        <td class="title">Nom</td>
+                        <td class="title">Mail</td>
+                        <td class="title">Numéro</td>
+                        <td class="title">Membership</td>
+                        <td class="title">Action</td>
                         </tr>
-                </table>
+
                 <?php
-                foreach (getArrayClien() as $client) {
-
-                }?>
-
+                foreach (getArrayClient() as $client) {
+                    ?>
                 <tr>
-
+                    <td><?php echo $client['code_client']?></td>
+                    <td><?php echo $client['name']?></td>
+                    <td><?php echo $client['Email']?></td>
+                    <td><?php echo $client['Phone']?></td>
+                    <td><?php echo $client['id_membership']?></td>
+                    <td>
+                        <button type="button">Search</button>
+                        <button type="button">Edit</button>
+                    </td>
                 </tr>
-
-
-
-
-
-
+                <?php
+                }
+                ?>
+            </table>
             </div>
+
+            <button >Créer</button>
+            <button>Exporter</button>
         </div>
     </div>
 </div>

@@ -29,7 +29,8 @@
     </div>
     <div class="other">
         <div class="content">
-            <table class="panel">
+            <div class="panel">
+            <table>
 
                     <tr>
                         <td class="title">Id Client</td>

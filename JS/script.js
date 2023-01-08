@@ -5,12 +5,22 @@ function InitModal(id){
 
     span.onclick = function() {
         modal.style.display = "none";
+        //RESET
+        while(document.getElementsByName("temp").length>0){
+            console.log(document.getElementsByName("temp")[0]);
+            document.getElementsByName("temp")[0].remove();
+        };
     }
 
 
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
+            //RESET
+            while(document.getElementsByName("temp").length>0){
+                console.log(document.getElementsByName("temp")[0]);
+                document.getElementsByName("temp")[0].remove();
+            };
         }
     }
 
@@ -19,48 +29,77 @@ function InitModal(id){
 function ShowModal(id, param){
     var modal = document.getElementById("Modal_"+id);
     modal.style.display = "block";
-}
-//------------------------------Copy de ludothèque
-function ShowModalWith(param){
-    var modal = document.getElementById("myModal");
-    var Name =  document.getElementById("Modal_Name");
 
-    console.log("ajax ?");
+}
+
+function ShowModalWith(id, param){
+    var modal = document.getElementById("Modal_"+id);
+
+    //RESET
+    /*
+    while(document.getElementsByName("temp").length>0){
+        console.log(document.getElementsByName("temp")[0]);
+        document.getElementsByName("temp")[0].remove();
+    };*/
+
+    console.log("ajax ?"+id);
     $.ajax
     ({
         type: 'POST',
-        url: './file/Mysql.php',
-        data:{ cmd: "Search", id: param},
+        url: './PHP/ajax_mysql.php',
+        data:{ cmd: 'commande', id: param},
         dataType: 'json',
         success: function (data) {
-            for (var key in data) {
+            console.log(data);
+            document.getElementsByName('Modal_id_commande')[0].innerHTML = data['commande']['id_commande'];
+            for(var key in data){
+                for(var row in data[key]){
+                    console.log(key + "->" + row + "->" + data[key][row] + " : " + document.getElementsByName('Modal_' + row).length)
+                    if(isNaN(row)) {
+                        //console.log(key + "->" + row + "->" + data[key][row] + " : " + document.getElementsByName('Modal_' + row).length);
+                        document.getElementsByName('Modal_' + row).forEach(elm => {
+                            elm.innerHTML = data[key][row];
+                            console.log(row + " Changed");
+                        });
+                    }else{
+                       let n = row;
+
+                        const ToCopy = document.getElementById(key);
+
+                        if(ToCopy != null) {
+                            let elm = ToCopy;
+                            elm = ToCopy.cloneNode(true);
+                            ToCopy.after(elm);
+                            elm.setAttribute("id",key+"_"+n);
+                            elm.setAttribute("name","temp");
+                            elm.style.display = "block";
+
+                            for(var row in data[key][n]) {
+
+                                var text = "Modal_"+row;
+                                elm.querySelectorAll("[name="+text).forEach(elm => {
+                                        elm.innerHTML = data[key][n][row];
+                                        console.log(row + " Changed with "+data[key][n][row]);
+                                    });
+                            }
+                        }
+                    }
+                }
+            }
+            /*for (var key in data) {
                 let fieldtxt = ['Name', 'Type', 'Age', 'Player', 'Time', 'Abstract'];
                 if(fieldtxt.includes(key)){
                     document.getElementById('Modal_'+key).innerHTML=data[key];
                 }
-            }
-            document.getElementById('Modal_Img').src = data['img'];
+                console.log(key);
+            }*/
+            /*document.getElementById('Modal_Img').src = data['img'];
             document.getElementById('id-game').value = data['kGame'];
-
-            if(data['Available']==0){
-                document.getElementById('Modal_Stock').innerHTML = "Aucun n'est disponible à la location actuellement";
-                document.getElementById('Modal_Stock').style.color = 'red';
-                document.getElementById('Modal_Stock').style.fontWeight = 'bold';
-                document.getElementById('Modal_button').disabled = true;
-            }else if(data['Available']==1){
-                document.getElementById('Modal_Stock').innerHTML = "Attention: Il n'en reste qu'un ! ";
-                document.getElementById('Modal_Stock').style.color = 'orange';
-                document.getElementById('Modal_Stock').style.fontWeight = 'bold';
-                document.getElementById('Modal_button').disabled = false;
-            }else{
-                document.getElementById('Modal_Stock').innerHTML = "Ce jeu est disponible";
-                document.getElementById('Modal_Stock').style.color = 'green';
-                document.getElementById('Modal_Stock').style.fontWeight = 'bold';
-                document.getElementById('Modal_button').disabled = false;
-            }
+*/
 
             modal.style.display = "block";
         }
     });
+    console.log("?");
 
 }

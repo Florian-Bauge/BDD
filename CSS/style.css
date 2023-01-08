@@ -38,9 +38,10 @@
 }
 
 .nav{
-    background-color: blue;
+    background-color: #ffffff;
     width: 200px;
     height: 100%;
+    float : left;
 }
 
 .other{
@@ -98,6 +99,31 @@ td {
     text-align: center;
     vertical-align: middle;
 }
+.nameCompanies{
+    width: 50%;
+    margin-top: 10%;
+
+}
+.logoCompanies{
+    width: 50%;
+    float: left;
+}
+.headNav{
+    height: 10%;
+    width: auto;
+    text-align: center;
+    border-bottom: #BEBEBEBF 2px solid;
+    display: table-cell;
+    vertical-align: middle;
+
+}
+.buttonMenu{
+
+    margin-top: 10%;
+    background: none;
+    border: none;
+    margin-left: 10%;
+}
 
 .modal {
     display: none; /* Hidden by default */
@@ -142,3 +168,9 @@ td {
     cursor: pointer;
 }
 
+
+.imageMenu{
+    max-height: 100%;
+    max-width: 100%;
+    cursor: pointer;
+}

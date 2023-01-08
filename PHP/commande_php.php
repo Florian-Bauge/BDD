@@ -1,7 +1,7 @@
 <?php
 include 'global.php';
 
-function getArrayRecapCommand($text){
+function getArrayRecapCommand($text){    //Recupération des données pour affichage sommaire
 
     $array = array();
 	
@@ -35,12 +35,14 @@ function exportCommands(){
     
 }
 
-function getArrayAllCommand($id){
+function getArrayAllCommand($id){   //Recupération des données pour affichage
 
 
     $array = array();
 
     $mysqli = Connect();
+
+    //Récupération Information de Commande et de Client
 
     $sql = "SELECT id_commande, commande.total, concierge.nom, concierge.prenom, client.name, client.code_client, client.Phone, grillePoint.nom from commande 
     LEFT OUTER JOIN client ON commande.code_client=client.code_client 
@@ -58,6 +60,8 @@ function getArrayAllCommand($id){
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
 
+    //Récupération Information de Paiement
+
     $sql = "SELECT date, cout, nom, sum(cout) AS 'Total_paye' from paiement 
     LEFT OUTER JOIN moyen ON moyen.id_transaction = paiement.id_transaction
     WHERE paiement.id_commande = $id
@@ -71,6 +75,8 @@ function getArrayAllCommand($id){
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
+
+    //Récupération Information de Livraison et de contenu de commande
 
     $sql = "SELECT item.nom, Prix_remise, envoie.statut, quantité, numeroColis, dateVoulu, dateLivrée, DateExpédié, livraison.status, nrue || ' ' || rue || ' ' || adresse.codepostal || ' ' || ville  || ' ' || pays  || ' ' || infoComp AS adresse from envoie 
     LEFT OUTER JOIN item ON envoie.id_item=item.id_item

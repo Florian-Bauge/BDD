@@ -21,7 +21,7 @@
     <div class="nav">
         <button onclick="location.href='./index.html';"> Dashboard </button></br>
         <button onclick="location.href='./commande.php';"> Commande </button></br>
-        <button onclick="location.href='./client.html';"> Client </button></br>
+        <button onclick="location.href='./client.php';"> Client </button></br>
     </div>
     <div class="other">
         <div class="content inline">

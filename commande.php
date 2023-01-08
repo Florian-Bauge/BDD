@@ -25,7 +25,7 @@
        </div>
        <button onclick="location.href='./index.html';" class="buttonMenu"><img src="./img/Model=tab, active=false"  class="imageMenu"  ></button></br>
        <button onclick="location.href='./commande.php';" class="buttonMenu"> <img src="./img/Model=order, active=true"class="imageMenu"  > </button></br>
-       <button onclick="location.href='./client.html';" class="buttonMenu"> <img src="./img/Model=client, active=false" class="imageMenu" </button></br>
+       <button onclick="location.href='./client.php';" class="buttonMenu"> <img src="./img/Model=client, active=false" class="imageMenu" </button></br>
     </div>
     <div class="other">
         <div class="content">

@@ -33,25 +33,63 @@
                     ?>
                 </span>
             </div>
-            <div class="multi panel" style="width: 35%; height: 200px;">
-                <span>N°: </span><span><?php echo $command[0]['id_commande']; ?></span><br>
+            <div class="multi panel" style="width: 35%">
+                <span>N°: </span><span><?php echo $command['commande']['id_commande']; ?></span><br>
                 <br>
-                <span>Points Obtenus: </span><span><?php echo $command[0]['point']; ?></span><br>
-                <span>Total: </span><span><?php echo $command[0]['total']; ?></span><br>
-                <span>RAP: </span><span>N°</span><br>
-                <span>Géré par: </span><span><?php echo $command[0]['nom']." ".$command[0]['prenom']; ?></span><br>
+                <span>Points Obtenus: </span><span><?php echo $command['commande']['total']; ?></span><br>
+                <span>Total: </span><span><?php echo $command['commande']['total']; ?></span><br>
+                <span>RAP: </span><span><?php echo $command['commande']['total']-$command['paiement'][0]['Total_paye']; ?></span><br>
+                <span>Géré par: </span><span><?php echo $command['commande']['nom']." ".$command['commande']['prenom']; ?></span><br>
             </div>
-            <div class="multi panel" style="width: 28%; height: 200px;">
+            <div class="multi panel" style="width: 28%">
+                <span><?php echo $command['commande']['name']; ?></span><br>
+                <span>Code: </span><span><?php echo $command['commande']['code_client']; ?></span><br>
+                <br>
+                <span>Numéro: </span><span><?php echo $command['commande']['Phone']; ?></span><br>
+                <span>Membership: </span><span><?php echo $command['commande']['nom']; ?></span><br>
+            </div>
+            <div class="multi panel" style="width: 28%">
                 <span>test</span>
             </div>
-            <div class="multi panel" style="width: 28%; height: 200px;">
-                <span>test</span>
+            <div class="multi panel" style="width: 45%;">
+                <table>
+                    <tr>
+                        <td class="title">Item</td>
+                        <td class="title">Prix</td>
+                        <td class="title">Quantité</td>
+                        <td class="title">Statut</td>
+                        <td class="title">Action</td>
+
+                    </tr>
+                    <?php
+                    foreach($command['livraison'] as $delivery){
+                        ?>
+                        <tr>
+                            <td><?php echo $delivery['nom'] ?></td>
+                            <td><?php echo $delivery['Prix_remise'] ?></td>
+                            <td><?php echo $delivery['quantité'] ?></td>
+                            <td><?php echo $delivery['statut'] ?></td>
+                            <td>
+                                <button> Suppr </button>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </table>
             </div>
-            <div class="multi panel" style="width: 45%; height: 200px;">
-                <span>test</span>
-            </div>
-            <div class="multi panel" style="width: 40%; height: 200px;">
-                <span>test</span>
+            <div class="multi panel" style="width: 40%">
+                    <?php
+                    foreach($command['livraison'] as $delivery){
+                        ?>
+                <span>Dispatched Date: <span><?php echo $delivery['DateExpédié'] ?></span><br>
+                            <span>Parcel N°: <span><?php echo $delivery['numeroColis'] ?></span><br>
+                        <br>
+                            <span>Arrival Date: <span><?php echo $delivery['dateLivrée'] ?></span><br>
+                        <br> --  <br><br>
+                        <?php
+                    }
+                    ?>
             </div>
         </div>
     </div>

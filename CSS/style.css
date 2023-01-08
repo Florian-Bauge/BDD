@@ -75,21 +75,27 @@
     width: 100%;
     height: calc(100% - 60px);
     position:relative;
+    padding:10px;
 }
 
 .panel.multi{
     margin: 10px 10px 10px 10px;
     display: inline-block;
     min-width:fit-content;
-    height: fit-content;
+    height: auto;
 }
 
 .panel.title{
     margin: auto;
     margin-bottom: 20px;
     display: block;
-}
 
+}
+.panel > span.title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
 table {
     width: 90%;
     margin:auto;

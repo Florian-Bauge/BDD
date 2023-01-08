@@ -20,12 +20,12 @@
 <div class="page">
     <div class="nav">
        <div class="headNav">
-                   <img src="./img/Logo_entreprise" class="logoCompanies">
-                   <img src="./img/nom_entreprise" class="nameCompanies">
-               </div>
-               <button onclick="location.href='./index.html';" class="buttonMenu"><img src="./img/Model=tab, active=false"  class="imageMenu"  ></button></br>
-               <button onclick="location.href='./commande.php';" class="buttonMenu"> <img src="./img/Model=order, active=true"class="imageMenu"  > </button></br>
-               <button onclick="location.href='./client.html';" class="buttonMenu"> <img src="./img/Model=client, active=false" class="imageMenu" </button></br>
+            <img src="./img/Logo_entreprise" class="logoCompanies">
+            <img src="./img/nom_entreprise" class="nameCompanies">
+       </div>
+       <button onclick="location.href='./index.html';" class="buttonMenu"><img src="./img/Model=tab, active=false"  class="imageMenu"  ></button></br>
+       <button onclick="location.href='./commande.php';" class="buttonMenu"> <img src="./img/Model=order, active=true"class="imageMenu"  > </button></br>
+       <button onclick="location.href='./client.html';" class="buttonMenu"> <img src="./img/Model=client, active=false" class="imageMenu" </button></br>
     </div>
     <div class="other">
         <div class="content">
@@ -89,48 +89,33 @@
                 <span>RAP: </span><span><?php echo $command['commande']['total']-$command['paiement'][0]['Total_paye']; ?></span><br>
                 <span>Géré par: </span><span><?php echo $command['commande']['nom']." ".$command['commande']['prenom']; ?></span><br>
             </div>
+                <div class="multi panel" style="width: 28%;">
+                    <span class="title">Récaptulatif</span>
+                        <?php
+                        foreach($command['livraison'] as $delivery){
+                            ?>
+                            <span>• <?php echo $delivery['quantité'] ?>x <?php echo $delivery['nom'] ?></span><br>
+                            <span>Prix : </span><span><?php echo $delivery['Prix_remise'] ?></span><br>
+                            <span>Statut : </span><span><?php echo $delivery['statut'] ?></span><br>
+                            <br>
+                            <?php
+                        }
+                        ?>
+                </div>
             <div class="multi panel" style="width: 28%">
+                <span class="title">Client</span>
                 <span><?php echo $command['commande']['name']; ?></span><br>
                 <span>Code: </span><span><?php echo $command['commande']['code_client']; ?></span><br>
                 <br>
                 <span>Numéro: </span><span><?php echo $command['commande']['Phone']; ?></span><br>
                 <span>Membership: </span><span><?php echo $command['commande']['nom']; ?></span><br>
             </div>
-            <div class="multi panel" style="width: 28%">
-                <span>test</span>
-            </div>
-            <div class="multi panel" style="width: 45%;">
-                <table>
-                    <tr>
-                        <td class="title">Item</td>
-                        <td class="title">Prix</td>
-                        <td class="title">Quantité</td>
-                        <td class="title">Statut</td>
-                        <td class="title">Action</td>
-
-                    </tr>
+                <div class="multi panel" style="width: 30%">
+                    <span class="title">Livraison</span>
                     <?php
                     foreach($command['livraison'] as $delivery){
-                        ?>
-                        <tr>
-                            <td><?php echo $delivery['nom'] ?></td>
-                            <td><?php echo $delivery['Prix_remise'] ?></td>
-                            <td><?php echo $delivery['quantité'] ?></td>
-                            <td><?php echo $delivery['statut'] ?></td>
-                            <td>
-                                <button> Suppr </button>
-                            </td>
-                        </tr>
-                        <?php
-                    }
                     ?>
-                </table>
-            </div>
-            <div class="multi panel" style="width: 40%">
-                <?php
-                foreach($command['livraison'] as $delivery){
-                ?>
-                <span>Dispatched Date: <span><?php echo $delivery['DateExpédié'] ?></span><br>
+                    <span>Dispatched Date: <span><?php echo $delivery['DateExpédié'] ?></span><br>
                             <span>Parcel N°: <span><?php echo $delivery['numeroColis'] ?></span><br>
                         <br>
                             <span>Arrival Date: <span><?php echo $delivery['dateLivrée'] ?></span><br>
@@ -138,7 +123,33 @@
                         <?php
                         }
                         ?>
-            </div>
+                </div>
+                <div style="display: flex;flex-direction: column;">
+                <div class="multi panel" style="width: auto; height: -webkit-fill-available;">
+                    <span class="title">Note</span>
+                    <span><?php echo $command['commande']['note'] ?></span>
+                </div>
+                <div class="multi panel" style="width: 18%;">
+                    <button type="button"> Suppr </button>
+                    <button type="button"> Suppr </button>
+                    <p>Action</p>
+                </div>
+                </div>
+                <div class="multi panel" style="width: 28%">
+                    <span class="title">Paiement</span>
+                    <?php
+                    foreach($command['paiement'] as $paiement){
+                    ?>
+                    <span>Moyen: <span><?php echo $paiement['nom'] ?></span><br>
+                            <span>Date: <span><?php echo $paiement['date'] ?></span><br>
+                            <span>  Montant: <span><?php echo $paiement['cout'] ?></span><br>
+                        <br>
+                        <?php
+                        }
+                        ?>
+                </div>
+
+
         </div>
 
     </div>

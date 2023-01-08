@@ -44,7 +44,7 @@ function getArrayAllCommand($id){   //Recupération des données pour affichage
 
     //Récupération Information de Commande et de Client
 
-    $sql = "SELECT id_commande, commande.total, concierge.nom, concierge.prenom, client.name, client.code_client, client.Phone, grillePoint.nom from commande 
+    $sql = "SELECT note, id_commande, commande.total, concierge.nom, concierge.prenom, client.name, client.code_client, client.Phone, grillePoint.nom from commande 
     LEFT OUTER JOIN client ON commande.code_client=client.code_client 
     LEFT OUTER JOIN concierge ON concierge.id_con=commande.id_con
     LEFT OUTER JOIN GrillePoint ON client.id_membership=grillepoint.id_membership

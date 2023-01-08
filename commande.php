@@ -75,6 +75,7 @@
     </div>
 
     <div id="Modal_commande" class="modal">
+        <input type="hidden" name ="id">
         <?php
         $command = getArrayAllCommand(1);
         ?>

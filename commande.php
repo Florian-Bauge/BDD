@@ -21,12 +21,12 @@
 <div class="page">
     <div class="nav">
        <div class="headNav">
-            <img src="./img/Logo_entreprise" class="logoCompanies">
-            <img src="./img/nom_entreprise" class="nameCompanies">
+            <img src="Img/Logo_entreprise.png" class="logoCompanies">
+            <img src="Img/nom_entreprise.png" class="nameCompanies">
        </div>
-       <button onclick="location.href='./index.html';" class="buttonMenu"><img src="./img/Model=tab, active=false"  class="imageMenu"  ></button></br>
-       <button onclick="location.href='./commande.php';" class="buttonMenu"> <img src="./img/Model=order, active=true"class="imageMenu"  > </button></br>
-       <button onclick="location.href='./client.php';" class="buttonMenu"> <img src="./img/Model=client, active=false" class="imageMenu" </button></br>
+       <button onclick="location.href='./index.html';" class="buttonMenu"><img src="Img/Model=tab, active=false.png"  class="imageMenu"  ></button></br>
+       <button onclick="location.href='./commande.php';" class="buttonMenu"> <img src="Img/Model=order, active=true.png"class="imageMenu"  > </button></br>
+       <button onclick="location.href='./client.php';" class="buttonMenu"> <img src="Img/Model=client, active=false.png" class="imageMenu" ></button></br>
     </div>
     <div class="other">
         <div class="content">

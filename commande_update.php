@@ -38,7 +38,7 @@
                 <br>
                 <span>Points Obtenus: </span><span><?php echo $command['commande']['total']; ?></span><br>
                 <span>Total: </span><span><?php echo $command['commande']['total']; ?></span><br>
-                <span>RAP: </span><span><?php echo $command['commande']['total']-$command['paiement'][0]['Total_paye']; ?></span><br>
+                <span>RAP: </span><span><?php echo $command['commande']['RAP'] ?></span><br>
                 <span>Géré par: </span><span><?php echo $command['commande']['nom']." ".$command['commande']['prenom']; ?></span><br>
             </div>
             <div class="multi panel" style="width: 28%">
@@ -50,6 +50,16 @@
             </div>
             <div class="multi panel" style="width: 28%">
                 <span>test</span>
+                <?php
+                foreach($command['paiement'] as $paiement){
+                ?>
+                <span>Moyen: <span><?php echo $paiement['nom']; ?></span><br>
+                            <span>Date: <span><?php echo $paiement['date']; ?></span><br>
+                            <span>  Montant: <span><?php echo $paiement['cout']; ?></span><br>
+                        <br>
+                <?php
+                }
+                ?>
             </div>
             <div class="multi panel" style="width: 45%;">
                 <table>
@@ -62,7 +72,7 @@
 
                     </tr>
                     <?php
-                    foreach($command['livraison'] as $delivery){
+                    foreach($command['contenu'] as $delivery){
                         ?>
                         <tr>
                             <td><?php echo $delivery['nom'] ?></td>

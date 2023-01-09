@@ -44,7 +44,7 @@ function getArrayAllCommand($id){   //Recupération des données pour affichage
 
     //Récupération Information de Commande et de Client
 
-    $sql = "SELECT note, id_commande, commande.total, concierge.nom, concierge.prenom, client.name, client.code_client, client.Phone, grillePoint.nom from commande 
+    $sql = "SELECT note, id_commande, commande.total, total-coalesce((SELECT sum(cout) from paiement where id_commande = $id),0) AS RAP, concierge.nom, concierge.prenom, client.name, client.code_client, client.Phone, grillePoint.nom from commande 
     LEFT OUTER JOIN client ON commande.code_client=client.code_client 
     LEFT OUTER JOIN concierge ON concierge.id_con=commande.id_con
     LEFT OUTER JOIN GrillePoint ON client.id_membership=grillepoint.id_membership
@@ -62,7 +62,7 @@ function getArrayAllCommand($id){   //Recupération des données pour affichage
 
     //Récupération Information de Paiement
 
-    $sql = "SELECT date, cout, nom, sum(cout) AS 'Total_paye' from paiement 
+    $sql = "SELECT date, cout, nom from paiement 
     LEFT OUTER JOIN moyen ON moyen.id_transaction = paiement.id_transaction
     WHERE paiement.id_commande = $id
 ;";

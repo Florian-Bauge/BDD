@@ -40,13 +40,6 @@
                         <td class="title">Action</td>
 
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
-                        <td>5</td>
-                    </tr>
                     <?php
                     foreach(getArrayRecapCommand("11") as $command){
                     ?>
@@ -76,9 +69,6 @@
     </div>
 
     <div id="Modal_commande" class="modal">
-        <?php
-        $command = getArrayAllCommand(1);
-        ?>
         <div class="content">
             <span id="Modalclose_commande" class="close">&times;</span>
             <div class="inline">
@@ -87,37 +77,31 @@
                 <br>
                 <span>Points Obtenus: </span><span name='Modal_total'></span><br>
                 <span>Total: </span><span name='Modal_total'></span><br>
-                <span>RAP: </span><span name='Modal-RAP'></span><br>
+                <span>RAP: </span><span name='Modal_RAP'></span><br>
                 <span>Géré par: </span><span name='Modal_cons'></span><br>
             </div>
                 <div class="multi panel" style="width: 28%;">
                     <span class="title">Récaptulatif</span>
-                        <?php
-                        //foreach($command['livraison'] as $delivery){
-                            ?>
-                    <div id="contenu" style="display:none;">  //Example for Copy
+                    <div id="contenu" style="display:none;">  <!--Example for Copy-->
                         <span>• <span name="Modal_quantité">1</span>x <span name="Modal_nom">1</span></span><br>
                         <span>Prix : </span><span name="Modal_Prix_remise">1</span><br>
                         <span>Statut : </span><span name="Modal_statut">1</span><br>
                         <br>
-                        <?php
-                        //}
-                        ?>
                     </div>
 
                 </div>
             <div class="multi panel" style="width: 28%">
                 <span class="title">Client</span>
-                <span><?php echo $command['commande']['name']; ?></span><br>
-                <span>Code: </span><span><?php echo $command['commande']['code_client']; ?></span><br>
+                <span name='Modal_name'></span><br>
+                <span>Code: </span><span name='Modal_code_client'></span><br>
                 <br>
-                <span>Numéro: </span><span><?php echo $command['commande']['Phone']; ?></span><br>
-                <span>Membership: </span><span><?php echo $command['commande']['nom']; ?></span><br>
+                <span>Numéro: </span><span name='Modal_Phone'></span><br>
+                <span>Membership: </span><span name='Modal_nom'></span><br>
             </div>
                 <div class="multi panel" style="width: 30%">
 
                     <span class="title">Livraison</span>
-                        <div id="livraison" style="display:none;">  //Example for Copy
+                        <div id="livraison" style="display:none;">  <!--Example for Copy-->
                         <span>Dispatched Date: </span><span class="test" name='Modal_DateExpédié'>1</span><br>
                         <span>Parcel N°: </span><span name='Modal_numeroColis'>2</span><br>
                         <br>
@@ -129,7 +113,7 @@
                 <div style="display: flex;flex-direction: column;">
                 <div class="multi panel" style="width: auto; height: -webkit-fill-available;">
                     <span class="title">Note</span>
-                    <span><?php echo $command['commande']['note'] ?></span>
+                    <span name='Modal_note'></span>
                 </div>
                 <div class="multi panel" style="width: 18%;">
                     <button type="button"> Suppr </button>
@@ -139,16 +123,12 @@
                 </div>
                 <div class="multi panel" style="width: 28%">
                     <span class="title">Paiement</span>
-                    <?php
-                    foreach($command['paiement'] as $paiement){
-                    ?>
-                    <span>Moyen: <span><?php echo $paiement['nom'] ?></span><br>
-                            <span>Date: <span><?php echo $paiement['date'] ?></span><br>
-                            <span>  Montant: <span><?php echo $paiement['cout'] ?></span><br>
+                    <div id="paiement" style="display:none;">  <!--Example for Copy-->
+                    <span>Moyen: <span name='Modal_nom'></span><br>
+                            <span>Date: <span name='Modal_date'></span><br>
+                            <span>  Montant: <span name='Modal_cout'></span><br>
                         <br>
-                        <?php
-                        }
-                        ?>
+                </div>
                 </div>
 
 

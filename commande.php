@@ -88,7 +88,6 @@
                         <span>Statut : </span><span name="Modal_statut">1</span><br>
                         <br>
                     </div>
-
                 </div>
             <div class="multi panel" style="width: 28%">
                 <span class="title">Client</span>
@@ -116,7 +115,10 @@
                     <span name='Modal_note'></span>
                 </div>
                 <div class="multi panel" style="width: 18%;">
-                    <button type="button"> Suppr </button>
+                    <form id="form_update" method="get" action="commande_update.php">
+                    <input type="hidden" name ="form_update_id" value="null">
+                    </form>
+                    <button type="button" onclick="submitFormAndRedirect('form_update','Modal_id_commande');"> Modif </button>
                     <button type="button"> Suppr </button>
                     <p>Action</p>
                 </div>

@@ -47,11 +47,11 @@ function ShowModalWith(id, param){
     ({
         type: 'POST',
         url: './PHP/ajax_mysql.php',
-        data:{ cmd: 'commande', id: param},
+        data:{ cmd: id, id: param},
         dataType: 'json',
         success: function (data) {
             console.log(data);
-            document.getElementsByName('Modal_id_commande')[0].innerHTML = data['commande']['id_commande'];
+            document.getElementById("Modal_ID_"+id)
             for(var key in data){
                 for(var row in data[key]){
                     console.log(key + "->" + row + "->" + data[key][row] + " : " + document.getElementsByName('Modal_' + row).length)
@@ -102,4 +102,9 @@ function ShowModalWith(id, param){
     });
     console.log("?");
 
+}
+
+function submitFormAndRedirect(form, id){
+    document.getElementById(form+"_id").setAttribute("value", document.getElementById(id));
+    document.getElementById(form).submit();
 }

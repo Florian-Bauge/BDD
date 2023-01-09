@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>Commande</title>
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    <script src="JS/script.js"></script>
+
     <!--<script src="script.js"></script>-->
     <?php
         include 'PHP/commande_php.php';
@@ -92,17 +94,31 @@
                     <?php
                     foreach($command['livraison'] as $delivery){
                         ?>
-                <span>Dispatched Date: <span><?php echo $delivery['DateExpédié'] ?></span><br>
+                    <span>Dispatched Date: <span><?php echo $delivery['DateExpédié'] ?></span><br>
                             <span>Parcel N°: <span><?php echo $delivery['numeroColis'] ?></span><br>
                         <br>
                             <span>Arrival Date: <span><?php echo $delivery['dateLivrée'] ?></span><br>
-                        <br> --  <br><br>
+                        <br>   <br>
                         <?php
                     }
                     ?>
+                                <button onclick="ShowModal('add_livraison');"> Ajouter </button>
             </div>
         </div>
     </div>
+    <div id="Modal_add_livraison" class="modal">
+        <div class="panel pmodal">
+            <span id="Modalclose_add_livraison" class="close">&times;</span>
+
+                    <span class="title">Livraison</span>
+                        <span>Dispatched Date: </span><input type='date' id="Modal_DateExpédié"/><br>
+                        <span>Parcel N°: </span><input name='Modal_numeroColis'/><br>
+            <button>Valider</button>
+
+
+        </div>
+    </div>
+    <script>InitModal("add_livraison");</script>
 </div>
 
 </body>

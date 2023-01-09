@@ -28,7 +28,7 @@ function InitModal(id){
 
 function ShowModal(id, param){
     var modal = document.getElementById("Modal_"+id);
-    modal.style.display = "block";
+    modal.style.display = "flex";
 
 }
 
@@ -97,14 +97,15 @@ function ShowModalWith(id, param){
             document.getElementById('id-game').value = data['kGame'];
 */
 
-            modal.style.display = "block";
+            modal.style.display = "flex";
         }
     });
-    console.log("?");
+    console.log("??");
 
 }
 
 function submitFormAndRedirect(form, id){
-    document.getElementById(form+"_id").setAttribute("value", document.getElementById(id));
+    console.log(document.getElementsByName(id)[0].innerHTML);
+    document.getElementById(form+"_id").setAttribute("value", document.getElementsByName(id)[0].innerHTML);
     document.getElementById(form).submit();
 }

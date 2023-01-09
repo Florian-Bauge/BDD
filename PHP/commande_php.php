@@ -15,7 +15,6 @@ function getArrayRecapCommand($text){    //Recupération des données pour affic
 		while ($row = $result->fetch_assoc()){
             $array[] = $row;
 		};
-        var_dump($array);
 	} else {
 		echo "Error: " . $sql . "<br>" . $mysqli->error;
 	}
@@ -55,7 +54,6 @@ function getArrayAllCommand($id){   //Recupération des données pour affichage
         while ($row = $result->fetch_assoc()){
             $array['commande'] = $row;
         };
-        var_dump($array);
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
@@ -71,7 +69,6 @@ function getArrayAllCommand($id){   //Recupération des données pour affichage
         while ($row = $result->fetch_assoc()){
             $array['paiement'][] = $row;
         };
-        var_dump($array);
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
@@ -88,7 +85,6 @@ function getArrayAllCommand($id){   //Recupération des données pour affichage
         while ($row = $result->fetch_assoc()){
             $array['livraison'][] = $row;
         };
-        var_dump($array);
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
@@ -105,7 +101,6 @@ function getArrayAllCommand($id){   //Recupération des données pour affichage
         while ($row = $result->fetch_assoc()){
             $array['contenu'][] = $row;
         };
-        var_dump($array);
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }

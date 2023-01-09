@@ -51,10 +51,6 @@
                         <td>
                             <button type="button"> Suppr </button>
                             <button type="button" onclick="ShowModalWith('commande', <?php echo $command['id_commande']?>)"> Voir </button>
-                            <form method="get"" action="commande_update.php">
-                                <input type="submit" value="Modif">
-                                <input type="hidden" name ="id" value=<?php echo $command['id_commande']?>>
-                            </form>
 
                         </td>
                     </tr>
@@ -116,7 +112,7 @@
                 </div>
                 <div class="multi panel" style="width: 18%;">
                     <form id="form_update" method="get" action="commande_update.php">
-                    <input type="hidden" name ="form_update_id" value="null">
+                    <input type="hidden" name ="id" id="form_update_id" value="null">
                     </form>
                     <button type="button" onclick="submitFormAndRedirect('form_update','Modal_id_commande');"> Modif </button>
                     <button type="button"> Suppr </button>

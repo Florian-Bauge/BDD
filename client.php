@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Client</title>
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
-    <!--<script src="script.js"></script>-->
+    <script src="JS/script.js"></script>
     <?php
             include 'PHP/client_php.php';
         ?>
@@ -49,7 +49,7 @@
                     <td><?php echo $client['name']?></td>
                     <td><?php echo $client['Email']?></td>
                     <td><?php echo $client['Phone']?></td>
-                    <td><?php echo $client['id_membership']?></td>
+                    <td><?php echo $client['nom']?></td>
                     <td>
                         <button type="button">Search</button>
                         <button type="button">Edit</button>
@@ -61,10 +61,41 @@
             </table>
             </div>
 
-            <button >Créer</button>
+            <button onclick="ShowModal('add_client')">Créer</button>
             <button>Exporter</button>
         </div>
     </div>
+    <div id="Modal_add_client" class="modal">
+        <div class="panel pmodal">
+            <span id="Modalclose_add_client" class="close">&times;</span>
+
+            <span class="title">Créer un compte</span>
+            <p class="TitreNewCompte">Membership </p><br>
+            <select id="Modal_NewCompte_Select_Membership">
+                <option value="1">Silver</option> //php à faire
+                <option value="2">Gold</option>
+            </select>
+            <input type='date' id="Modal_NewCompte_DateMembership"/><br>
+            <p class="TitreNewCompte">Nom </p>
+            <input id="Modal_NewCompte_nom">
+            <p class="TitreNewCompte">Mail </p>
+            <input type="email" id="Modal_NewCompte_mail">
+            <p class="TitreNewCompte">Téléphone </p>
+            <input type="tel" id="Modal_NewCompte_tel"><br>
+            <img src="Img/logo_Insta.png">
+            <input type="text" id="Modal_NewCompte_Insta">
+            <img src="Img/logo_Facebook.png">
+            <input type="text" id="Modal_NewCompte_Facebook">
+            <p class="TitreNewCompte">Adresse </p>
+            <input type="text" name="Modal_NewCompte_adress"> <br>
+            <input type="image" src="Img/buttonAddAdress.png" onclick=""> <br>
+            <input type="image" src="Img/buttonValiderCompte.png" onclick="CreateAccount()">
+
+
+
+        </div>
+    </div>
+    <script>InitModal("add_client");</script>
 </div>
 
 </body>

@@ -82,4 +82,21 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='commande') {
 
 
 }
+
+if (isset($_POST['insert']) and $_POST['cmd']=='insert') {
+    $mysqli = Connect();
+
+    $sql = 'INSERT INTO member (FirstName, Name, Adress, Number) VALUES ("'.$_POST['FirstName'].'","'.$_POST['Name'].'","'.$_POST['Adress'].'","'.$_POST['Number'].'");';
+
+
+    if ($mysqli->query($sql) === FALSE) {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+
+    Disconnect($mysqli);
+
+    unset($_POST['cmd']);
+}
+
+
 ?>

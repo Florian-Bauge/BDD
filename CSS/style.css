@@ -176,6 +176,10 @@ td {
     height: fit-content;
     margin: auto;
 }
+.Modal_Error{
+  display: none;
+}
+
 
 
 .imageMenu{

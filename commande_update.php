@@ -111,9 +111,13 @@
             <span id="Modalclose_add_livraison" class="close">&times;</span>
 
                     <span class="title">Livraison</span>
-                        <span>Dispatched Date: </span><input type='date' id="Modal_DateExpédié"/><br>
-                        <span>Parcel N°: </span><input id='Modal_numeroColis'/><br>
-            <button onclick="ValidatePaiement()">Valider</button>
+            <form name="ModalForm" action="" method="GET"> <!--javascript:void(0);-->
+                        <span>Dispatched Date: </span><input required type='date' id="Modal_DateExpédié"/><br>
+                        <span>Parcel N°: </span><input required id='Modal_numeroColis'/><br>
+                        <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />
+                        <button onclick="ValidateLivraison()">Valider</button>
+            </form>
+
         </div>
     </div>
     <script>InitModal("add_livraison");</script>

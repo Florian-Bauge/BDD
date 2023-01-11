@@ -5,9 +5,12 @@ function InitModal(id){
 
     span.onclick = function() {
         modal.style.display = "none";
+
+        document.getElementsByName("ModalForm").forEach(elm => {
+            elm.reset();
+        });
         //RESET
         while(document.getElementsByName("temp").length>0){
-            console.log(document.getElementsByName("temp")[0]);
             document.getElementsByName("temp")[0].remove();
         };
     }
@@ -16,6 +19,11 @@ function InitModal(id){
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
+
+            document.getElementsByName("ModalForm").forEach(elm => {
+                elm.reset();
+            });
+
             //RESET
             while(document.getElementsByName("temp").length>0){
                 console.log(document.getElementsByName("temp")[0]);
@@ -110,17 +118,7 @@ function submitFormAndRedirect(form, id){
     document.getElementById(form).submit();
 }
 
-function ValidatePaiement(){
+function ValidateLivraison(){
 
-    const inputDate = document.getElementById('Modal_DateExpédié').value;
-    const inputN = document.getElementById('Modal_numeroColis').value;
-
-    if (isNaN(inputN.getTime()) {
-        // the date is invalid
-        console.log("invalid");
-    } else {
-        // the date is valid
-        console.log("valid");
-    }
 
 }

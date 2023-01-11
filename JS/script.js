@@ -131,3 +131,18 @@ function  CreateAccount(){
 
 
 }
+
+function ValidatePaiement(){
+
+    const inputDate = document.getElementById('Modal_DateExpédié').value;
+    const inputN = document.getElementById('Modal_numeroColis').value;
+
+    if (isNaN(inputN.getTime()) {
+        // the date is invalid
+        console.log("invalid");
+    } else {
+        // the date is valid
+        console.log("valid");
+    }
+
+}

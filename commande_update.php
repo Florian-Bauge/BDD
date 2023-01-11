@@ -112,10 +112,8 @@
 
                     <span class="title">Livraison</span>
                         <span>Dispatched Date: </span><input type='date' id="Modal_DateExpédié"/><br>
-                        <span>Parcel N°: </span><input name='Modal_numeroColis'/><br>
-            <button>Valider</button>
-
-
+                        <span>Parcel N°: </span><input id='Modal_numeroColis'/><br>
+            <button onclick="ValidatePaiement()">Valider</button>
         </div>
     </div>
     <script>InitModal("add_livraison");</script>

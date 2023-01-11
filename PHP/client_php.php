@@ -4,7 +4,7 @@ include 'global.php';
 function getArrayClient(){// Récupère les données nécessaire pour l'affichage de la page client
     $array=array();
     $mysqli = Connect();
-    $sql ="SELECT `code_client`, `name`, `Email`, `Phone`, `id_membership`FROM `client`;";
+    $sql ="SELECT `code_client`, `name`, `Email`, `Phone`, `nom`FROM `client` JOIN `grillepoint`;";
 
     if ($result = $mysqli->query($sql)) {
         while ($row = $result->fetch_assoc()){

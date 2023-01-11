@@ -109,3 +109,25 @@ function submitFormAndRedirect(form, id){
     document.getElementById(form+"_id").setAttribute("value", document.getElementsByName(id)[0].innerHTML);
     document.getElementById(form).submit();
 }
+function  CreateAccount(){
+    console.log("Function start");
+    var membershipSelect=document.querySelector("#Modal_NewCompte_Select_Membership");
+    var id_membershipSelect=membershipSelect.options[membershipSelect.selectedIndex].getAttribute("value");
+    var date_Membership=document.getElementById("Modal_NewCompte_DateMembership").value;
+    var nom=document.getElementById("Modal_NewCompte_nom").value;
+    var mail=document.getElementById("Modal_NewCompte_mail").value;
+    var tel=document.getElementById("Modal_NewCompte_tel").value;
+    var insta=document.getElementById("Modal_NewCompte_Insta").value;
+    var facebook=document.getElementById("Modal_NewCompte_Facebook").value;
+    var adresse=document.getElementsByName("Modal_NewCompte_adress").values();
+    console.log(id_membershipSelect);
+    console.log(date_Membership);
+    console.log(nom);
+    console.log(mail);
+    console.log(tel);
+    console.log(insta);
+    console.log(facebook);
+    console.log(adresse);
+
+
+}

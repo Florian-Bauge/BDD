@@ -142,5 +142,38 @@ function  CreateAccount(){
 
 function ValidateLivraison(){
 
+    const date = document.getElementById("Modal_DateExpédié");
+    const parcel = document.getElementById("Modal_numeroColis");
 
+
+    const checkbox = document.getElementsByName("Modal_items");
+    var hasOneChecked = false;
+    var checkArray = new Array();
+    checkbox.forEach(element => {
+        if(element.checked) {
+            hasOneChecked = true;
+            checkArray.push(element.value);
+        }
+    });
+    if(!hasOneChecked)
+        return false;
+
+    console.log("FUNCTION");
+    var arrayInsertData = [date.value, parcel.value];
+    var arrayUpdateData = checkArray;
+    console.log(arrayInsertData);
+    console.log(arrayUpdateData);
+    /*$.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data:{ cmd: "insert", id: id, data:data},
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+
+        }
+    });*/
+
+    return false;
 }

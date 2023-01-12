@@ -20,6 +20,7 @@ function getArrayRecapCommand($text){    //Recupération des données pour affic
 	}
 	$result->close();
 	//echo $array[0]['Name'];
+
 	return $array;
 
 }
@@ -43,7 +44,7 @@ function getArrayAllCommand($id){   //Recupération des données pour affichage
 
     //Récupération Information de Commande et de Client
 
-    $sql = "SELECT note, id_commande, commande.total, total-coalesce((SELECT sum(cout) from paiement where id_commande = $id),0) AS RAP, concierge.nom, concierge.prenom, client.name, client.code_client, client.Phone, grillePoint.nom from commande 
+    $sql = "SELECT note, id_commande, commande.total, total-coalesce((SELECT sum(cout) from paiement where id_commande = $id),0) AS RAP, concat(concierge.nom, concierge.prenom) AS cons, client.name, client.code_client, client.Phone, grillePoint.nom from commande 
     LEFT OUTER JOIN client ON commande.code_client=client.code_client 
     LEFT OUTER JOIN concierge ON concierge.id_con=commande.id_con
     LEFT OUTER JOIN GrillePoint ON client.id_membership=grillepoint.id_membership
@@ -91,7 +92,7 @@ function getArrayAllCommand($id){   //Recupération des données pour affichage
 
     //Récupération Information de contenu de commande
 
-    $sql = "SELECT item.nom, Prix_remise, envoie.statut, quantité, numeroColis from envoie 
+    $sql = "SELECT envoie.id_item, item.nom, Prix_remise, envoie.statut, quantité, numeroColis from envoie 
     LEFT OUTER JOIN item ON envoie.id_item=item.id_item
     LEFT OUTER JOIN livraison ON envoie.id_livraison=livraison.id_delivery
     WHERE envoie.id_commande = $id
@@ -111,12 +112,30 @@ function getArrayAllCommand($id){   //Recupération des données pour affichage
     $result->close();
 
     //echo $array[0]['Name'];
+    var_dump($array);
     return $array;
 
 }
 
-function addDelivery($id){
+function getAdresses($id){
 
+
+
+    $mysqli = Connect();
+
+    $sql = "SELECT id_adresse, CONCAT(nrue,' ',rue,' ',adresse.codepostal,' ',ville,' ',pays,' ',infoComp) AS adresse from adresse WHERE adresse.code_client=$id;";
+    $array = array();
+
+    if ($result = $mysqli->query($sql)) {
+        //echo "<br>New record created successfully<br>";
+        while ($row = $result->fetch_assoc()){
+            $array[] = $row;
+        };
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    $result->close();
+    return $array;
 
 }
 

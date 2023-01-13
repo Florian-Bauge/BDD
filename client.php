@@ -67,6 +67,7 @@
     </div>
     <div id="Modal_add_client" class="modal">
         <div class="panel pmodal">
+            <form name="ModalForm">
             <span id="Modalclose_add_client" class="close">&times;</span>
 
             <span class="title">Créer un compte</span>
@@ -75,22 +76,22 @@
                 <option value="1">Silver</option> //php à faire
                 <option value="2">Gold</option>
             </select>
-            <input type='date' id="Modal_NewCompte_DateMembership"/><br>
+            <input required type='date' id="Modal_NewCompte_DateMembership"/><br>
             <p class="TitreNewCompte">Nom </p>
-            <input id="Modal_NewCompte_nom">
+            <input required id="Modal_NewCompte_nom">
             <p class="TitreNewCompte">Mail </p>
-            <input type="email" id="Modal_NewCompte_mail">
+            <input required type="email" id="Modal_NewCompte_mail">
             <p class="TitreNewCompte">Téléphone </p>
-            <input type="tel" id="Modal_NewCompte_tel"><br>
+            <input required type="tel" id="Modal_NewCompte_tel"><br>
             <img src="Img/logo_Insta.png">
-            <input type="text" id="Modal_NewCompte_Insta">
+            <input  type="text" id="Modal_NewCompte_Insta">
             <img src="Img/logo_Facebook.png">
             <input type="text" id="Modal_NewCompte_Facebook">
             <p class="TitreNewCompte">Adresse </p>
-            <input type="text" name="Modal_NewCompte_adress"> <br>
-            <input type="image" src="Img/buttonAddAdress.png" onclick=""> <br>
+            <input type="text" name="Modal_temp_NewCompte_adress_" placeholder="20 rue Jean Moulin 72000 Le mans, FRANCE" class="InputAdressModal"> <br>
+            <input type="image" src="Img/buttonAddAdress.png" onclick="AddAdress()"> <br>
             <input type="image" src="Img/buttonValiderCompte.png" onclick="CreateAccount()">
-
+            </form>
 
 
         </div>

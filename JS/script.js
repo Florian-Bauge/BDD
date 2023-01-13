@@ -127,7 +127,7 @@ function  CreateAccount(){
     var tel=document.getElementById("Modal_NewCompte_tel").value;
     var insta=document.getElementById("Modal_NewCompte_Insta").value;
     var facebook=document.getElementById("Modal_NewCompte_Facebook").value;
-    var adresse=document.getElementsByName("Modal_NewCompte_adress").values();
+    var adresse=document.getElementsByName("Modal_temp_NewCompte_adress_").values();
     console.log(id_membershipSelect);
     console.log(date_Membership);
     console.log(nom);
@@ -136,6 +136,17 @@ function  CreateAccount(){
     console.log(insta);
     console.log(facebook);
     console.log(adresse);
+
+
+}
+function AddAdress(){
+    var adr=document.getElementsByName("Modal_temp_NewCompte_adress_");
+    var elm =adr[0].cloneNode(true);
+    elm.value="";
+
+    var br=document.createElement("br");
+    adr[adr.length-1].after(br);
+    br.after(elm);
 
 
 }

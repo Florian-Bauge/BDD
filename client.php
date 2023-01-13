@@ -5,6 +5,7 @@
     <title>Client</title>
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
     <script src="JS/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <?php
             include 'PHP/client_php.php';
         ?>
@@ -51,8 +52,8 @@
                     <td><?php echo $client['Phone']?></td>
                     <td><?php echo $client['nom']?></td>
                     <td>
-                        <button type="button">Search</button>
-                        <button type="button">Edit</button>
+                        <input type="image" src="Img/button_research.png" onclick="ShowModalWith('account_client', <?php echo $client['code_client']?>)">
+                        <input type="image" src="Img/button_edit.png">
                     </td>
                 </tr>
                 <?php
@@ -60,9 +61,8 @@
                 ?>
             </table>
             </div>
-
-            <button onclick="ShowModal('add_client')">Créer</button>
-            <button>Exporter</button>
+            <input type="image" src="Img/button_Creer.png" onclick="ShowModal('add_client')">
+            <input type="image" src="Img/button_Export.png">
         </div>
     </div>
     <div id="Modal_add_client" class="modal">
@@ -97,6 +97,41 @@
         </div>
     </div>
     <script>InitModal("add_client");</script>
+    <div id="Modal_account_client" class="modal">
+        <div class="panel pmodal">
+            <div class="Modal_acount_client_panel">
+            <input type="image" src="Img/button_edit.png">
+                <span class="title">Client</span>
+                <span id="Modalclose_account_client" class="close">&times;</span> <br>
+                <p class="TitreNewCompte">Code</p>
+                <input type="text" placeholder=""disabled id="Modal_account_client_code"> <br>
+                <p class="TitreNewCompte">Nom </p>
+                <input required id="Modal_account_cliente_nom" placeholder="" disabled>
+                <p class="TitreNewCompte">Mail </p>
+                <input required type="email" id="Modal_account_client_mail" placeholder="" disabled>
+                <p class="TitreNewCompte">Téléphone </p>
+                <input required type="tel" id="Modal_account_client_tel" placeholder="" disabled><br>
+                <img src="Img/logo_Insta.png">
+                <input  type="text" id="Modal_account_client_Insta" placeholder="" disabled>
+                <img src="Img/logo_Facebook.png">
+                <input type="text" id="Modal_account_client_Facebook" placeholder="" disabled>
+                <p class="TitreNewCompte">Adresse </p>
+                <input type="text" name="Modal_temp_NewCompte_adress_" placeholder="" disabled class="InputAdressModal"> <br>
+
+
+            </div>
+            <div class="Modal_Membership_panel">
+
+            </div>
+            <div class="Modal_Historique_panel">
+
+            </div>
+
+
+        </div>
+    </div>
+    <script>InitModal("account_client");</script>
+
 </div>
 
 </body>

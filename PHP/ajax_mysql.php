@@ -97,6 +97,27 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='insert') {
 
     unset($_POST['cmd']);
 }
+if (isset($_POST['cmd']) and $_POST['cmd']=='account_client'){
+    $array = array();
+    echo "Commande lancer";
+    $mysqli = Connect();
+
+    $sql="SELECT `code_client`,`name`,`Email`,`Phone`,`Instagram`,`Facebook` FROM `client` WHERE `code_client`=".$_POST['id'].";";
+    $array['account_client'] = array();
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()){
+            $array['account_client'][] = $row;
+        };
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    $result->close();
+    echo json_encode($array);
+
+    Disconnect($mysqli);
+
+    unset($_POST['cmd']);
+}
 
 
 ?>

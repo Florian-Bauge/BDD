@@ -41,7 +41,7 @@
                 <span>Points Obtenus: </span><span><?php echo $command['commande']['total']; ?></span><br>
                 <span>Total: </span><span><?php echo $command['commande']['total']; ?></span><br>
                 <span>RAP: </span><span><?php echo $command['commande']['RAP'] ?></span><br>
-                <span>Géré par: </span><span><?php echo $command['commande']['nom']." ".$command['commande']['prenom']; ?></span><br>
+                <span>Géré par: </span><span><?php echo $command['commande']['cons']; ?></span><br>
             </div>
             <div class="multi panel" style="width: 28%">
                 <span><?php echo $command['commande']['name']; ?></span><br>
@@ -96,6 +96,7 @@
                         ?>
                     <span>Dispatched Date: <span><?php echo $delivery['DateExpédié'] ?></span><br>
                             <span>Parcel N°: <span><?php echo $delivery['numeroColis'] ?></span><br>
+                                <span>Adresse: <span><?php echo $delivery['adresse'] ?></span><br>
                         <br>
                             <span>Arrival Date: <span><?php echo $delivery['dateLivrée'] ?></span><br>
                         <br>   <br>
@@ -109,13 +110,39 @@
     <div id="Modal_add_livraison" class="modal">
         <div class="panel pmodal">
             <span id="Modalclose_add_livraison" class="close">&times;</span>
-
+            <?php
+            $address = getAdresses($command['commande']['code_client']);
+            ?>
                     <span class="title">Livraison</span>
-            <form name="ModalForm" action="" method="GET"> <!--javascript:void(0);-->
+            <form name="ModalForm" onsubmit="return ValidateLivraison()"> <!--javascript:void(0);-->
                         <span>Dispatched Date: </span><input required type='date' id="Modal_DateExpédié"/><br>
                         <span>Parcel N°: </span><input required id='Modal_numeroColis'/><br>
+                        <span>Adresse: </span><br>
+                        <select id="Modal_adress">
+                            <?php
+                            foreach($address as $adr){
+                            ?>
+                            <option value=<?php echo $adr['id_adresse'] ?>><?php echo $adr['adresse'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                <br>
                         <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />
-                        <button onclick="ValidateLivraison()">Valider</button>
+                <br>
+                <span>Article à livrer: </span><br>
+                <?php
+                foreach($command['contenu'] as $delivery){
+                    if($delivery['numeroColis'] == null){
+                    ?>
+                        <input type="checkbox" name="Modal_items" value="<?php echo $delivery['id_item']?>"/>
+                        <label for="Modal_items"><?php echo $delivery['nom']?></label>
+                    <br>
+                    <?php
+                    }
+                }
+                ?><br>
+                        <input type='submit' value="Valider"/>
             </form>
 
         </div>

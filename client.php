@@ -5,6 +5,7 @@
     <title>Client</title>
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
     <script src="JS/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <?php
             include 'PHP/client_php.php';
         ?>
@@ -51,8 +52,8 @@
                     <td><?php echo $client['Phone']?></td>
                     <td><?php echo $client['nom']?></td>
                     <td>
-                        <button type="button">Search</button>
-                        <button type="button">Edit</button>
+                        <input type="image" src="Img/button_research.png" onclick="client_profil('account_client',<?php echo $client['code_client']?>)">
+                        <input type="image" src="Img/button_edit.png">
                     </td>
                 </tr>
                 <?php
@@ -60,13 +61,13 @@
                 ?>
             </table>
             </div>
-
-            <button onclick="ShowModal('add_client')">Créer</button>
-            <button>Exporter</button>
+            <input type="image" src="Img/button_Creer.png" onclick="ShowModal('add_client')">
+            <input type="image" src="Img/button_Export.png">
         </div>
     </div>
     <div id="Modal_add_client" class="modal">
         <div class="panel pmodal">
+            <form name="ModalForm">
             <span id="Modalclose_add_client" class="close">&times;</span>
 
             <span class="title">Créer un compte</span>
@@ -75,27 +76,86 @@
                 <option value="1">Silver</option> //php à faire
                 <option value="2">Gold</option>
             </select>
-            <input type='date' id="Modal_NewCompte_DateMembership"/><br>
+            <input required type='date' id="Modal_NewCompte_DateMembership"/><br>
             <p class="TitreNewCompte">Nom </p>
-            <input id="Modal_NewCompte_nom">
+            <input required id="Modal_NewCompte_nom">
             <p class="TitreNewCompte">Mail </p>
-            <input type="email" id="Modal_NewCompte_mail">
+            <input required type="email" id="Modal_NewCompte_mail">
             <p class="TitreNewCompte">Téléphone </p>
-            <input type="tel" id="Modal_NewCompte_tel"><br>
+            <input required type="tel" id="Modal_NewCompte_tel"><br>
             <img src="Img/logo_Insta.png">
-            <input type="text" id="Modal_NewCompte_Insta">
+            <input  type="text" id="Modal_NewCompte_Insta">
             <img src="Img/logo_Facebook.png">
             <input type="text" id="Modal_NewCompte_Facebook">
             <p class="TitreNewCompte">Adresse </p>
-            <input type="text" name="Modal_NewCompte_adress"> <br>
-            <input type="image" src="Img/buttonAddAdress.png" onclick=""> <br>
+            <input type="text" name="Modal_temp_NewCompte_adress_" placeholder="20 rue Jean Moulin 72000 Le mans, FRANCE" class="InputAdressModal"> <br>
+            <input type="image" src="Img/buttonAddAdress.png" onclick="AddAdress()"> <br>
             <input type="image" src="Img/buttonValiderCompte.png" onclick="CreateAccount()">
-
+            </form>
 
 
         </div>
     </div>
     <script>InitModal("add_client");</script>
+    <div id="Modal_account_client" class="modal">
+        <div class="content">
+            <span id="Modalclose_account_client" class="close">&times;</span> <br>
+            <div class="panel_client">
+            <input type="image" src="Img/button_edit.png">
+                <span class="titlePanel">Client</span>
+
+                <p class="TitreNewCompte">Code</p>
+                <span class="Client_span_info" name="Modal_code_client" contenteditable="false"></span> <br>
+                <p class="TitreNewCompte">Nom </p>
+                <span class="Client_span_info" name="Modal_name" contenteditable="false"></span> <br>
+
+
+                <p class="TitreNewCompte">Mail </p>
+                <span class="Client_span_info" name="Modal_Email" contenteditable="false"></span> <br>
+                <p class="TitreNewCompte">Téléphone </p>
+                <span class="Client_span_info" name="Modal_Phone" contenteditable="false"></span> <br>
+                <img src="Img/logo_Insta.png">
+                <span class="Client_span_info" name="Modal_Instagram" contenteditable="false"></span> <br>
+                <img src="Img/logo_Facebook.png">
+                <span class="Client_span_info" name="Modal_Facebook" contenteditable="false"></span> <br>
+                <p class="TitreNewCompte">Adresse </p>
+                <div id="adress" style="display:none;">  <!--Example for Copy-->
+                            <span name='Modal_adresse' contenteditable="false"></span><br>
+
+                        <br>
+                </div>
+
+
+
+            </div>
+            <div class="panel_membership">
+                <span class="titlePanel">Membership</span> <br>
+                <img id="Panel_Img_Membership" src="Img/Membership=0.png">
+                <span name="Modal_nom"></span><br>
+                <span name="Modal_id_membership" id="Modal_id_Membership"></span>
+                <span name="Modal_point"> <span> points</span></span><br>
+                <span name="Modal_dateExp"></span><br>
+
+
+            </div>
+            <div class="panel_historrique_paiments">
+                <span> Historique de paiments </span>
+                <div id="paiement" style="display:none;">  <!--Example for Copy-->
+                    <span class="panel_historrique_paiments_date" name='Modal_date' > </span>
+                    <span class="panel_historrique_paiments_moyen" name='Modal_moyen_nom'></span>
+                    <div class="panel_historrique_paiments_cout">
+                    <span  name='Modal_cout'></span> <span >€</span>
+                    </div>
+
+                    <br>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script>InitModal("account_client");</script>
+
 </div>
 
 </body>

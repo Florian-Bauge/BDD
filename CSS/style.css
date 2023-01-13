@@ -128,7 +128,36 @@ td {
     border: none;
     margin-left: 10%;
 }
-
+.Client_span_info{
+    color: red;
+}
+.TitreNewCompte{
+    font-weight: bold;
+}
+.panel_historrique_paiments{
+    background-color: white;
+    margin-top: 40%;
+}
+.panel_historrique_paiments_date{
+    margin-left: 5%;
+}
+.panel_historrique_paiments_moyen{
+    margin-left: 10%;
+}
+.panel_historrique_paiments_cout{
+    float:right;
+    margin-right: 5%;
+}
+.panel_client{
+    background-color: white;
+    width: 45%;
+    float: left;
+}
+.panel_membership{
+    background-color: white;
+    width: 45%;
+    float: right;
+}
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */

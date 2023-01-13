@@ -58,6 +58,7 @@ function ShowModalWith(id, param){
         data:{ cmd: id, id: param},
         dataType: 'json',
         success: function (data) {
+
             console.log(data);
             document.getElementById("Modal_ID_"+id)
             for(var key in data){
@@ -127,7 +128,7 @@ function  CreateAccount(){
     var tel=document.getElementById("Modal_NewCompte_tel").value;
     var insta=document.getElementById("Modal_NewCompte_Insta").value;
     var facebook=document.getElementById("Modal_NewCompte_Facebook").value;
-    var adresse=document.getElementsByName("Modal_NewCompte_adress").values();
+    var adresse=document.getElementsByName("Modal_temp_NewCompte_adress_").values();
     console.log(id_membershipSelect);
     console.log(date_Membership);
     console.log(nom);
@@ -136,6 +137,35 @@ function  CreateAccount(){
     console.log(insta);
     console.log(facebook);
     console.log(adresse);
+
+
+}
+function client_profil(id,param){
+    setTimeout(ShowModalWith(id,param),10);
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data:{ cmd: id, id: param},
+        dataType: 'json',
+        success: function (data) {
+            console.log(data)
+            document.getElementById("Panel_Img_Membership").src="Img/Membership="+data['Membership']['id_membership']+".png";
+
+        }
+    });
+
+}
+
+
+function AddAdress(){
+    var adr=document.getElementsByName("Modal_temp_NewCompte_adress_");
+    var elm =adr[0].cloneNode(true);
+    elm.value="";
+
+    var br=document.createElement("br");
+    adr[adr.length-1].after(br);
+    br.after(elm);
 
 
 }

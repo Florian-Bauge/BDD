@@ -5,6 +5,7 @@
     <title>Commande</title>
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
     <script src="JS/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!--<script src="script.js"></script>-->
     <?php
@@ -114,11 +115,11 @@
             $address = getAdresses($command['commande']['code_client']);
             ?>
                     <span class="title">Livraison</span>
-            <form name="ModalForm" onsubmit="return ValidateLivraison()"> <!--javascript:void(0);-->
+            <form name="ModalForm" action="javascript:void(0);" onsubmit="return ValidateLivraison()"> <!--javascript:void(0);-->
                         <span>Dispatched Date: </span><input required type='date' id="Modal_DateExpédié"/><br>
                         <span>Parcel N°: </span><input required id='Modal_numeroColis'/><br>
                         <span>Adresse: </span><br>
-                        <select id="Modal_adress">
+                        <select id="Modal_address">
                             <?php
                             foreach($address as $adr){
                             ?>

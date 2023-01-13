@@ -144,6 +144,7 @@ function ValidateLivraison(){
 
     const date = document.getElementById("Modal_DateExpédié");
     const parcel = document.getElementById("Modal_numeroColis");
+    const adr = document.getElementById("Modal_address");
 
 
     const checkbox = document.getElementsByName("Modal_items");
@@ -159,21 +160,22 @@ function ValidateLivraison(){
         return false;
 
     console.log("FUNCTION");
-    var arrayInsertData = [date.value, parcel.value];
+    var arrayInsertData = [date.value, parcel.value, adr.value];
     var arrayUpdateData = checkArray;
     console.log(arrayInsertData);
     console.log(arrayUpdateData);
-    /*$.ajax
+    $.ajax
     ({
         type: 'POST',
         url: './PHP/ajax_mysql.php',
-        data:{ cmd: "insert", id: id, data:data},
+        data:{ cmd: "insertLivraison", data:arrayInsertData},
         dataType: 'json',
         success: function (data) {
             console.log(data);
-
         }
-    });*/
+    });
+
+
 
     return false;
 }

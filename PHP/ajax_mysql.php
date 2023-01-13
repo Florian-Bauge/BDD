@@ -83,10 +83,9 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='commande') {
 
 }
 
-if (isset($_POST['insert']) and $_POST['cmd']=='insert') {
+if (isset($_POST['cmd']) and $_POST['cmd']=='insertLivraison') {
     $mysqli = Connect();
-
-    $sql = 'INSERT INTO livraison (DateExpédié, numeroColis, id_adresse) VALUES ("'.$_POST['FirstName'].'","'.$_POST['Name'].'","'.$_POST['Adress'].'","'.$_POST['Number'].'");';
+    $sql = 'INSERT INTO livraison (DateExpédié, numeroColis, id_adresse) VALUES ("'.$_POST['data'][0].'","'.$_POST['data'][1].'","'.$_POST['data'][2].'");';
 
 
     if ($mysqli->query($sql) === FALSE) {

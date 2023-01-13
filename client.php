@@ -89,7 +89,7 @@
             <input type="text" id="Modal_NewCompte_Facebook">
             <p class="TitreNewCompte">Adresse </p>
             <input type="text" name="Modal_temp_NewCompte_adress_" placeholder="20 rue Jean Moulin 72000 Le mans, FRANCE" class="InputAdressModal"> <br>
-            <input type="image" src="Img/buttonAddAdress.png" onclick="AddAdress()"> <br>
+            <input type="image" src="Img/buttonAddAdress.png" onclick="AddAdress('Modal_temp_NewCompte_adress_')"> <br>
             <input type="image" src="Img/buttonValiderCompte.png" onclick="CreateAccount()">
             </form>
 
@@ -101,29 +101,31 @@
         <div class="content">
             <span id="Modalclose_account_client" class="close">&times;</span> <br>
             <div class="panel_client">
-            <input type="image" src="Img/button_edit.png">
+            <input type="image" src="Img/button_edit.png"  id="Modal_client_valid_edit">
                 <span class="titlePanel">Client</span>
 
                 <p class="TitreNewCompte">Code</p>
-                <span class="Client_span_info" name="Modal_code_client" contenteditable="false"></span> <br>
+                <span class="Client_span_info" name="Modal_code_client" id="Modal_client_span_code" contenteditable="false"></span> <br>
                 <p class="TitreNewCompte">Nom </p>
-                <span class="Client_span_info" name="Modal_name" contenteditable="false"></span> <br>
+                <span class="Client_span_info" name="Modal_name" id="Modal_client_span_nom"  contenteditable="false"></span> <br>
 
 
                 <p class="TitreNewCompte">Mail </p>
-                <span class="Client_span_info" name="Modal_Email" contenteditable="false"></span> <br>
+                <span class="Client_span_info" name="Modal_Email" id="Modal_client_span_email" contenteditable="false"></span> <br>
                 <p class="TitreNewCompte">Téléphone </p>
-                <span class="Client_span_info" name="Modal_Phone" contenteditable="false"></span> <br>
+                <span class="Client_span_info" name="Modal_Phone" id="Modal_client_span_phone" contenteditable="false"></span> <br>
                 <img src="Img/logo_Insta.png">
-                <span class="Client_span_info" name="Modal_Instagram" contenteditable="false"></span> <br>
+                <span class="Client_span_info" name="Modal_Instagram" id="Modal_client_span_insta" contenteditable="false"></span> <br>
                 <img src="Img/logo_Facebook.png">
-                <span class="Client_span_info" name="Modal_Facebook" contenteditable="false"></span> <br>
+                <span class="Client_span_info" name="Modal_Facebook" id="Modal_client_span_facebook" contenteditable="false"></span> <br>
                 <p class="TitreNewCompte">Adresse </p>
                 <div id="adress" style="display:none;">  <!--Example for Copy-->
                             <span name='Modal_adresse' contenteditable="false"></span><br>
 
                         <br>
                 </div>
+
+                <input  id="Modal_client_button_add_adress" type="image" src="Img/buttonAddAdress.png" style="display: none" onclick="AddAdress('Modal_adresse')">
 
 
 
@@ -152,6 +154,8 @@
             </div>
 
 
+        <input type="image" src="Img/button_Creer.png">
+            <input type="image" src="Img/button_Export.png">
         </div>
     </div>
     <script>InitModal("account_client");</script>

@@ -154,12 +154,45 @@ function client_profil(id,param){
 
         }
     });
+    setTimeout(client_profil_edit('false'),200);
 
+}
+function client_profil_edit(bool){
+
+ document.getElementById('Modal_client_span_code').contentEditable=bool;
+    document.getElementById('Modal_client_span_email').contentEditable=bool;
+    document.getElementById('Modal_client_span_phone').contentEditable=bool;
+    document.getElementById('Modal_client_span_insta').contentEditable=bool;
+    document.getElementById('Modal_client_span_facebook').contentEditable=bool;
+    document.getElementById('Modal_client_span_nom').contentEditable=bool;
+
+  //  var add =document.getElementsByName('Modal_adresse');
+  //  for(i=1;add.length-2;i++){
+     //  add[i].contentEditable=bool;
+     //  console.log(i);
+    //}
+    if(bool=='true'){
+        document.getElementById('Modal_client_button_add_adress').style.display='flex';
+
+        document.getElementById('Modal_client_valid_edit').src='Img/button_validate.png';
+       // document.getElementById('Modal_client_valid_edit').onclick=`client_profil_edit('false')`;
+        document.getElementById('Modal_client_valid_edit').setAttribute('onclick',"client_profil_edit('false')");
+
+    }
+    else{
+        document.getElementById('Modal_client_button_add_adress').style.display='none';
+        document.getElementById('Modal_client_valid_edit').src='Img/button_edit.png';
+     //  document.getElementById('Modal_client_valid_edit').onclick=`client_profil_edit('true')`;
+        document.getElementById('Modal_client_valid_edit').setAttribute('onclick',"client_profil_edit('true')");
+
+
+
+    }
 }
 
 
-function AddAdress(){
-    var adr=document.getElementsByName("Modal_temp_NewCompte_adress_");
+function AddAdress(parm){
+    var adr=document.getElementsByName(parm);
     var elm =adr[0].cloneNode(true);
     elm.value="";
 

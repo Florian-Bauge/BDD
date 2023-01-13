@@ -58,9 +58,7 @@ function ShowModalWith(id, param){
         data:{ cmd: id, id: param},
         dataType: 'json',
         success: function (data) {
-            if(id="account_client"){
-                document.getElementById("Panel_Img_Membership").src="Img/Membership="+data["Membership"]["id_membership"]+".png";
-            }
+
             console.log(data);
             document.getElementById("Modal_ID_"+id)
             for(var key in data){
@@ -142,6 +140,24 @@ function  CreateAccount(){
 
 
 }
+function client_profil(id,param){
+    setTimeout(ShowModalWith(id,param),10);
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data:{ cmd: id, id: param},
+        dataType: 'json',
+        success: function (data) {
+            console.log(data)
+            document.getElementById("Panel_Img_Membership").src="Img/Membership="+data['Membership']['id_membership']+".png";
+
+        }
+    });
+
+}
+
+
 function AddAdress(){
     var adr=document.getElementsByName("Modal_temp_NewCompte_adress_");
     var elm =adr[0].cloneNode(true);

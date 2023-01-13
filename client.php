@@ -52,7 +52,7 @@
                     <td><?php echo $client['Phone']?></td>
                     <td><?php echo $client['nom']?></td>
                     <td>
-                        <input type="image" src="Img/button_research.png" onclick="ShowModalWith('account_client', <?php echo $client['code_client']?>)">
+                        <input type="image" src="Img/button_research.png" onclick="client_profil('account_client',<?php echo $client['code_client']?>)">
                         <input type="image" src="Img/button_edit.png">
                     </td>
                 </tr>
@@ -132,6 +132,7 @@
                 <span class="titlePanel">Membership</span> <br>
                 <img id="Panel_Img_Membership" src="Img/Membership=0.png">
                 <span name="Modal_nom"></span><br>
+                <span name="Modal_id_membership" id="Modal_id_Membership"></span>
                 <span name="Modal_point"> <span> points</span></span><br>
                 <span name="Modal_dateExp"></span><br>
 

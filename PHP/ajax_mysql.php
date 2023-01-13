@@ -83,20 +83,39 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='commande') {
 
 }
 
-if (isset($_POST['cmd']) and $_POST['cmd']=='insert') {
+if (isset($_POST['cmd']) and $_POST['cmd']=='insertAndUpdateLivraison') {
     $mysqli = Connect();
 
-    $sql = 'INSERT INTO livraison (DateExpédié, numeroColis, id_adresse) VALUES ("'.$_POST['FirstName'].'","'.$_POST['Name'].'","'.$_POST['Adress'].'","'.$_POST['Number'].'");';
+    $sql = 'INSERT INTO livraison (DateExpédié, numeroColis, id_adresse) VALUES ("'.$_POST['data'][0].'","'.$_POST['data'][1].'","'.$_POST['data'][2].'");';
 
 
     if ($mysqli->query($sql) === FALSE) {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
 
+    $id_livraison = $mysqli->insert_id;
+
+    $sql = 'UPDATE envoie SET id_livraison = '.$id_livraison.' WHERE envoie.id_item IN(';
+
+    foreach ($_POST['data'][3] as $id_envoie){
+        $sql = $sql.$id_envoie.',';
+    }
+
+    $sql = rtrim($sql, ",");
+    $sql = $sql.');';
+
+
+    if ($mysqli->query($sql) === FALSE) {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+
+
     Disconnect($mysqli);
 
     unset($_POST['cmd']);
 }
+
+
 if (isset($_POST['cmd']) and $_POST['cmd']=='account_client'){
     $array = array();
 

@@ -130,7 +130,7 @@
             </div>
             <div class="panel_membership">
                 <span class="titlePanel">Membership</span> <br>
-                <img src="Img/Membership=0.png">
+                <img id="Panel_Img_Membership" src="Img/Membership=0.png">
                 <span name="Modal_nom"></span><br>
                 <span name="Modal_point"> <span> points</span></span><br>
                 <span name="Modal_dateExp"></span><br>
@@ -138,7 +138,16 @@
 
             </div>
             <div class="panel_historrique_paiments">
+                <span> Historique de paiments </span>
+                <div id="paiement" style="display:none;">  <!--Example for Copy-->
+                    <span class="panel_historrique_paiments_date" name='Modal_date' > </span>
+                    <span class="panel_historrique_paiments_moyen" name='Modal_moyen_nom'></span>
+                    <div class="panel_historrique_paiments_cout">
+                    <span  name='Modal_cout'></span> <span >€</span>
+                    </div>
 
+                    <br>
+                </div>
             </div>
 
 

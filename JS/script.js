@@ -58,6 +58,9 @@ function ShowModalWith(id, param){
         data:{ cmd: id, id: param},
         dataType: 'json',
         success: function (data) {
+            if(id="account_client"){
+                document.getElementById("Panel_Img_Membership").src="Img/Membership="+data["Membership"]["id_membership"]+".png";
+            }
             console.log(data);
             document.getElementById("Modal_ID_"+id)
             for(var key in data){

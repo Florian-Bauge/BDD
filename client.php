@@ -98,32 +98,46 @@
     </div>
     <script>InitModal("add_client");</script>
     <div id="Modal_account_client" class="modal">
-        <div class="panel pmodal">
-            <div class="Modal_acount_client_panel">
+        <div class="content">
+            <span id="Modalclose_account_client" class="close">&times;</span> <br>
+            <div class="panel_client">
             <input type="image" src="Img/button_edit.png">
-                <span class="title">Client</span>
-                <span id="Modalclose_account_client" class="close">&times;</span> <br>
+                <span class="titlePanel">Client</span>
+
                 <p class="TitreNewCompte">Code</p>
-                <input type="text" placeholder=""disabled id="Modal_account_client_code"> <br>
+                <span class="Client_span_info" name="Modal_code_client" contenteditable="false"></span> <br>
                 <p class="TitreNewCompte">Nom </p>
-                <input required id="Modal_account_cliente_nom" placeholder="" disabled>
+                <span class="Client_span_info" name="Modal_name" contenteditable="false"></span> <br>
+
+
                 <p class="TitreNewCompte">Mail </p>
-                <input required type="email" id="Modal_account_client_mail" placeholder="" disabled>
+                <span class="Client_span_info" name="Modal_Email" contenteditable="false"></span> <br>
                 <p class="TitreNewCompte">Téléphone </p>
-                <input required type="tel" id="Modal_account_client_tel" placeholder="" disabled><br>
+                <span class="Client_span_info" name="Modal_Phone" contenteditable="false"></span> <br>
                 <img src="Img/logo_Insta.png">
-                <input  type="text" id="Modal_account_client_Insta" placeholder="" disabled>
+                <span class="Client_span_info" name="Modal_Instagram" contenteditable="false"></span> <br>
                 <img src="Img/logo_Facebook.png">
-                <input type="text" id="Modal_account_client_Facebook" placeholder="" disabled>
+                <span class="Client_span_info" name="Modal_Facebook" contenteditable="false"></span> <br>
                 <p class="TitreNewCompte">Adresse </p>
-                <input type="text" name="Modal_temp_NewCompte_adress_" placeholder="" disabled class="InputAdressModal"> <br>
+                <div id="adress" style="display:none;">  <!--Example for Copy-->
+                            <span name='Modal_adresse' contenteditable="false"></span><br>
+
+                        <br>
+                </div>
+
 
 
             </div>
-            <div class="Modal_Membership_panel">
+            <div class="panel_membership">
+                <span class="titlePanel">Membership</span> <br>
+                <img src="Img/Membership=0.png">
+                <span name="Modal_nom"></span><br>
+                <span name="Modal_point"> <span> points</span></span><br>
+                <span name="Modal_dateExp"></span><br>
+
 
             </div>
-            <div class="Modal_Historique_panel">
+            <div class="panel_historrique_paiments">
 
             </div>
 

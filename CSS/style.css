@@ -128,7 +128,25 @@ td {
     border: none;
     margin-left: 10%;
 }
-
+.Client_span_info{
+    color: red;
+}
+.TitreNewCompte{
+    font-weight: bold;
+}
+.panel_historrique_paiments{
+    background-color: white;
+}
+.panel_client{
+    background-color: white;
+    width: 45%;
+    float: left;
+}
+.panel_membership{
+    background-color: white;
+    width: 45%;
+    float: right;
+}
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */

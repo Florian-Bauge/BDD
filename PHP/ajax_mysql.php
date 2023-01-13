@@ -99,19 +99,54 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='insert') {
 }
 if (isset($_POST['cmd']) and $_POST['cmd']=='account_client'){
     $array = array();
-    echo "Commande lancer";
+
     $mysqli = Connect();
 
     $sql="SELECT `code_client`,`name`,`Email`,`Phone`,`Instagram`,`Facebook` FROM `client` WHERE `code_client`=".$_POST['id'].";";
     $array['account_client'] = array();
     if ($result = $mysqli->query($sql)) {
         while ($row = $result->fetch_assoc()){
-            $array['account_client'][] = $row;
+            $array['account_client']= $row;
         };
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
+
+
+
+    $sql="SELECT CONCAT(nrue,' ', rue ,' ', codepostal,' ',ville,' ',pays,' ',infoComp) AS adresse FROM `adresse` WHERE `code_client`=".$_POST['id'].";";
+    $array['adress'] = array();
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()){
+            $array['adress'][]= $row;
+        };
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    $sql="SELECT
+        points.point,
+        points.dateExp,
+        grillepoint.nom,
+        grillepoint.id_membership
+    FROM
+        grillepoint
+    JOIN CLIENT ON CLIENT
+        .id_membership = grillepoint.id_membership
+    JOIN points ON points.code_client = CLIENT.code_client
+    WHERE CLIENT.code_client=".$_POST['id'].";";
+    $array['Membership'] = array();
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()){
+            $array['Membership']= $row;
+        };
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+
+
     $result->close();
+
+
     echo json_encode($array);
 
     Disconnect($mysqli);

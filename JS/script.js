@@ -190,22 +190,18 @@ function ValidateLivraison(){
         return false;
 
     console.log("FUNCTION");
-    var arrayInsertData = [date.value, parcel.value, adr.value];
-    var arrayUpdateData = checkArray;
-    console.log(arrayInsertData);
-    console.log(arrayUpdateData);
+    var arrayData = [date.value, parcel.value, adr.value, checkArray];
+    console.log(arrayData);
     $.ajax
     ({
         type: 'POST',
         url: './PHP/ajax_mysql.php',
-        data:{ cmd: "insertLivraison", data:arrayInsertData},
+        data:{ cmd: "insertAndUpdateLivraison", data:arrayData},
         dataType: 'json',
-        success: function (data) {
-            console.log(data);
+        success: function () {
+            return true;
         }
     });
-
-
 
     return false;
 }

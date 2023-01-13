@@ -143,6 +143,28 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='account_client'){
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
 
+    $sql = "SELECT
+    paiement.date,
+    paiement.cout,
+    moyen.nom AS moyen_nom
+FROM
+    paiement
+LEFT OUTER JOIN moyen ON moyen.id_transaction = paiement.id_transaction
+LEFT OUTER JOIN commande ON commande.id_commande = paiement.id_commande
+LEFT OUTER JOIN CLIENT ON CLIENT
+    .code_client = commande.code_client
+WHERE CLIENT
+    .code_client = ".$_POST['id']."
+;";
+    $array['paiement'] = array();
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()){
+            $array['paiement'][] = $row;
+        };
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+
 
     $result->close();
 

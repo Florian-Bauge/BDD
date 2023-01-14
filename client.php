@@ -52,8 +52,8 @@
                     <td><?php echo $client['Phone']?></td>
                     <td><?php echo $client['nom']?></td>
                     <td>
-                        <input type="image" src="Img/button_research.png" onclick="client_profil('account_client',<?php echo $client['code_client']?>)">
-                        <input type="image" src="Img/button_edit.png">
+                        <input type="image" src="Img/button_research.png" onclick="client_profil('account_client',<?php echo $client['code_client']?>,'false')">
+                        <input type="image" src="Img/button_edit.png" onclick="client_profil('account_client',<?php echo $client['code_client']?>,'true')">
                     </td>
                 </tr>
                 <?php
@@ -154,7 +154,7 @@
             </div>
 
 
-        <input type="image" src="Img/button_Creer.png">
+        <input type="image" src="Img/button_create_commande.png">
             <input type="image" src="Img/button_Export.png">
         </div>
     </div>

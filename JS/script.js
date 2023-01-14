@@ -129,18 +129,10 @@ function  CreateAccount(){
     var insta=document.getElementById("Modal_NewCompte_Insta").value;
     var facebook=document.getElementById("Modal_NewCompte_Facebook").value;
     var adresse=document.getElementsByName("Modal_temp_NewCompte_adress_").values();
-    console.log(id_membershipSelect);
-    console.log(date_Membership);
-    console.log(nom);
-    console.log(mail);
-    console.log(tel);
-    console.log(insta);
-    console.log(facebook);
-    console.log(adresse);
 
 
 }
-function client_profil(id,param){
+function client_profil(id,param,bool){
     setTimeout(ShowModalWith(id,param),10);
     $.ajax
     ({
@@ -149,12 +141,12 @@ function client_profil(id,param){
         data:{ cmd: id, id: param},
         dataType: 'json',
         success: function (data) {
-            console.log(data)
+           // console.log(data)
             document.getElementById("Panel_Img_Membership").src="Img/Membership="+data['Membership']['id_membership']+".png";
 
         }
     });
-    setTimeout(client_profil_edit('false'),200);
+    client_profil_edit(bool);
 
 }
 function client_profil_edit(bool){
@@ -166,11 +158,7 @@ function client_profil_edit(bool){
     document.getElementById('Modal_client_span_facebook').contentEditable=bool;
     document.getElementById('Modal_client_span_nom').contentEditable=bool;
 
-  //  var add =document.getElementsByName('Modal_adresse');
-  //  for(i=1;add.length-2;i++){
-     //  add[i].contentEditable=bool;
-     //  console.log(i);
-    //}
+
     if(bool=='true'){
         document.getElementById('Modal_client_button_add_adress').style.display='flex';
 
@@ -188,10 +176,20 @@ function client_profil_edit(bool){
 
 
     }
+    setTimeout(()=>{var add =document.getElementsByName('Modal_adresse');//setTimeout permet que toutes les adresses soit initialiser pour pouvoir modifier leurs paramètre
+        console.log("??????");
+        console.log(add.length);
+        console.log(add);
+        for(i=1;i<add.length;i++){
+            add[i].contentEditable=bool;
+            console.log(i);
+        }},100);
+
 }
 
 
 function AddAdress(parm){
+
     var adr=document.getElementsByName(parm);
     var elm =adr[0].cloneNode(true);
     elm.value="";
@@ -199,6 +197,9 @@ function AddAdress(parm){
     var br=document.createElement("br");
     adr[adr.length-1].after(br);
     br.after(elm);
+    if(parm=="Modal_adresse"){
+        client_profil_edit("true");
+    }
 
 
 }

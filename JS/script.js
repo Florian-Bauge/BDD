@@ -51,6 +51,7 @@ function ShowModalWith(id, param){
     };*/
 
     console.log("ajax ?"+id);
+    console.log(param);
     $.ajax
     ({
         type: 'POST',
@@ -121,18 +122,61 @@ function submitFormAndRedirect(form, id){
 function  CreateAccount(){
     console.log("Function start");
     var membershipSelect=document.querySelector("#Modal_NewCompte_Select_Membership");
-    var id_membershipSelect=membershipSelect.options[membershipSelect.selectedIndex].getAttribute("value");
-    var date_Membership=document.getElementById("Modal_NewCompte_DateMembership").value;
+    var id_membershipSelect=document.getElementById("Modal_NewCompte_Ulti").checked;
     var nom=document.getElementById("Modal_NewCompte_nom").value;
     var mail=document.getElementById("Modal_NewCompte_mail").value;
     var tel=document.getElementById("Modal_NewCompte_tel").value;
     var insta=document.getElementById("Modal_NewCompte_Insta").value;
     var facebook=document.getElementById("Modal_NewCompte_Facebook").value;
-    var adresse=document.getElementsByName("Modal_temp_NewCompte_adress_").values();
+    var adresse=document.getElementsByName("Modal_temp_NewCompte_adress_");
+    console.log(id_membershipSelect);
+    console.log(isValidEmail(mail));
+    console.log(isNotEmpty(nom));
+    console.log(isNotEmpty(tel));
+    console.log(verifieAlladress(adresse));
+
+
+
+    if(isValidEmail(mail) && isNotEmpty(nom) && isNotEmpty(tel) && verifieAlladress(adresse)){
+
+
+    }
+    else{
+        console.log("mauvais");
+    }
 
 
 }
+function isValidEmail(email) {
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return emailRegex.test(email);
+}
+function isNotEmpty(str) {
+    return str.trim().length !== 0;
+}
+function  verifieAlladress(add){
+    var verif= true;
+    for(i=0;i<add.length;i++){
+        console.log(add[i].value)
+        if(parseAddress(add[i].value)==null){
+            verif=false;
+        }
+    }
+    return verif;
+}
+function parseAddress(address) {
+    const addressRegex = /^(\d+)\s(.+?\s)([\w\s]+)\s(\d{5})\s([\w\s]+),\s([\w\s]+)\s(.+)$/;
+    const match = addressRegex.exec(address);
+    if (match) {
+        return [match[1], match[2], match[3], match[4], match[5], match[6], match[7]];
+    }
+    return null;
+}
+
+
+
 function client_profil(id,param,bool){
+    console.log(param);
     setTimeout(ShowModalWith(id,param),10);
     $.ajax
     ({
@@ -151,12 +195,10 @@ function client_profil(id,param,bool){
 }
 function client_profil_edit(bool){
 
- document.getElementById('Modal_client_span_code').contentEditable=bool;
     document.getElementById('Modal_client_span_email').contentEditable=bool;
     document.getElementById('Modal_client_span_phone').contentEditable=bool;
     document.getElementById('Modal_client_span_insta').contentEditable=bool;
     document.getElementById('Modal_client_span_facebook').contentEditable=bool;
-    document.getElementById('Modal_client_span_nom').contentEditable=bool;
 
 
     if(bool=='true'){

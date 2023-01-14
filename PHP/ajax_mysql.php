@@ -133,7 +133,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='account_client'){
 
 
 
-    $sql="SELECT CONCAT(nrue,' ', rue ,' ', codepostal,' ',ville,' ',pays,' ',infoComp) AS adresse FROM `adresse` WHERE `code_client`=".$_POST['id'].";";
+    $sql="SELECT CONCAT(nrue,' ', rue ,' ', codepostal,' ',ville,', ',pays,' ',infoComp) AS adresse FROM `adresse` WHERE `code_client`=".$_POST['id'].";";
     $array['adress'] = array();
     if ($result = $mysqli->query($sql)) {
         while ($row = $result->fetch_assoc()){

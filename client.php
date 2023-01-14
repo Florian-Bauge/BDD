@@ -82,7 +82,7 @@
             <img src="Img/logo_Insta.png">
             <input  type="text" id="Modal_NewCompte_Insta">
             <img src="Img/logo_Facebook.png">
-            <input type="text" id="Modal_NewCompte_Facebook">
+            <input required type="text" id="Modal_NewCompte_Facebook">
             <p class="TitreNewCompte">Adresse </p>
             <input type="text" name="Modal_temp_NewCompte_adress_" placeholder="20 rue Jean Moulin 72000 Le mans, FRANCE" class="InputAdressModal"> <br>
             <input type="image" src="Img/buttonAddAdress.png" onclick="AddAdress('Modal_temp_NewCompte_adress_')"> <br>

@@ -121,23 +121,44 @@ function submitFormAndRedirect(form, id){
 }
 function  CreateAccount(){
     console.log("Function start");
+    var id_membershipSelect=0;
     var membershipSelect=document.querySelector("#Modal_NewCompte_Select_Membership");
-    var id_membershipSelect=document.getElementById("Modal_NewCompte_Ulti").checked;
+    var iScheckmembershipSelect=document.getElementById("Modal_NewCompte_Ulti").checked;
     var nom=document.getElementById("Modal_NewCompte_nom").value;
     var mail=document.getElementById("Modal_NewCompte_mail").value;
     var tel=document.getElementById("Modal_NewCompte_tel").value;
     var insta=document.getElementById("Modal_NewCompte_Insta").value;
     var facebook=document.getElementById("Modal_NewCompte_Facebook").value;
     var adresse=document.getElementsByName("Modal_temp_NewCompte_adress_");
-    console.log(id_membershipSelect);
     console.log(isValidEmail(mail));
     console.log(isNotEmpty(nom));
     console.log(isNotEmpty(tel));
     console.log(verifieAlladress(adresse));
-
+    if(iScheckmembershipSelect){
+        id_membershipSelect=3;
+    }
 
 
     if(isValidEmail(mail) && isNotEmpty(nom) && isNotEmpty(tel) && verifieAlladress(adresse)){
+        console.log('debut');
+            let arraydatadata=[nom,mail,tel,insta,facebook,id_membershipSelect,0,alladresspars(adresse)];
+            console.log(arraydatadata);
+
+
+        $.ajax
+        ({
+            type: 'POST',
+            url: './PHP/ajax_mysql.php',
+            data:{ cmd:'createaccountclient',data : arraydatadata},
+            dataType: 'json',
+            success: function (data) {
+                console.log('succes');
+                return true;
+
+            }
+        });
+        console.log("ça marche pas");
+
 
 
     }
@@ -158,20 +179,31 @@ function  verifieAlladress(add){
     var verif= true;
     for(i=0;i<add.length;i++){
         console.log(add[i].value)
-        if(parseAddress(add[i].value)==null){
+        const parseAdress=parseAddress(add[i].value)
+        if(parseAdress==null){
             verif=false;
         }
     }
     return verif;
 }
+function  alladresspars(add){
+    var tabadress=[];
+    for(i=0;i<add.length;i++){
+        tabadress.push(parseAddress(add[i].value));
+
+    }
+    return tabadress
+
+}
 function parseAddress(address) {
-    const addressRegex = /^(\d+)\s(.+?\s)([\w\s]+)\s(\d{5})\s([\w\s]+),\s([\w\s]+)\s(.+)$/;
+    const addressRegex = /^(\d+)\s(.+?\s)([\w\s]+)\s(\d{5})\s([\w\s]+),\s([\w\s]+)(?:\s(.+))?$/;
     const match = addressRegex.exec(address);
     if (match) {
-        return [match[1], match[2], match[3], match[4], match[5], match[6], match[7]];
+        return [match[1], match[2], match[3], match[4], match[5], match[6], match[7] || ""];
     }
     return null;
 }
+
 
 
 

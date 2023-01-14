@@ -118,6 +118,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='insertAndUpdateLivraison') {
 if (isset($_POST['cmd']) and $_POST['cmd']=='UpdateArrivalDate') {
     $mysqli = Connect();
 
+
     $sql = 'UPDATE livraison SET dateLivrée = "'.$_POST['date'].'" WHERE livraison.id_delivery = '.$_POST['id'].';';
 
     if ($mysqli->query($sql) === FALSE) {
@@ -203,6 +204,34 @@ WHERE CLIENT
 
 
     echo json_encode($array);
+
+    Disconnect($mysqli);
+
+    unset($_POST['cmd']);
+}
+if (isset($_POST['cmd']) and $_POST['cmd']=='createaccountclient'){
+
+
+    $mysqli = Connect();
+    $sql='INSERT INTO client (name, Email, Phone, Instagram, Facebook, id_membership, point) VALUES("'.$_POST['data'][0].'","'.$_POST['data'][1].'","'.$_POST['data'][2].'","'.$_POST['data'][3].'","'.$_POST['data'][4].'","'.$_POST['data'][5].'","'.$_POST['data'][6].'");';
+    if ($mysqli->query($sql) === FALSE) {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+
+    $id_client=$mysqli->insert_id;
+    echo 'console.log('.$id_client.');';
+    foreach ($_POST['data'][7] as $sendAdresse)
+    {
+        $sql='INSERT INTO adresse (nrue,typeRue, rue, codepostal, ville, pays, infoComp, code_client) VALUES("'.$sendAdresse[0].'","'.$sendAdresse[1].'","'.$sendAdresse[2].'","'.$sendAdresse[3].'","'.$sendAdresse[4].'","'.$sendAdresse[5].'","'.$sendAdresse[6].'","'.$id_client.'");';
+        if ($mysqli->query($sql) === FALSE) {
+            echo "Error: " . $sql . "<br>" . $mysqli->error;
+        }
+    }
+
+
+
+
+
 
     Disconnect($mysqli);
 

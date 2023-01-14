@@ -22,9 +22,13 @@
 </div>
 <div class="page">
     <div class="nav">
-        <button onclick="location.href='./index.html';"> Dashboard </button></br>
-        <button onclick="location.href='./commande.php';"> Commande </button></br>
-        <button onclick="location.href='./client.php';"> Client </button></br>
+        <div class="headNav">
+            <img src="Img/Logo_entreprise.png" class="logoCompanies">
+            <img src="Img/nom_entreprise.png" class="nameCompanies">
+        </div>
+        <button onclick="location.href='./index.html';" class="buttonMenu"><img src="Img/Model=tab, active=false.png"  class="imageMenu"  ></button></br>
+        <button onclick="location.href='./commande.php';" class="buttonMenu"> <img src="Img/Model=order, active=true.png"class="imageMenu"  > </button></br>
+        <button onclick="location.href='./client.php';" class="buttonMenu"> <img src="Img/Model=client, active=false.png" class="imageMenu" ></button></br>
     </div>
     <div class="other">
         <div class="content inline">
@@ -53,16 +57,7 @@
             </div>
             <div class="multi panel" style="width: 28%">
                 <span>test</span>
-                <?php
-                foreach($command['paiement'] as $paiement){
-                ?>
-                <span>Moyen: <span><?php echo $paiement['nom']; ?></span><br>
-                            <span>Date: <span><?php echo $paiement['date']; ?></span><br>
-                            <span>  Montant: <span><?php echo $paiement['cout']; ?></span><br>
-                        <br>
-                <?php
-                }
-                ?>
+                <button> Ajouter </button>
             </div>
             <div class="multi panel" style="width: 45%;">
                 <table>
@@ -90,6 +85,7 @@
                     }
                     ?>
                 </table>
+                <button> Ajouter </button>
             </div>
             <div class="multi panel" style="width: 40%">
                     <?php
@@ -99,8 +95,9 @@
                             <span>Parcel N°: <span><?php echo $delivery['numeroColis'] ?></span><br>
                                 <span>Adresse: <span><?php echo $delivery['adresse'] ?></span><br>
                         <br>
-                            <span>Arrival Date: <span><?php echo $delivery['dateLivrée'] ?></span><br>
-                        <br>   <br>
+                                    <span>Arrival Date: </span><input type='date' <?php if($delivery['dateLivrée']!=null){echo 'disabled';} ?>
+                                                                      value='<?php echo $delivery['dateLivrée'] ?>' oninput="UpdateArrivalDate(this, '<?php echo $delivery['id_delivery'] ?>');"/><br>
+                        <br>
                         <?php
                     }
                     ?>

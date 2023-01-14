@@ -281,3 +281,17 @@ function ValidateLivraison(){
 
     return false;
 }
+
+function UpdateArrivalDate(date, id){
+    console.log(date.value);
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data:{ cmd: "UpdateArrivalDate", date:date.value, id:id},
+        dataType: 'json',
+        success: function () {
+            return true;
+        }
+    });
+}

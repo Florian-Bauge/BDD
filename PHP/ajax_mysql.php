@@ -115,6 +115,20 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='insertAndUpdateLivraison') {
     unset($_POST['cmd']);
 }
 
+if (isset($_POST['cmd']) and $_POST['cmd']=='UpdateArrivalDate') {
+    $mysqli = Connect();
+
+    $sql = 'UPDATE livraison SET dateLivrée = "'.$_POST['date'].'" WHERE livraison.id_delivery = '.$_POST['id'].';';
+
+    if ($mysqli->query($sql) === FALSE) {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+
+    Disconnect($mysqli);
+
+    unset($_POST['cmd']);
+}
+
 
 if (isset($_POST['cmd']) and $_POST['cmd']=='account_client'){
     $array = array();

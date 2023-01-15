@@ -41,7 +41,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='commande') {
 
     //Récupération Information de Livraison
 
-    $sql = "SELECT numeroColis, dateVoulu, dateLivrée, DateExpédié, livraison.status, nrue || ' ' || rue || ' ' || adresse.codepostal || ' ' || ville  || ' ' || pays  || ' ' || infoComp AS adresse from livraison
+    $sql = "SELECT numeroColis, dateVoulu, dateLivrée, DateExpédié, livraison.status, CONCAT(nrue,' ',rue,' ',adresse.codepostal,' ',ville,' ',pays,' ',infoComp) AS adresse from livraison
     LEFT OUTER JOIN adresse on livraison.id_adresse = adresse.id_adresse
     LEFT OUTER JOIN envoie on livraison.id_delivery = envoie.id_livraison                                                                                                                                                                              
     WHERE envoie.id_commande = ".$_POST['id']."

@@ -179,13 +179,23 @@ function isNotEmpty(str) {
 function  verifieAlladress(add,firstIterator){
     var verif= true;
     for(i=firstIterator;i<add.length;i++){
-        console.log(add[i].value)
-        const parseAdress=parseAddress(add[i].value)
+        const parseAdress=parseAddress(add[i].value);
         if(parseAdress==null){
             verif=false;
         }
     }
     return verif;
+}
+function  Innerveririeadress(add,firstIterator){
+    var verif= true;
+    for(i=firstIterator;i<add.length;i++){
+        const parseAdress=parseAddress(add[i].innerHTML);
+        if(parseAdress==null){
+            verif=false;
+        }
+    }
+    return verif;
+
 }
 function  alladresspars(add,firstIterator){
     var tabadress=[];
@@ -246,6 +256,7 @@ function client_profil_edit(bool){
     var insta= document.getElementById('Modal_client_span_insta');
     var facebook= document.getElementById('Modal_client_span_facebook');
     var code_client= document.getElementById('Modal_client_span_code');
+    var adresse=document.getElementsByName("Modal_adresse");
     mail.contentEditable=bool;
     tel.contentEditable=bool;
     insta.contentEditable=bool;
@@ -264,12 +275,12 @@ function client_profil_edit(bool){
         document.getElementById('Modal_client_valid_edit').src='Img/button_edit.png';
      //  document.getElementById('Modal_client_valid_edit').onclick=`client_profil_edit('true')`;
         document.getElementById('Modal_client_valid_edit').setAttribute('onclick',"client_profil_edit('true')");
-            var tableauadress= adressparsAndId(document.getElementsByName("Modal_adresse"),document.getElementsByName("Modal_id_adresse"),1);
+        if(isValidEmail(mail.innerHTML)&&isNotEmpty(tel.innerHTML)&& Innerveririeadress(adresse,1)) {
+            var tableauadress = adressparsAndId(document.getElementsByName("Modal_adresse"), document.getElementsByName("Modal_id_adresse"), 1);
             console.log(tableauadress);
 
 
-
-            let arraydatadata = [mail.innerHTML, tel.innerHTML, insta.innerHTML, facebook.innerHTML, code_client.innerHTML,tableauadress];
+            let arraydatadata = [mail.innerHTML, tel.innerHTML, insta.innerHTML, facebook.innerHTML, code_client.innerHTML, tableauadress];
 
             console.log(arraydatadata);
 
@@ -288,6 +299,10 @@ function client_profil_edit(bool){
                 }
 
             });
+        }
+        else {
+            console.log("Info incorecte");
+        }
 
 
 
@@ -298,7 +313,6 @@ function client_profil_edit(bool){
 
         for(i=1;i<add.length;i++){
             add[i].contentEditable=bool;
-            add[i].parentElement.setAttribute("name","Modal_div_adresse");//Change les div qui ont pour name temp
         }},100);
 
 }

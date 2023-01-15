@@ -148,7 +148,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='account_client'){
 
 
 
-    $sql="SELECT CONCAT(nrue,' ', rue ,' ', codepostal,' ',ville,', ',pays,' ',infoComp) AS adresse FROM `adresse` WHERE `code_client`=".$_POST['id'].";";
+    $sql="SELECT CONCAT(nrue,' ',typeRue,' ', rue ,' ', codepostal,' ',ville,', ',pays,' ',infoComp) AS adresse,id_adresse FROM `adresse` WHERE `code_client`=".$_POST['id'].";";
     $array['adress'] = array();
     if ($result = $mysqli->query($sql)) {
         while ($row = $result->fetch_assoc()){
@@ -158,15 +158,13 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='account_client'){
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
     $sql="SELECT
-        points.point,
-        points.dateExp,
+        client.point,
         grillepoint.nom,
         grillepoint.id_membership
     FROM
         grillepoint
     JOIN CLIENT ON CLIENT
         .id_membership = grillepoint.id_membership
-    JOIN points ON points.code_client = CLIENT.code_client
     WHERE CLIENT.code_client=".$_POST['id'].";";
     $array['Membership'] = array();
     if ($result = $mysqli->query($sql)) {
@@ -237,6 +235,46 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='createaccountclient'){
 
 
     Disconnect($mysqli);
+
+    unset($_POST['cmd']);
+}
+if (isset($_POST['cmd']) and $_POST['cmd']=='updateaccountclient'){
+
+
+    $mysqli = Connect();
+    $sql='UPDATE client SET  Email= "'.$_POST['data'][0].'", Phone="'.$_POST['data'][1].'", Instagram="'.$_POST['data'][2].'", Facebook="'.$_POST['data'][3].'" WHERE client.code_client="'.$_POST['data'][4].'";';
+    if ($mysqli->query($sql) === FALSE) {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;}
+    foreach ($_POST['data'][5] as $sendAdresse){
+        if($sendAdresse[7]==0){
+            $sql='INSERT INTO adresse (nrue,typeRue, rue, codepostal, ville, pays, infoComp) VALUES("'.$sendAdresse[0].'","'.$sendAdresse[1].'","'.$sendAdresse[2].'","'.$sendAdresse[3].'","'.$sendAdresse[4].'","'.$sendAdresse[5].'","'.$sendAdresse[6].'");';
+            if ($mysqli->query($sql) === FALSE) {
+                echo "Error: " . $sql . "<br>" . $mysqli->error;}
+            $id_adresse = $mysqli->insert_id;
+            $sql='UPDATE adresse SET code_client="'.$_POST['data'][4].'"WHERE id_adresse="'.$id_adresse.'";';
+            if ($mysqli->query($sql) === FALSE) {
+                echo "Error: " . $sql . "<br>" . $mysqli->error;}
+
+
+        }
+        else{
+            $sql='UPDATE adresse SET nrue="'.$sendAdresse[0].'",typeRue="'.$sendAdresse[1].'",rue="'.$sendAdresse[2].'",codepostal="'.$sendAdresse[3].'",ville="'.$sendAdresse[4].'",pays="'.$sendAdresse[5].'",infoComp="'.$sendAdresse[6].'" WHERE id_adresse="'.$sendAdresse[7].'";';
+            if ($mysqli->query($sql) === FALSE) {
+                echo "Error: " . $sql . "<br>" . $mysqli->error;}
+        }
+
+
+
+    }
+
+
+
+
+
+
+
+
+Disconnect($mysqli);
 
     unset($_POST['cmd']);
 }

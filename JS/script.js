@@ -133,15 +133,15 @@ function  CreateAccount(){
     console.log(isValidEmail(mail));
     console.log(isNotEmpty(nom));
     console.log(isNotEmpty(tel));
-    console.log(verifieAlladress(adresse));
+    console.log(verifieAlladress(adresse,0));
     if(iScheckmembershipSelect){
         id_membershipSelect=3;
     }
 
 
-    if(isValidEmail(mail) && isNotEmpty(nom) && isNotEmpty(tel) && verifieAlladress(adresse)){
+    if(isValidEmail(mail) && isNotEmpty(nom) && isNotEmpty(tel) && verifieAlladress(adresse,0)){
         console.log('debut');
-            let arraydatadata=[nom,mail,tel,insta,facebook,id_membershipSelect,0,alladresspars(adresse)];
+            let arraydatadata=[nom,mail,tel,insta,facebook,id_membershipSelect,0,alladresspars(adresse,0)];
             console.log(arraydatadata);
 
 
@@ -159,7 +159,6 @@ function  CreateAccount(){
             }
 
         });
-        console.log("ça marche pas");
 
 
 
@@ -177,9 +176,9 @@ function isValidEmail(email) {
 function isNotEmpty(str) {
     return str.trim().length !== 0;
 }
-function  verifieAlladress(add){
+function  verifieAlladress(add,firstIterator){
     var verif= true;
-    for(i=0;i<add.length;i++){
+    for(i=firstIterator;i<add.length;i++){
         console.log(add[i].value)
         const parseAdress=parseAddress(add[i].value)
         if(parseAdress==null){
@@ -188,13 +187,26 @@ function  verifieAlladress(add){
     }
     return verif;
 }
-function  alladresspars(add){
+function  alladresspars(add,firstIterator){
     var tabadress=[];
-    for(i=0;i<add.length;i++){
+    for(i=firstIterator;i<add.length;i++){
         tabadress.push(parseAddress(add[i].value));
 
     }
     return tabadress
+
+}
+function  adressparsAndId(add,id,firsIterator){//Ecris en brut
+    var tabadressid=[];
+    var tabadress=[];
+    for(i=firsIterator;i<add.length;i++){
+        tabadress=(parseAddress(add[i].innerHTML));
+        tabadress.push(id[i].innerHTML);
+        tabadressid.push(tabadress);
+        tabadress=[];
+    }
+
+return tabadressid;
 
 }
 function parseAddress(address) {
@@ -229,13 +241,17 @@ function client_profil(id,param,bool){
 }
 function client_profil_edit(bool){
 
-    document.getElementById('Modal_client_span_email').contentEditable=bool;
-    document.getElementById('Modal_client_span_phone').contentEditable=bool;
-    document.getElementById('Modal_client_span_insta').contentEditable=bool;
-    document.getElementById('Modal_client_span_facebook').contentEditable=bool;
+    var mail=document.getElementById('Modal_client_span_email');
+    var tel =document.getElementById('Modal_client_span_phone');
+    var insta= document.getElementById('Modal_client_span_insta');
+    var facebook= document.getElementById('Modal_client_span_facebook');
+    var code_client= document.getElementById('Modal_client_span_code');
+    mail.contentEditable=bool;
+    tel.contentEditable=bool;
+    insta.contentEditable=bool;
+    facebook.contentEditable=bool;
 
-
-    if(bool=='true'){
+    if(bool=='true'){// Quand on veut pouvoir éditer le client
         document.getElementById('Modal_client_button_add_adress').style.display='flex';
 
         document.getElementById('Modal_client_valid_edit').src='Img/button_validate.png';
@@ -243,22 +259,46 @@ function client_profil_edit(bool){
         document.getElementById('Modal_client_valid_edit').setAttribute('onclick',"client_profil_edit('false')");
 
     }
-    else{
+    else{//quand on valide les modifications
         document.getElementById('Modal_client_button_add_adress').style.display='none';
         document.getElementById('Modal_client_valid_edit').src='Img/button_edit.png';
      //  document.getElementById('Modal_client_valid_edit').onclick=`client_profil_edit('true')`;
         document.getElementById('Modal_client_valid_edit').setAttribute('onclick',"client_profil_edit('true')");
+            var tableauadress= adressparsAndId(document.getElementsByName("Modal_adresse"),document.getElementsByName("Modal_id_adresse"),1);
+            console.log(tableauadress);
 
 
 
-    }
+            let arraydatadata = [mail.innerHTML, tel.innerHTML, insta.innerHTML, facebook.innerHTML, code_client.innerHTML,tableauadress];
+
+            console.log(arraydatadata);
+
+
+            $.ajax
+            ({
+                type: 'POST',
+                url: './PHP/ajax_mysql.php',
+                data: {cmd: 'updateaccountclient', data: arraydatadata},
+                dataType: 'json',
+                success: function (data) {
+                    console.log('succes');
+                    return true;
+
+
+                }
+
+            });
+
+
+
+
+
+     }
     setTimeout(()=>{var add =document.getElementsByName('Modal_adresse');//setTimeout permet que toutes les adresses soit initialiser pour pouvoir modifier leurs paramètre
-        console.log("??????");
-        console.log(add.length);
-        console.log(add);
+
         for(i=1;i<add.length;i++){
             add[i].contentEditable=bool;
-            console.log(i);
+            add[i].parentElement.setAttribute("name","Modal_div_adresse");//Change les div qui ont pour name temp
         }},100);
 
 }
@@ -278,6 +318,13 @@ function AddAdress(parm){
     }
 
 
+}
+function  addSpanAdresse(parm){
+    var divadr=document.getElementsByName(parm);
+    var elm= divadr[0].cloneNode(true);
+    elm.style="";
+    divadr[divadr.length-1].after(elm);
+    client_profil_edit("true");
 }
 
 function ValidateLivraison(){

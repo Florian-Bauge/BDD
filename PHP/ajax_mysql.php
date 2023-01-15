@@ -217,16 +217,19 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='createaccountclient'){
     if ($mysqli->query($sql) === FALSE) {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
+//        $sql='INSERT INTO adresse (nrue,typeRue, rue, codepostal, ville, pays, infoComp, code_client) VALUES("'.$_POST['data'][7][0].'","'.$_POST['data'][7][1].'","'.$_POST['data'][7][2].'","'.$_POST['data'][7][3].'","'.$_POST['data'][7][4].'","'.$_POST['data'][7][5].'","'.$_POST['data'][7][6].'","'.$_POST['data'][7][0].'");';
+//    if ($mysqli->query($sql) === FALSE) {
+//        echo "Error: " . $sql . "<br>" . $mysqli->error;
+//    }
 
-    $id_client=$mysqli->insert_id;
-    echo 'console.log('.$id_client.');';
+
     foreach ($_POST['data'][7] as $sendAdresse)
     {
-        $sql='INSERT INTO adresse (nrue,typeRue, rue, codepostal, ville, pays, infoComp, code_client) VALUES("'.$sendAdresse[0].'","'.$sendAdresse[1].'","'.$sendAdresse[2].'","'.$sendAdresse[3].'","'.$sendAdresse[4].'","'.$sendAdresse[5].'","'.$sendAdresse[6].'","'.$id_client.'");';
+        $sql='INSERT INTO adresse (nrue,typeRue, rue, codepostal, ville, pays, infoComp) VALUES("'.$sendAdresse[0].'","'.$sendAdresse[1].'","'.$sendAdresse[2].'","'.$sendAdresse[3].'","'.$sendAdresse[4].'","'.$sendAdresse[5].'","'.$sendAdresse[6].'");';
         if ($mysqli->query($sql) === FALSE) {
-            echo "Error: " . $sql . "<br>" . $mysqli->error;
+            echo "Error: " . $sql . "<br>" . $mysqli->error;}
         }
-    }
+
 
 
 

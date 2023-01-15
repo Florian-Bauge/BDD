@@ -1,0 +1,22 @@
+Rajout d'une colonne sur adresse
+Rajout d'une colonne id sur client qui passe en clé primaire
+Rajout du déclencheur dans client et en before et en insert : 
+ 
+BEGIN
+DECLARE num INT;
+SELECT MAX(SUBSTRING(code_client,3,4)) INTO num FROM client;
+SET num = num+1;
+SET NEW.code_client = CONCAT(DATE_FORMAT(NOW(), '%y'),  LPAD(num,4,'0'));
+END
+
+
+Rajour d'un déclencheur dans adresse en before et en insert : 
+
+BEGIN
+DECLARE client_code VARCHAR(255);
+DECLARE last_id INT;
+SET last_id = (SELECT MAX(id) FROM client);
+SET client_code = (SELECT code_client FROM client WHERE id = last_id);
+
+SET NEW.code_client = client_code;
+END

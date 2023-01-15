@@ -83,6 +83,15 @@
     height: auto;
 }
 
+.button_panel{
+    position: relative;
+    padding: 10px;
+    margin: 10px 10px 10px 10px;
+    display: inline-block;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 .panel.title{
     margin: auto;
     margin-bottom: 20px;

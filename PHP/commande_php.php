@@ -76,7 +76,7 @@ function getArrayAllCommand($id){   //Recupération des données pour affichage
 
     //Récupération Information de Livraison
 
-    $sql = "SELECT id_delivery, numeroColis, dateVoulu, dateLivrée, DateExpédié, livraison.status, nrue || ' ' || rue || ' ' || adresse.codepostal || ' ' || ville  || ' ' || pays  || ' ' || infoComp AS adresse from livraison
+    $sql = "SELECT id_delivery, numeroColis, dateVoulu, dateLivrée, DateExpédié, livraison.status, CONCAT(nrue,' ',rue,' ',adresse.codepostal,' ',ville,' ',pays,' ',infoComp) AS adresse from livraison
     LEFT OUTER JOIN adresse on livraison.id_adresse = adresse.id_adresse
     LEFT OUTER JOIN envoie on livraison.id_delivery = envoie.id_livraison                                                                                                                                                                              
     WHERE envoie.id_commande = $id

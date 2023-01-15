@@ -55,10 +55,7 @@
                 <span>Numéro: </span><span><?php echo $command['commande']['Phone']; ?></span><br>
                 <span>Membership: </span><span><?php echo $command['commande']['nom']; ?></span><br>
             </div>
-            <div class="multi panel" style="width: 28%">
-                <span>test</span>
-                <button> Ajouter </button>
-            </div>
+                <button class="button_panel" onclick="ShowModal('add_paiement');"> Ajouter </button>
             <div class="multi panel" style="width: 45%;">
                 <table>
                     <tr>
@@ -146,6 +143,47 @@
         </div>
     </div>
     <script>InitModal("add_livraison");</script>
+
+    <div id="Modal_add_paiement" class="modal">
+        <div class="panel pmodal">
+            <span id="Modalclose_add_paiement" class="close">&times;</span>
+            <?php
+            $address = getAdresses($command['commande']['code_client']);
+            ?>
+            <span class="title">Livraison</span>
+            <form name="ModalForm" action="javascript:void(0);" onsubmit="return ValidateLivraison()"> <!--javascript:void(0);-->
+                <span>Moyen de paiement: </span><br>
+                <select id="Modal_address" onchange="UpdatePaiementModal()">
+                    <?php
+                    foreach($address as $adr){
+                        ?>
+                        <option value=<?php echo $adr['id_adresse'] ?>><?php echo $adr['adresse'] ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+                <br>
+                <div id="Montant">
+                <span>Montant: </span><input  type="number" required id='Modal_numeroColis'/><br>
+                <br>
+                </div>
+                <div id="Chèque-cadeaux">
+                    <span>Montant: </span><input  type="number" required id='Modal_numeroColis'/><br>
+                    <br>
+                </div>
+                <div id="Pourcentage">
+                    <span>Montant: </span><input  type="number" required id='Modal_numeroColis'/><br>
+                    <br>
+                </div>
+                <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />
+                <br>
+                <br>
+                <input type='submit' value="Valider"/>
+            </form>
+
+        </div>
+    </div>
+    <script>InitModal("add_paiement");</script>
 </div>
 
 </body>

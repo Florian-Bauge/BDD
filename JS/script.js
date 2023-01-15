@@ -376,3 +376,7 @@ function UpdateArrivalDate(date, id){
         }
     });
 }
+
+function UpdatePaiementModal(){
+
+}

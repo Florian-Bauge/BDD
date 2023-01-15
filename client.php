@@ -52,7 +52,7 @@
                     <td><?php echo $client['Phone']?></td>
                     <td><?php echo $client['nom']?></td>
                     <td>
-                        <input type="image" src="Img/button_research.png" onclick="client_profil('account_client',<?php echo $client['code_client']?>,'false')">
+                        <input type="image" src="Img/button_research.png" onclick="client_profil('account_client','<?php echo $client['code_client']?>','false')">
                         <input type="image" src="Img/button_edit.png" onclick="client_profil('account_client',<?php echo $client['code_client']?>,'true')">
                     </td>
                 </tr>
@@ -72,11 +72,7 @@
 
             <span class="title">Créer un compte</span>
             <p class="TitreNewCompte">Membership </p><br>
-            <select id="Modal_NewCompte_Select_Membership">
-                <option value="1">Silver</option> //php à faire
-                <option value="2">Gold</option>
-            </select>
-            <input required type='date' id="Modal_NewCompte_DateMembership"/><br>
+                <span> Ultimate </span><input type="checkbox" id="Modal_NewCompte_Ulti">
             <p class="TitreNewCompte">Nom </p>
             <input required id="Modal_NewCompte_nom">
             <p class="TitreNewCompte">Mail </p>
@@ -86,7 +82,7 @@
             <img src="Img/logo_Insta.png">
             <input  type="text" id="Modal_NewCompte_Insta">
             <img src="Img/logo_Facebook.png">
-            <input type="text" id="Modal_NewCompte_Facebook">
+            <input required type="text" id="Modal_NewCompte_Facebook">
             <p class="TitreNewCompte">Adresse </p>
             <input type="text" name="Modal_temp_NewCompte_adress_" placeholder="20 rue Jean Moulin 72000 Le mans, FRANCE" class="InputAdressModal"> <br>
             <input type="image" src="Img/buttonAddAdress.png" onclick="AddAdress('Modal_temp_NewCompte_adress_')"> <br>

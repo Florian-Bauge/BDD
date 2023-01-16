@@ -13,6 +13,7 @@ function getArrayRecapCommand($text){    //Recupération des données pour affic
 	if ($result = $mysqli->query($sql)) {
 		//echo "<br>New record created successfully<br>";
 		while ($row = $result->fetch_assoc()){
+
             $array[] = $row;
 		};
 	} else {

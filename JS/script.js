@@ -444,3 +444,79 @@ function ValidatePaiement(){
 
     return false;
 }
+function  UpdateItemcheckbox(){
+    console.log("coucou");
+    var checked=document.getElementById("Panel_checkbox_item").checked;
+    console.log(checked);
+    var prix_achat=document.getElementById("Panel_Modal_item_prix_achat");
+    var prix_vente=document.getElementById("Panel_Modal_item_prix_vente");
+    var status=document.getElementById("Panel_Modal_item_statuts");
+    var stock=document.getElementById("Panel_Modal_item_stock");
+    var recherche=document.getElementById("Panel_Modal_item_recherche");
+    var id=document.getElementById("Panel_Modal_item_id");
+    if(checked){
+
+         prix_achat.value="";
+         prix_vente.value="";
+         status.value="";
+         recherche.placeholder="Nouveau nom...";
+         recherche.value="";
+         id.style.display="none";
+
+
+    }
+    else{
+
+        id.style.display="flex";
+    }
+
+}
+function UpdateItem(id){
+    if(!isNaN(id)&&id != ""){
+        $.ajax
+        ({
+            type: 'POST',
+            url: './PHP/ajax_mysql.php',
+            data:{ cmd: "ItemUpdate", id: id},
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                document.getElementById("Panel_Modal_item_recherche").value=data[0]['nom'];
+                document.getElementById("Panel_Modal_item_prix_achat").value=data[0]['prixachat'];
+                document.getElementById("Panel_Modal_item_prix_vente").value=data[0]['prixvente'];
+                document.getElementById("Panel_Modal_item_stock").value=data[0]['stock'];
+                const select = document.querySelector('#Panel_Modal_item_statuts');
+                select.value = data[0]['statut'];
+            }
+        });
+
+    }else{
+
+    }
+
+
+}
+function InitAutoComplete(){
+    $( function() {
+        console.log("Salut")
+        let autocompleteArray = [];
+        $.ajax
+        ({
+            type: 'POST',
+            url: './PHP/ajax_mysql.php',
+            data:{ cmd: "AutoComplet", cats: 'Name,kGame'},
+            dataType: 'json',
+            success: function (data) {
+                console.log("Success00");
+                for (var key in data) {
+                    autocompleteArray.push({label:data[key]['nom'], value:data[key]['id_item']});
+                }
+                console.log(autocompleteArray);
+            }
+        });
+
+        $( "#Panel_Modal_item_id" ).autocomplete({
+            source: autocompleteArray
+        });
+    } );
+}

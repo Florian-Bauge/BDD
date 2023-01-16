@@ -6,6 +6,9 @@
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="JS/script.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <?php
         include 'PHP/commande_php.php';
     ?>
@@ -59,8 +62,9 @@
                     ?>
                 </table>
             </div>
-            <button onclick="location.href='./commande.php';"> Article </button></br>
-            <button onclick="location.href='./commande.php';"> Exporter </button></br>
+            <input type="image" src="Img/button_article.png" onclick="ShowModal('item')">
+            <input type="image" src="Img/button_Export.png" onclick="">
+
         </div>
     </div>
 
@@ -135,6 +139,37 @@
     </div>
     </div>
     <script>InitModal("commande");</script>
+    <div id="Modal_item" class="modal">
+            <div class="panel pmodal">
+            <span id="Modalclose_item" class="close">&times;</span>
+                <form name="ModalForm">
+        <span>Item</span><br>
+            <input id="Panel_Modal_item_id" type="text" placeholder="Rechercher" onchange="UpdateItem(this.value)" style="display: flex" > <br>
+            <input id="Panel_Modal_item_recherche" type="text" placeholder=" ">
+
+                <input id="Panel_checkbox_item" type="checkbox" onchange="UpdateItemcheckbox()"> <span>Créer nouveau</span> <br>
+            <span>Information item</span> <span name="Modal_id_item"<br>
+            <span> Prix d'achat</span> <input type="text"id="Panel_Modal_item_prix_achat" name=""> <span>€</span> <br>
+            <span> Prix de vente conseillé </span> <input type="text" id="Panel_Modal_item_prix_vente"> <span>€</span> <br>
+            <span> Statuts</span>
+            <select id="Panel_Modal_item_statuts">
+                <option value=""> Select type</option>
+                <option value="En stock">En stock</option>
+                <option value="Vide">vide</option>
+                <option value="Test">Test</option>
+            </select> <br>
+            <span> Stock </span> <input type="text" id="Panel_Modal_item_stock"> <span>€</span> <br>
+            <div class="trait"></div>
+            <input type="image" src="Img/buttonValiderCompte.png">
+
+
+                </form>
+            </div>
+
+
+    </div>
+    <script>InitModal("item");</script>
+    <script>InitAutoComplete();</script>
 
 </div>
 

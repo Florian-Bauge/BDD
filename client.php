@@ -115,13 +115,13 @@
                 <img src="Img/logo_Facebook.png">
                 <span class="Client_span_info" name="Modal_Facebook" id="Modal_client_span_facebook" contenteditable="false"></span> <br>
                 <p class="TitreNewCompte">Adresse </p>
-                <div id="adress" style="display:none;">  <!--Example for Copy-->
+                <div id="adress" name="Modal_div_adresse" style="display:none;">  <!--Example for Copy-->
+                            <span id="idAdresse" name="Modal_id_adresse" style="display:flex"  >0</span>
                             <span name='Modal_adresse' contenteditable="false"></span><br>
 
-                        <br>
                 </div>
 
-                <input  id="Modal_client_button_add_adress" type="image" src="Img/buttonAddAdress.png" style="display: none" onclick="AddAdress('Modal_adresse')">
+                <input  id="Modal_client_button_add_adress" type="image" src="Img/buttonAddAdress.png" style="display: none" onclick="addSpanAdresse('Modal_div_adresse')">
 
 
 
@@ -130,9 +130,7 @@
                 <span class="titlePanel">Membership</span> <br>
                 <img id="Panel_Img_Membership" src="Img/Membership=0.png">
                 <span name="Modal_nom"></span><br>
-                <span name="Modal_id_membership" id="Modal_id_Membership"></span>
                 <span name="Modal_point"> <span> points</span></span><br>
-                <span name="Modal_dateExp"></span><br>
 
 
             </div>

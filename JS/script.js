@@ -526,7 +526,7 @@ function InitAutoComplete(){
         });
     } );
 }
-function createPDF(){
+function createPDFClient(){
     console.log('Salut');
     $.ajax
     ({

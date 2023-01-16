@@ -65,7 +65,7 @@
             </table>
             </div>
             <input type="image" src="Img/button_Creer.png" onclick="ShowModal('add_client')">
-            <input type="image" src="Img/button_Export.png" onclick="createPDF()">
+            <input type="image" src="Img/button_Export.png" onclick="createPDFClient()">
         </div>
     </div>
     <div id="Modal_add_client" class="modal">

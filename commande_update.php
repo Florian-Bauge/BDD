@@ -147,32 +147,31 @@
     <div id="Modal_add_paiement" class="modal">
         <div class="panel pmodal">
             <span id="Modalclose_add_paiement" class="close">&times;</span>
-            <?php
-            $address = getAdresses($command['commande']['code_client']);
-            ?>
             <span class="title">Livraison</span>
-            <form name="ModalForm" action="javascript:void(0);" onsubmit="return ValidateLivraison()"> <!--javascript:void(0);-->
+            <form name="ModalForm" action="javascript:void(0);" onsubmit="return false;"> <!--javascript:void(0);-->
                 <span>Moyen de paiement: </span><br>
-                <select id="Modal_address" onchange="UpdatePaiementModal()">
+                <select id="Modal_paiement" onchange="UpdatePaiementModal(this)">
                     <?php
-                    foreach($address as $adr){
+                    foreach(getMoyen() as $moyen){
                         ?>
-                        <option value=<?php echo $adr['id_adresse'] ?>><?php echo $adr['adresse'] ?></option>
+                        <option value=<?php echo $moyen['id_transaction'] ?>><?php echo $moyen['nom'] ?></option>
                         <?php
                     }
                     ?>
                 </select>
                 <br>
-                <div id="Montant">
+                <div id="Modal_1"  name="Modal_paiement_content">
                 <span>Montant: </span><input  type="number" required id='Modal_numeroColis'/><br>
                 <br>
                 </div>
-                <div id="Chèque-cadeaux">
+                <div id="Modal_2"  name="Modal_paiement_content" style="display:none">
                     <span>Montant: </span><input  type="number" required id='Modal_numeroColis'/><br>
+                    <span>Valeur(€): </span><input  type="number" required id='Modal_numeroColis'/><br>
                     <br>
                 </div>
-                <div id="Pourcentage">
+                <div id="Modal_3" name="Modal_paiement_content" style="display:none">
                     <span>Montant: </span><input  type="number" required id='Modal_numeroColis'/><br>
+                    <span>Valeur (%): </span><input  type="number" required id='Modal_numeroColis'/><br>
                     <br>
                 </div>
                 <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />

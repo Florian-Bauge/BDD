@@ -267,17 +267,49 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='updateaccountclient'){
 
     }
 
-
-
-
-
-
-
-
-Disconnect($mysqli);
+    Disconnect($mysqli);
 
     unset($_POST['cmd']);
 }
+if (isset($_POST['cmd']) and $_POST['cmd']=='AutoComplet'){
+    $array = array();
+
+    $mysqli = Connect();
+
+    $sql='SELECT id_item,nom FROM item ;';
+
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()){
+            $array[]= $row;
+        };
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    echo json_encode($array);
+    Disconnect($mysqli);
+
+    unset($_POST['cmd']);
+}
+if (isset($_POST['cmd']) and $_POST['cmd']=='ItemUpdate'){
+    $array = array();
+
+    $mysqli = Connect();
+
+    $sql='SELECT nom,statut,stock,prixachat,prixvente FROM item WHERE id_item="'.$_POST['id'].'" ;';
+
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()){
+            $array[]= $row;
+        };
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    echo json_encode($array);
+    Disconnect($mysqli);
+
+    unset($_POST['cmd']);
+}
+
 
 
 ?>

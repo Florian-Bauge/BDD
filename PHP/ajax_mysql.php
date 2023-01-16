@@ -327,10 +327,9 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='AddItem'){
 
     $mysqli = Connect();
 
-    $sql='UPDATE item SET  nom= "'.$_POST['data'][0].'", prixachat="'.$_POST['data'][1].'", prixvente="'.$_POST['data'][2].'", stock="'.$_POST['data'][3].'", statut="'.$_POST['data'][4].'" WHERE item.id_item="'.$_POST['data'][5].'";';
+    $sql='INSERT INTO item (id_item, prixachat, prixvente, nom, statut, id_membership, stock) VALUES (NULL, "'.$_POST['data'][1].'","'.$_POST['data'][2].'","'.$_POST['data'][0].'","'.$_POST['data'][4].'","'.$_POST['data'][5].'","'.$_POST['data'][3].'");';
     if ($mysqli->query($sql) === FALSE) {
         echo "Error: " . $sql . "<br>" . $mysqli->error;}
-    echo json_encode($array);
     Disconnect($mysqli);
 
     unset($_POST['cmd']);

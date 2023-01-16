@@ -391,7 +391,15 @@ function UpdateArrivalDate(date, id){
     });
 }
 
-function UpdatePaiementModal(){
+function UpdatePaiementModal(elm){
+
+    console.log("Updated !");
+    const div = document.getElementsByName("Modal_paiement_content");
+    div.forEach(elm => {
+        elm.style.display="none";
+    });
+
+    document.getElementById("Modal_"+elm.value).style.display = "block";
 
 }
 function  UpdateItemcheckbox(){

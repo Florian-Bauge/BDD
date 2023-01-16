@@ -290,12 +290,12 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='AutoComplet'){
 
     unset($_POST['cmd']);
 }
-if (isset($_POST['cmd']) and $_POST['cmd']=='ItemUpdate'){
+if (isset($_POST['cmd']) and $_POST['cmd']=='GetItemInfo'){
     $array = array();
 
     $mysqli = Connect();
 
-    $sql='SELECT nom,statut,stock,prixachat,prixvente FROM item WHERE id_item="'.$_POST['id'].'" ;';
+    $sql='SELECT nom,statut,stock,prixachat,prixvente,id_membership FROM item WHERE id_item="'.$_POST['id'].'" ;';
 
     if ($result = $mysqli->query($sql)) {
         while ($row = $result->fetch_assoc()){
@@ -304,6 +304,32 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='ItemUpdate'){
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
+    echo json_encode($array);
+    Disconnect($mysqli);
+
+    unset($_POST['cmd']);
+}
+if (isset($_POST['cmd']) and $_POST['cmd']=='ItemUpdate'){
+    $array = array();
+
+    $mysqli = Connect();
+
+    $sql='UPDATE item SET  nom= "'.$_POST['data'][0].'", prixachat="'.$_POST['data'][1].'", prixvente="'.$_POST['data'][2].'", stock="'.$_POST['data'][3].'", statut="'.$_POST['data'][4].'",id_membership="'.$_POST['data'][5].'" WHERE item.id_item="'.$_POST['data'][6].'";';
+    if ($mysqli->query($sql) === FALSE) {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;}
+    echo json_encode($array);
+    Disconnect($mysqli);
+
+    unset($_POST['cmd']);
+}
+if (isset($_POST['cmd']) and $_POST['cmd']=='AddItem'){
+    $array = array();
+
+    $mysqli = Connect();
+
+    $sql='UPDATE item SET  nom= "'.$_POST['data'][0].'", prixachat="'.$_POST['data'][1].'", prixvente="'.$_POST['data'][2].'", stock="'.$_POST['data'][3].'", statut="'.$_POST['data'][4].'" WHERE item.id_item="'.$_POST['data'][5].'";';
+    if ($mysqli->query($sql) === FALSE) {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;}
     echo json_encode($array);
     Disconnect($mysqli);
 

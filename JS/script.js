@@ -429,13 +429,13 @@ function  UpdateItemcheckbox(){
     }
 
 }
-function UpdateItem(id){
+function UpdateItemInterface(id){
     if(!isNaN(id)&&id != ""){
         $.ajax
         ({
             type: 'POST',
             url: './PHP/ajax_mysql.php',
-            data:{ cmd: "ItemUpdate", id: id},
+            data:{ cmd: "GetItemInfo", id: id},
             dataType: 'json',
             success: function (data) {
                 console.log(data);
@@ -443,13 +443,60 @@ function UpdateItem(id){
                 document.getElementById("Panel_Modal_item_prix_achat").value=data[0]['prixachat'];
                 document.getElementById("Panel_Modal_item_prix_vente").value=data[0]['prixvente'];
                 document.getElementById("Panel_Modal_item_stock").value=data[0]['stock'];
-                const select = document.querySelector('#Panel_Modal_item_statuts');
-                select.value = data[0]['statut'];
+                const selectstatut = document.querySelector('#Panel_Modal_item_statuts');
+                selectstatut.value = data[0]['statut'];
+                const selectMemb = document.querySelector('#Panel_Modal_item_Membership');
+                selectMemb.value = data[0]['id_membership'];
             }
         });
 
     }else{
 
+    }
+
+
+}
+function updateItemBDD(){
+    var tab=[];
+
+    tab.push(document.getElementById("Panel_Modal_item_recherche").value);
+    tab.push(document.getElementById("Panel_Modal_item_prix_achat").value);
+    tab.push(document.getElementById("Panel_Modal_item_prix_vente").value);
+    tab.push(document.getElementById("Panel_Modal_item_stock").value);
+    tab.push(document.querySelector('#Panel_Modal_item_statuts').value);
+    tab.push(document.querySelector('#Panel_Modal_item_Membership').value);
+    tab.push(document.getElementById("Panel_Modal_item_id").value);
+    if(!document.getElementById("Panel_checkbox_item").checked) {
+        $.ajax
+        ({
+            type: 'POST',
+            url: './PHP/ajax_mysql.php',
+            data: {cmd: 'ItemUpdate', data: tab},
+            dataType: 'json',
+            success: function (data) {
+                console.log('succes');
+                return true;
+
+
+            }
+
+        });
+    }
+    else {
+        $.ajax
+        ({
+            type: 'POST',
+            url: './PHP/ajax_mysql.php',
+            data: {cmd: 'AddItem', data: tab},
+            dataType: 'json',
+            success: function (data) {
+                console.log('succes');
+                return true;
+
+
+            }
+
+        });
     }
 
 

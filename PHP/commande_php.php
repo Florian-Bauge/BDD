@@ -161,6 +161,24 @@ function getMoyen(){
     return $array;
 
 }
+function getArrayAllMembership(){
+    $mysqli = Connect();
+
+    $sql = "SELECT id_membership, nom from grillepoint;";
+    $array = array();
+
+    if ($result = $mysqli->query($sql)) {
+        //echo "<br>New record created successfully<br>";
+        while ($row = $result->fetch_assoc()){
+            $array[] = $row;
+        };
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    $result->close();
+    return $array;
+
+}
 
 function updateDeliveryDate($id){
 

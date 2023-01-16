@@ -268,12 +268,6 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='updateaccountclient'){
     }
 
 
-
-
-
-
-
-
 Disconnect($mysqli);
 
     unset($_POST['cmd']);

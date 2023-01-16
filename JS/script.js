@@ -393,12 +393,54 @@ function UpdateArrivalDate(date, id){
 
 function UpdatePaiementModal(elm){
 
-    console.log("Updated !");
     const div = document.getElementsByName("Modal_paiement_content");
     div.forEach(elm => {
         elm.style.display="none";
+        for (let i = 0; i < elm.children.length; i++) {
+            elm.children.item(i).removeAttribute("required");
+        }
     });
 
     document.getElementById("Modal_"+elm.value).style.display = "block";
+    const child = document.getElementById("Modal_"+elm.value).children
+    for (let i = 0; i < child.length; i++) {
+        child.item(i).setAttribute("required","");
+    }
 
+
+
+}
+
+function ValidatePaiement(){
+
+    const select = document.getElementById("Modal_paiement");
+
+    console.log(select.value);
+
+    switch(select.value){
+        case '1':
+            console.log("Classique");
+            break
+        case '2': case '3':
+            console.log("Point");
+            break;
+
+    }
+
+    /*
+    console.log("FUNCTION");
+    var arrayData = [date.value, parcel.value, adr.value, checkArray];
+    console.log(arrayData);
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data:{ cmd: "insertAndUpdateLivraison", data:arrayData},
+        dataType: 'json',
+        success: function () {
+            return true;
+        }
+    });*/
+
+    return false;
 }

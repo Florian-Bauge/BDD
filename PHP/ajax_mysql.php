@@ -308,6 +308,8 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='GetItemInfo'){
     Disconnect($mysqli);
 
     unset($_POST['cmd']);
+
+
 }
 if (isset($_POST['cmd']) and $_POST['cmd']=='ItemUpdate'){
     $array = array();
@@ -322,14 +324,34 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='ItemUpdate'){
 
     unset($_POST['cmd']);
 }
-if (isset($_POST['cmd']) and $_POST['cmd']=='AddItem'){
+if (isset($_POST['cmd']) and $_POST['cmd']=='AddItem') {
     $array = array();
 
     $mysqli = Connect();
 
-    $sql='INSERT INTO item (id_item, prixachat, prixvente, nom, statut, id_membership, stock) VALUES (NULL, "'.$_POST['data'][1].'","'.$_POST['data'][2].'","'.$_POST['data'][0].'","'.$_POST['data'][4].'","'.$_POST['data'][5].'","'.$_POST['data'][3].'");';
+    $sql = 'INSERT INTO item (id_item, prixachat, prixvente, nom, statut, id_membership, stock) VALUES (NULL, "' . $_POST['data'][1] . '","' . $_POST['data'][2] . '","' . $_POST['data'][0] . '","' . $_POST['data'][4] . '","' . $_POST['data'][5] . '","' . $_POST['data'][3] . '");';
     if ($mysqli->query($sql) === FALSE) {
-        echo "Error: " . $sql . "<br>" . $mysqli->error;}
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    Disconnect($mysqli);
+
+    unset($_POST['cmd']);
+}
+if (isset($_POST['cmd']) and $_POST['cmd']=='GetPDF'){
+    $array = array();
+
+    $mysqli = Connect();
+
+    $sql ='SELECT name, code_client, Facebook,Instagram, Email, Phone,grillepoint.nom,point FROM client INNER JOIN grillepoint ON client.id_membership=grillepoint.id_membership;';
+
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()){
+            $array[]= $row;
+        };
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    echo json_encode($array);
     Disconnect($mysqli);
 
     unset($_POST['cmd']);

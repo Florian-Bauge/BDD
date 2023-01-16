@@ -35,3 +35,21 @@ function getAllInformationClient($id_client){
 
 
 }
+function createPDF(){
+    $array=array();
+    $mysqli = Connect();
+    $sql ="SELECT `name`, `code_client`, `Facebook`,`Instagram`, `Email`, `Phone`,grillepoint.nom,`point`FROM `client` INNER JOIN `grillepoint` ON client.id_membership=grillepoint.id_membership;
+";
+
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()){
+            $array[] = $row;
+        };
+         var_dump($array);
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    $result->close();
+    return $array;
+
+}

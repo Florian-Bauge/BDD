@@ -148,7 +148,7 @@
         <div class="panel pmodal">
             <span id="Modalclose_add_paiement" class="close">&times;</span>
             <span class="title">Paiement</span>
-            <form name="ModalForm" action="javascript:void(0);" onsubmit="return ValidatePaiement(<?php echo $_GET['id'] ?>);"> <!--javascript:void(0);-->
+            <form name="ModalForm" action="" onsubmit="return ValidatePaiement(<?php echo $_GET['id'] ?>);"> <!--javascript:void(0);-->
                 <span>Moyen de paiement: </span><br>
                 <select id="Modal_paiement_Moyen" onchange="UpdatePaiementModal(this)">
                     <?php

@@ -431,7 +431,7 @@ function ValidatePaiement(commande){
     */
     var cout = document.getElementById("Modal_cout");
     var regle = selectRègle.value;
-    if(document.getElementById("Modal_2").style.display ="none"){
+    if(document.getElementById("Modal_2").style.display =="none"){
         regle = "NULL";
     }
 
@@ -442,31 +442,22 @@ function ValidatePaiement(commande){
     ({
         type: 'POST',
         url: './PHP/ajax_mysql.php',
-        data:{ cmd: "insertPaiement"},
-        dataType: 'json',
-        success: function () {
-            console.log("Success");
+        data:{ cmd: "insertPaiement", data: arrayData},
+        dataType: 'text',
+        success: function (result) {
+            console.log(result);
+            if(result=="Success"){
+                console.log("Valid !");
+                return true;
+            }else{
+                console.log("Failed");
+                return false;
+            }
         }
     });
 
-    console.log("Failed");
-
-    /*
-    console.log("FUNCTION");
-    var arrayData = [date.value, parcel.value, adr.value, checkArray];
-    console.log(arrayData);
-    $.ajax
-    ({
-        type: 'POST',
-        url: './PHP/ajax_mysql.php',
-        data:{ cmd: "insertAndUpdateLivraison", data:arrayData},
-        dataType: 'json',
-        success: function () {
-            return true;
-        }
-    });*/
-
     return false;
+
 }
 function  UpdateItemcheckbox(){
     console.log("coucou");
@@ -575,7 +566,7 @@ function InitAutoComplete(){
         ({
             type: 'POST',
             url: './PHP/ajax_mysql.php',
-            data:{ cmd: "AutoComplet", cats: 'Name,kGame'},
+            data:{ cmd: "AutoComplet"},
             dataType: 'json',
             success: function (data) {
                 console.log("Success00");

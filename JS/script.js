@@ -576,7 +576,7 @@ function createPDFClient(){
             data.forEach((row,index) => {
                 pdf.text(row.name, 10, y);
                 pdf.line(9,y+1,9,y-7);
-                pdf.text(row.code_client, 45, y);
+                pdf.text(formatToclientCode(row.code_client), 45, y);
                 pdf.line(44,y+1,44,y-7);
                 pdf.text(row.Facebook, 80, y);
                 pdf.line(79,y+1,79,y-7);
@@ -609,4 +609,7 @@ function createPDFClient(){
 
 
 
+}
+function formatToclientCode(str){
+    return str.slice(0, 2) + '-SPR-' + str.slice(2);
 }

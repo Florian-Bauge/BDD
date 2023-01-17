@@ -613,3 +613,21 @@ function createPDFClient(){
 function formatToclientCode(str){
     return str.slice(0, 2) + '-SPR-' + str.slice(2);
 }
+function commandeToPdf(){
+    console.log('Salut');
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data: {cmd: 'functionPDFCommande'},
+        dataType: 'json',
+        success: function (data) {
+            console.log('succes');
+            return true;
+
+
+        }
+
+    });
+
+}

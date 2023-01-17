@@ -63,7 +63,7 @@
                 </table>
             </div>
             <input type="image" src="Img/button_article.png" onclick="ShowModal('item')">
-            <input type="image" src="Img/button_Export.png" onclick="">
+            <input type="image" src="Img/button_Export.png" onclick="commandeToPdf()">
 
         </div>
     </div>

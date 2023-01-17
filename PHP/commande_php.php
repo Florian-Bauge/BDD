@@ -45,7 +45,7 @@ function getArrayAllCommand($id){   //Recupération des données pour affichage
 
     //Récupération Information de Commande et de Client
 
-    $sql = "SELECT client.point, id_commande, commande.total, total-coalesce((SELECT sum(cout) from paiement where id_commande = $id),0) AS RAP, concat(concierge.nom, concierge.prenom) AS cons, client.name, client.code_client, client.Phone, grillePoint.nom from commande 
+    $sql = "SELECT client.point, client.id_membership, id_commande, commande.total, total-coalesce((SELECT sum(cout) from paiement where id_commande = $id),0) AS RAP, concat(concierge.nom, concierge.prenom) AS cons, client.name, client.code_client, client.Phone, grillePoint.nom from commande 
     LEFT OUTER JOIN client ON commande.code_client=client.code_client 
     LEFT OUTER JOIN concierge ON concierge.id_con=commande.id_con
     LEFT OUTER JOIN GrillePoint ON client.id_membership=grillepoint.id_membership
@@ -142,8 +142,6 @@ function getAdresses($id){
 
 function getMoyen(){
 
-
-
     $mysqli = Connect();
 
     $sql = "SELECT id_transaction, nom from moyen;";
@@ -162,41 +160,27 @@ function getMoyen(){
 
 }
 
-function updateDeliveryDate($id){
+function getRègles(){
 
+    $mysqli = Connect();
+
+    $sql = "SELECT * from grilleregle;";
+    $array = array();
+
+    if ($result = $mysqli->query($sql)) {
+        //echo "<br>New record created successfully<br>";
+        while ($row = $result->fetch_assoc()){
+            $array[] = $row;
+        };
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    $result->close();
+    return $array;
 
 }
 
-function addPayment($id ){
 
-    
-}
-
-function addItem($id){
-
-    
-}
-
-function removeItem($id){
-
-    
-}
-
-function addNewItem($id){
-    createNewItem();
-    addItem();   
-}
-
-function createNewItem(){
-
-    
-}
-
-function updateItem($id){
-
-    
-}
-
-
+error_log("Error Test", 3, "./my-errors.log");
 
 ?>

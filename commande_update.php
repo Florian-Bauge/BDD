@@ -148,9 +148,9 @@
         <div class="panel pmodal">
             <span id="Modalclose_add_paiement" class="close">&times;</span>
             <span class="title">Paiement</span>
-            <form name="ModalForm" action="javascript:void(0);" onsubmit="return ValidatePaiement();"> <!--javascript:void(0);-->
+            <form name="ModalForm" action="javascript:void(0);" onsubmit="return ValidatePaiement(<?php echo $_GET['id'] ?>);"> <!--javascript:void(0);-->
                 <span>Moyen de paiement: </span><br>
-                <select id="Modal_paiement" onchange="UpdatePaiementModal(this)">
+                <select id="Modal_paiement_Moyen" onchange="UpdatePaiementModal(this)">
                     <?php
                     foreach(getMoyen() as $moyen){
                         ?>
@@ -160,32 +160,25 @@
                     ?>
                 </select>
                 <br>
+                <br>
                 <div id="Modal_1"  name="Modal_paiement_content">
                 <span>Montant: </span><input  type="number" required id='Modal_cout'/><br>
                 <br>
                 </div>
                 <div id="Modal_2"  name="Modal_paiement_content" style="display:none">
-                    <select>
+                    <span><?php echo $command['commande']['point']; ?> points Disponibles</span><br>
+                    <select id="Modal_paiement_Regle">
                         <?php
-                        foreach(getMoyen() as $moyen){
-                            ?>
-                            <option value=<?php echo $moyen['id_transaction'] ?>><?php echo $moyen['nom'] ?></option>
-                            <?php
+                        foreach(getRègles() as $regles){
+
+                            if(strtotime($regles['dateExp']) > time() and $regles['id_membership'] == $command['commande']['id_membership']){
+                                ?>
+                                <option value=<?php echo $regles['id_regle'] ?>><?php echo $regles['intitule'] ?></option>
+                                <?php
+                            }
                         }
                         ?>
-                    </select><span> / <?php echo $command['commande']['point']; ?> Disponible</span><br>
-                    <br>
-                </div>
-                <div id="Modal_3" name="Modal_paiement_content" style="display:none">
-                    <select>
-                        <?php
-                        foreach(getMoyen() as $moyen){
-                            ?>
-                            <option value=<?php echo $moyen['id_transaction'] ?>><?php echo $moyen['nom'] ?></option>
-                            <?php
-                        }
-                        ?>
-                    </select><span> / <?php echo $command['commande']['point']; ?> Disponible</span><br>
+                    </select>
                     <br>
                 </div>
                 <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />

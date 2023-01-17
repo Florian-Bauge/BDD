@@ -33,7 +33,7 @@
     </div>
     <div class="other">
         <div class="content">
-            <div class="panel">
+            <div class="panel" style="height: 500px">
                 <table>
                     <tr>
                         <td class="title">ID Commande</td>

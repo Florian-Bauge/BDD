@@ -1,6 +1,6 @@
 <?php
 
-include "global.php";
+include "./global.php";
 
 if (isset($_POST['cmd']) and $_POST['cmd']=='commande') {
 
@@ -75,7 +75,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='commande') {
     $result->close();
     //echo $array[0]['Name'];
    echo json_encode($array);
-
+    Disconnect($mysqli);
 
     //echo json_encode(array('success' => $_POST['id']));
     unset($_POST['cmd']);
@@ -291,6 +291,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='AutoComplet'){
 
     unset($_POST['cmd']);
 }
+
 if (isset($_POST['cmd']) and $_POST['cmd']=='ItemUpdate'){
     $array = array();
 
@@ -312,5 +313,40 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='ItemUpdate'){
 }
 
 
+//data = [selectRègle.value, commande, selectMoyen.value, cout.value];
+if (isset($_POST['cmd']) and $_POST['cmd']=='insertPaiement') {
+    $mysqli = Connect();
+
+    $sql = 'SELECT * from grilleregle where id_regle='.$_POST['data'][0];
+
+       $array = array();
+       if ($result = $mysqli->query($sql)) {
+           while ($row = $result->fetch_assoc()){
+               $array[]= $row;
+           };
+       } else {
+           Sendlog("Error: " . $sql . "<br>" . $mysqli->error);
+           echo "Error: " . $sql . "<br>" . $mysqli->error;
+       }
+
+   $cout = $_POST['data'][3];
+       if($array['type']=="Pourcentage"){
+
+
+       }else if ($array['type'] == "Réduction"){
+           $cout = $array['valeur'];
+       }
+
+       $sql = "INSERT INTO paiement (date, cout, id_transaction, id_commande, id_regle) VALUES ('".date('Y-m-d', time())."',".$cout.",".$_POST['data'][2].",".$_POST['data'][1].",".$_POST['data'][0].");";
+   //date('Y-m-d', time())
+
+       if ($mysqli->query($sql) === FALSE) {
+           Sendlog("Error: " . $sql . "<br>" . $mysqli->error);
+           echo "Error: " . $sql . "<br>" . $mysqli->error;
+       }
+
+
+    unset($_POST['cmd']);
+}
 
 ?>

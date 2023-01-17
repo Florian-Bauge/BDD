@@ -401,31 +401,54 @@ function UpdatePaiementModal(elm){
         }
     });
 
-    document.getElementById("Modal_"+elm.value).style.display = "block";
-    const child = document.getElementById("Modal_"+elm.value).children
+    //document.getElementById("Modal_"+elm.value).style.display = "block";
+    let child;
+    switch(elm.value){
+        case '1':  case '2':
+            document.getElementById("Modal_1").style.display = "block";
+            child = document.getElementById("Modal_1").children;
+            break
+        case '3':
+            document.getElementById("Modal_2").style.display = "block";
+            child = document.getElementById("Modal_2").children;
+            break;
+
+    }
+
     for (let i = 0; i < child.length; i++) {
         child.item(i).setAttribute("required","");
     }
 
-
-
 }
 
-function ValidatePaiement(){
+function ValidatePaiement(commande){
 
-    const select = document.getElementById("Modal_paiement");
-
-    console.log(select.value);
-
-    switch(select.value){
-        case '1':
-            console.log("Classique");
-            break
-        case '2': case '3':
-            console.log("Point");
-            break;
-
+    const selectMoyen = document.getElementById("Modal_paiement_Moyen");
+    const selectRègle = document.getElementById("Modal_paiement_Regle");
+    /*var type = selectRègle.options[selectRègle.selectedIndex].getAttribute('data-type');
+    var valeur = selectRègle.options[selectRègle.selectedIndex].getAttribute('data-valeur');
+    */
+    var cout = document.getElementById("Modal_cout");
+    var regle = selectRègle.value;
+    if(document.getElementById("Modal_2").style.display ="none"){
+        regle = "NULL";
     }
+
+    var arrayData = [regle, commande, selectMoyen.value, cout.value];
+    console.log(arrayData);
+
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data:{ cmd: "insertPaiement"},
+        dataType: 'json',
+        success: function () {
+            console.log("Success");
+        }
+    });
+
+    console.log("Failed");
 
     /*
     console.log("FUNCTION");

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <?php
         include 'PHP/commande_php.php';
     ?>
@@ -63,7 +64,7 @@
                 </table>
             </div>
             <input type="image" src="Img/button_article.png" onclick="ShowModal('item')">
-            <input type="image" src="Img/button_Export.png" onclick="commandeToPdf()">
+            <input type="image" src="Img/button_Export.png" onclick="CreateXLScommandes()">
 
         </div>
     </div>

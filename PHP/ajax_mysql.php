@@ -337,12 +337,12 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='AddItem') {
 
     unset($_POST['cmd']);
 }
-if (isset($_POST['cmd']) and $_POST['cmd']=='GetPDF'){
+if (isset($_POST['cmd']) and $_POST['cmd']=='GetXLSclient'){
     $array = array();
 
     $mysqli = Connect();
 
-    $sql ='SELECT name, code_client, Facebook,Instagram, Email, Phone,grillepoint.nom,point FROM client INNER JOIN grillepoint ON client.id_membership=grillepoint.id_membership;';
+    $sql ='SELECT name, code_client, Facebook,Instagram, Email, Phone,grillepoint.nom as Membership,point FROM client INNER JOIN grillepoint ON client.id_membership=grillepoint.id_membership;';
 
     if ($result = $mysqli->query($sql)) {
         while ($row = $result->fetch_assoc()){
@@ -356,17 +356,26 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='GetPDF'){
 
     unset($_POST['cmd']);
 }
-if (isset($_POST['cmd']) and $_POST['cmd']=='functionPDFCommande') {
-    require('fpdf.php');
-    $pdf = new FPDF();
-    $pdf->AddPage();
-    //$pdf->SetFont('Arial','B',16);
-    $pdf->Cell(40,10,'Hello World !');
-    $pdf->Output();
+if (isset($_POST['cmd']) and $_POST['cmd']=='GetXLScommande'){
+    $array = array();
+
+    $mysqli = Connect();
+
+    $sql ='SELECT id_commande as No_Order,date,total as Total_Order,statut,client.code_client,name,Instagram, Email, Phone,grillepoint.nom as Membership,point FROM client INNER JOIN grillepoint ON client.id_membership=grillepoint.id_membership INNER JOIN commande ON client.code_client =commande.code_client ;';
+
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()){
+            $array[]= $row;
+        };
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    echo json_encode($array);
+    Disconnect($mysqli);
+
     unset($_POST['cmd']);
-
-
 }
+
 
 
 

@@ -610,6 +610,52 @@ function createPDFClient(){
 
 
 }
+function CreateXLSclient(){
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data: {cmd: 'GetXLSclient' },
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            const date = new Date();
+            data.forEach((row)=>{
+                row.code_client=formatToclientCode(row.code_client);
+            });
+
+            workbook = XLSX.utils.book_new();
+            worksheet = XLSX.utils.json_to_sheet(data);
+            workbook.SheetNames.push("First");
+            workbook.Sheets["First"] = worksheet;
+            XLSX.writeFile(workbook, `Clients_${date.toLocaleDateString()}.xlsx`);
+
+
+        }});
+}
+function CreateXLScommandes(){
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data: {cmd: 'GetXLScommande' },
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            const date = new Date();
+            data.forEach((row)=>{
+                row.code_client=formatToclientCode(row.code_client);
+            });
+
+            workbook = XLSX.utils.book_new();
+            worksheet = XLSX.utils.json_to_sheet(data);
+            workbook.SheetNames.push("First");
+            workbook.Sheets["First"] = worksheet;
+            XLSX.writeFile(workbook, `Commandes_${date.toLocaleDateString()}.xlsx`);
+
+
+        }});
+}
 function formatToclientCode(str){
     return str.slice(0, 2) + '-SPR-' + str.slice(2);
 }

@@ -7,6 +7,7 @@
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
     <script src="JS/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <?php
@@ -65,7 +66,7 @@
             </table>
             </div>
             <input type="image" src="Img/button_Creer.png" onclick="ShowModal('add_client')">
-            <input type="image" src="Img/button_Export.png" onclick="createPDFClient()">
+            <input type="image" src="Img/button_Export.png" onclick="CreateXLSclient()">
         </div>
     </div>
     <div id="Modal_add_client" class="modal">

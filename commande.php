@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <?php
         include 'PHP/commande_php.php';
     ?>
@@ -63,7 +64,7 @@
                 </table>
             </div>
             <input type="image" src="Img/button_article.png" onclick="ShowModal('item')">
-            <input type="image" src="Img/button_Export.png" onclick="">
+            <input type="image" src="Img/button_Export.png" onclick="CreateXLScommandes()">
 
         </div>
     </div>
@@ -144,7 +145,7 @@
             <span id="Modalclose_item" class="close">&times;</span>
                 <form name="ModalForm">
         <span>Item</span><br>
-            <input id="Panel_Modal_item_id" type="text" placeholder="Rechercher" onchange="UpdateItem(this.value)" style="display: flex" > <br>
+            <input id="Panel_Modal_item_id" type="text" placeholder="Rechercher" onchange="UpdateItemInterface(this.value)" style="display: flex" > <br>
             <input id="Panel_Modal_item_recherche" type="text" placeholder=" ">
 
                 <input id="Panel_checkbox_item" type="checkbox" onchange="UpdateItemcheckbox()"> <span>Créer nouveau</span> <br>
@@ -158,9 +159,16 @@
                 <option value="Vide">vide</option>
                 <option value="Test">Test</option>
             </select> <br>
-            <span> Stock </span> <input type="text" id="Panel_Modal_item_stock"> <span>€</span> <br>
+                    <select id="Panel_Modal_item_Membership">
+                        <?php
+                        foreach(getArrayAllMembership() as $Membership){
+                        ?>
+                        <option value=<?php echo $Membership['id_membership'] ?>> <?php echo $Membership['nom'] ?></option>
+                        <?php }?>
+                    </select> <br>
+            <span> Stock </span> <input type="text" id="Panel_Modal_item_stock"><br>
             <div class="trait"></div>
-            <input type="image" src="Img/buttonValiderCompte.png">
+            <input type="image" src="Img/buttonValiderCompte.png" onclick="updateItemBDD()">
 
 
                 </form>

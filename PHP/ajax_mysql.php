@@ -1,6 +1,6 @@
 <?php
 
-include "./global.php";
+include "global.php";
 
 if (isset($_POST['cmd']) and $_POST['cmd']=='commande') {
 
@@ -75,7 +75,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='commande') {
     $result->close();
     //echo $array[0]['Name'];
    echo json_encode($array);
-    Disconnect($mysqli);
+
 
     //echo json_encode(array('success' => $_POST['id']));
     unset($_POST['cmd']);
@@ -267,8 +267,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='updateaccountclient'){
 
     }
 
-
-Disconnect($mysqli);
+    Disconnect($mysqli);
 
     unset($_POST['cmd']);
 }
@@ -291,13 +290,79 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='AutoComplet'){
 
     unset($_POST['cmd']);
 }
+if (isset($_POST['cmd']) and $_POST['cmd']=='GetItemInfo'){
+    $array = array();
+
+    $mysqli = Connect();
+
+    $sql='SELECT nom,statut,stock,prixachat,prixvente,id_membership FROM item WHERE id_item="'.$_POST['id'].'" ;';
+
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()){
+            $array[]= $row;
+        };
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    echo json_encode($array);
+    Disconnect($mysqli);
+
+    unset($_POST['cmd']);
+
+
+}
 
 if (isset($_POST['cmd']) and $_POST['cmd']=='ItemUpdate'){
     $array = array();
 
     $mysqli = Connect();
 
-    $sql='SELECT nom,statut,stock,prixachat,prixvente FROM item WHERE id_item="'.$_POST['id'].'" ;';
+    $sql='UPDATE item SET  nom= "'.$_POST['data'][0].'", prixachat="'.$_POST['data'][1].'", prixvente="'.$_POST['data'][2].'", stock="'.$_POST['data'][3].'", statut="'.$_POST['data'][4].'",id_membership="'.$_POST['data'][5].'" WHERE item.id_item="'.$_POST['data'][6].'";';
+    if ($mysqli->query($sql) === FALSE) {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;}
+    echo json_encode($array);
+    Disconnect($mysqli);
+
+    unset($_POST['cmd']);
+}
+if (isset($_POST['cmd']) and $_POST['cmd']=='AddItem') {
+    $array = array();
+
+    $mysqli = Connect();
+
+    $sql = 'INSERT INTO item (id_item, prixachat, prixvente, nom, statut, id_membership, stock) VALUES (NULL, "' . $_POST['data'][1] . '","' . $_POST['data'][2] . '","' . $_POST['data'][0] . '","' . $_POST['data'][4] . '","' . $_POST['data'][5] . '","' . $_POST['data'][3] . '");';
+    if ($mysqli->query($sql) === FALSE) {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    Disconnect($mysqli);
+
+    unset($_POST['cmd']);
+}
+if (isset($_POST['cmd']) and $_POST['cmd']=='GetXLSclient'){
+    $array = array();
+
+    $mysqli = Connect();
+
+    $sql ='SELECT name, code_client, Facebook,Instagram, Email, Phone,grillepoint.nom as Membership,point FROM client INNER JOIN grillepoint ON client.id_membership=grillepoint.id_membership;';
+
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()){
+            $array[]= $row;
+        };
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    echo json_encode($array);
+    Disconnect($mysqli);
+
+    unset($_POST['cmd']);
+}
+if (isset($_POST['cmd']) and $_POST['cmd']=='GetXLScommande'){
+    $array = array();
+
+    $mysqli = Connect();
+
+    $sql ='SELECT id_commande as No_Order,date,total as Total_Order,statut,client.code_client,name,Instagram, Email, Phone,grillepoint.nom as Membership,point FROM client INNER JOIN grillepoint ON client.id_membership=grillepoint.id_membership INNER JOIN commande ON client.code_client =commande.code_client ;';
 
     if ($result = $mysqli->query($sql)) {
         while ($row = $result->fetch_assoc()){
@@ -348,5 +413,9 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='insertPaiement') {
 
     unset($_POST['cmd']);
 }
+
+
+
+
 
 ?>

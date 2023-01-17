@@ -1,3 +1,4 @@
+
 function InitModal(id){
     var modal = document.getElementById("Modal_"+id);
 
@@ -178,7 +179,7 @@ function isNotEmpty(str) {
 }
 function  verifieAlladress(add,firstIterator){
     var verif= true;
-    for(i=firstIterator;i<add.length;i++){
+    for(var i=firstIterator;i<add.length;i++){
         const parseAdress=parseAddress(add[i].value);
         if(parseAdress==null){
             verif=false;
@@ -188,7 +189,7 @@ function  verifieAlladress(add,firstIterator){
 }
 function  Innerveririeadress(add,firstIterator){
     var verif= true;
-    for(i=firstIterator;i<add.length;i++){
+    for(var i=firstIterator;i<add.length;i++){
         const parseAdress=parseAddress(add[i].innerHTML);
         if(parseAdress==null){
             verif=false;
@@ -199,7 +200,7 @@ function  Innerveririeadress(add,firstIterator){
 }
 function  alladresspars(add,firstIterator){
     var tabadress=[];
-    for(i=firstIterator;i<add.length;i++){
+    for(var i=firstIterator;i<add.length;i++){
         tabadress.push(parseAddress(add[i].value));
 
     }
@@ -209,7 +210,7 @@ function  alladresspars(add,firstIterator){
 function  adressparsAndId(add,id,firsIterator){//Ecris en brut
     var tabadressid=[];
     var tabadress=[];
-    for(i=firsIterator;i<add.length;i++){
+    for(var i=firsIterator;i<add.length;i++){
         tabadress=(parseAddress(add[i].innerHTML));
         tabadress.push(id[i].innerHTML);
         tabadressid.push(tabadress);
@@ -311,7 +312,7 @@ function client_profil_edit(bool){
      }
     setTimeout(()=>{var add =document.getElementsByName('Modal_adresse');//setTimeout permet que toutes les adresses soit initialiser pour pouvoir modifier leurs paramètre
 
-        for(i=1;i<add.length;i++){
+        for(var i=1;i<add.length;i++){
             add[i].contentEditable=bool;
         }},100);
 
@@ -494,13 +495,13 @@ function  UpdateItemcheckbox(){
     }
 
 }
-function UpdateItem(id){
+function UpdateItemInterface(id){
     if(!isNaN(id)&&id != ""){
         $.ajax
         ({
             type: 'POST',
             url: './PHP/ajax_mysql.php',
-            data:{ cmd: "ItemUpdate", id: id},
+            data:{ cmd: "GetItemInfo", id: id},
             dataType: 'json',
             success: function (data) {
                 console.log(data);
@@ -508,13 +509,60 @@ function UpdateItem(id){
                 document.getElementById("Panel_Modal_item_prix_achat").value=data[0]['prixachat'];
                 document.getElementById("Panel_Modal_item_prix_vente").value=data[0]['prixvente'];
                 document.getElementById("Panel_Modal_item_stock").value=data[0]['stock'];
-                const select = document.querySelector('#Panel_Modal_item_statuts');
-                select.value = data[0]['statut'];
+                const selectstatut = document.querySelector('#Panel_Modal_item_statuts');
+                selectstatut.value = data[0]['statut'];
+                const selectMemb = document.querySelector('#Panel_Modal_item_Membership');
+                selectMemb.value = data[0]['id_membership'];
             }
         });
 
     }else{
 
+    }
+
+
+}
+function updateItemBDD(){
+    var tab=[];
+
+    tab.push(document.getElementById("Panel_Modal_item_recherche").value);
+    tab.push(document.getElementById("Panel_Modal_item_prix_achat").value);
+    tab.push(document.getElementById("Panel_Modal_item_prix_vente").value);
+    tab.push(document.getElementById("Panel_Modal_item_stock").value);
+    tab.push(document.querySelector('#Panel_Modal_item_statuts').value);
+    tab.push(document.querySelector('#Panel_Modal_item_Membership').value);
+    tab.push(document.getElementById("Panel_Modal_item_id").value);
+    if(!document.getElementById("Panel_checkbox_item").checked) {
+        $.ajax
+        ({
+            type: 'POST',
+            url: './PHP/ajax_mysql.php',
+            data: {cmd: 'ItemUpdate', data: tab},
+            dataType: 'json',
+            success: function (data) {
+                console.log('succes');
+                return true;
+
+
+            }
+
+        });
+    }
+    else {
+        $.ajax
+        ({
+            type: 'POST',
+            url: './PHP/ajax_mysql.php',
+            data: {cmd: 'AddItem', data: tab},
+            dataType: 'json',
+            success: function (data) {
+                console.log('succes');
+                return true;
+
+
+            }
+
+        });
     }
 
 
@@ -542,4 +590,155 @@ function InitAutoComplete(){
             source: autocompleteArray
         });
     } );
+}
+function createPDFClient(){
+    console.log('Salut');
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data: {cmd: 'GetPDF' },
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+
+            const pdf = new jsPDF({
+                orientation: 'landscape'
+            });
+            pdf.setFontSize(8);
+            let y = 20;
+            // Ajout de la date et de l'heure en haut de la page
+            const date = new Date();
+            pdf.text(date.toLocaleString(), 20, y);
+            y += 20;
+            pdf.setLineWidth(0.5);
+            pdf.line(9, y, 270, y);
+            y+=4;
+            pdf.setFontSize(10);
+            pdf.text("Name of client", 10, y);
+            pdf.text("Code of client", 45, y);
+            pdf.text("Facebook", 80, y);
+            pdf.text("Instagram", 115, y);
+            pdf.text("email", 145, y);
+            pdf.text("phoneNumber", 200, y);
+            pdf.text("Membership", 230, y);
+            pdf.text("points", 250, y);
+            pdf.line(9,y-4,9,y+7);
+            pdf.line(44,y-4,44,y+7);
+            pdf.line(79,y-4,79,y+7);
+            pdf.line(114,y-4,114,y+7);
+            pdf.line(144,y-4,144,y+7);
+            pdf.line(199,y-4,199,y+7);
+            pdf.line(229,y-4,229,y+7);
+            pdf.line(249,y-4,249,y+7);
+            pdf.line(270,y-4,270,y+7);
+
+            y += 1;
+            pdf.line(9, y, 270, y);
+            y+=5;
+            pdf.setFontSize(8);
+            // Boucle pour ajouter les données du tableau au document PDF
+            data.forEach((row,index) => {
+                pdf.text(row.name, 10, y);
+                pdf.line(9,y+1,9,y-7);
+                pdf.text(formatToclientCode(row.code_client), 45, y);
+                pdf.line(44,y+1,44,y-7);
+                pdf.text(row.Facebook, 80, y);
+                pdf.line(79,y+1,79,y-7);
+                pdf.text(row.Instagram, 115, y);
+                pdf.line(114,y+1,114,y-7);
+                pdf.text(row.Email, 145, y);
+                pdf.line(144,y+1,144,y-7);
+                pdf.text(row.Phone, 200, y);
+                pdf.line(199,y+1,199,y-7);
+                pdf.text(row.nom, 230, y);
+                pdf.line(229,y+1,229,y-7);
+                pdf.text(row.point, 250, y);
+                pdf.line(249,y+1,249,y-7);
+                pdf.line(270,y+1,270,y-7);
+                y+=1;
+                pdf.line(9, y, 270, y);
+                y += 5;
+                if(y>200){
+                    pdf.addPage();
+                    y=20;
+                }
+
+            });
+
+            // Enregistrement du document PDF
+            pdf.save(`tableClient${date.toLocaleDateString()}.pdf`);
+
+
+    }});
+
+
+
+}
+function CreateXLSclient(){
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data: {cmd: 'GetXLSclient' },
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            const date = new Date();
+            data.forEach((row)=>{
+                row.code_client=formatToclientCode(row.code_client);
+            });
+
+            workbook = XLSX.utils.book_new();
+            worksheet = XLSX.utils.json_to_sheet(data);
+            workbook.SheetNames.push("First");
+            workbook.Sheets["First"] = worksheet;
+            XLSX.writeFile(workbook, `Clients_${date.toLocaleDateString()}.xlsx`);
+
+
+        }});
+}
+function CreateXLScommandes(){
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data: {cmd: 'GetXLScommande' },
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            const date = new Date();
+            data.forEach((row)=>{
+                row.code_client=formatToclientCode(row.code_client);
+            });
+
+            workbook = XLSX.utils.book_new();
+            worksheet = XLSX.utils.json_to_sheet(data);
+            workbook.SheetNames.push("First");
+            workbook.Sheets["First"] = worksheet;
+            XLSX.writeFile(workbook, `Commandes_${date.toLocaleDateString()}.xlsx`);
+
+
+        }});
+}
+function formatToclientCode(str){
+    return str.slice(0, 2) + '-SPR-' + str.slice(2);
+}
+function commandeToPdf(){
+    console.log('Salut');
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data: {cmd: 'functionPDFCommande'},
+        dataType: 'json',
+        success: function (data) {
+            console.log('succes');
+            return true;
+
+
+        }
+
+    });
+
 }

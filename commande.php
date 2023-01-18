@@ -83,11 +83,13 @@
             </div>
                 <div class="multi panel" style="width: 28%;">
                     <span class="title">Récaptulatif</span>
+                    <div class="scroll">
                     <div id="contenu" style="display:none;">  <!--Example for Copy-->
                         <span>• <span name="Modal_quantité">1</span>x <span name="Modal_nom">1</span></span><br>
                         <span>Prix : </span><span name="Modal_Prix_remise">1</span><br>
                         <span>Statut : </span><span name="Modal_statut">1</span><br>
                         <br>
+                    </div>
                     </div>
                 </div>
             <div class="multi panel" style="width: 28%">
@@ -101,6 +103,7 @@
                 <div class="multi panel" style="width: 30%">
 
                     <span class="title">Livraison</span>
+                    <div class="scroll">
                         <div id="livraison" style="display:none;">  <!--Example for Copy-->
                         <span>Dispatched Date: </span><span class="test" name='Modal_DateExpédié'>1</span><br>
                         <span>Parcel N°: </span><span name='Modal_numeroColis'>2</span><br>
@@ -108,7 +111,7 @@
                             <span>Arrival Date: </span><span name='Modal_dateLivrée'>3</span><br>
                         </div>
                         <br> --  <br>
-
+                    </div>
                 </div>
                 <div style="display: flex;flex-direction: column;">
                 <div class="multi panel" style="width: auto; height: -webkit-fill-available;">
@@ -126,12 +129,13 @@
                 </div>
                 <div class="multi panel" style="width: 28%">
                     <span class="title">Paiement</span>
+                    <div class="scroll">
                     <div id="paiement" style="display:none;">  <!--Example for Copy-->
                     <span>Moyen: <span name='Modal_nom'></span><br>
                             <span>Date: <span name='Modal_date'></span><br>
                             <span>  Montant: <span name='Modal_cout'></span><br>
                         <br>
-                </div>
+                </div></div>
                 </div>
 
 

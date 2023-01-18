@@ -80,6 +80,12 @@
     display: inline-block;
     min-width:fit-content;
     height: auto;
+
+}
+
+.scroll{
+    overflow-y: auto;
+    max-height: 300px;
 }
 
 .button_panel{

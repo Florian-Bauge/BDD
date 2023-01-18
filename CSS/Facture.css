@@ -1,0 +1,37 @@
+.page{
+    width: 19cm;
+    height: 27cm;
+    background-color: #cc0000;
+
+}
+.infoClient{
+    margin: auto;
+    margin-right: 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: right;
+    width: fit-content;
+    flex-direction: column;
+    align-content: center;
+}
+
+.titreFacture{
+   display: flex;
+    justify-content: center;
+
+}
+.infoCommande{
+    display: flex;
+    flex-direction: column;
+
+}
+.TableProduits,.titreTableau{
+    border-collapse: collapse;
+    border: 2px solid black;
+
+
+}
+td{
+    border-left:2px solid black;
+}
+

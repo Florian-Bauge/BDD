@@ -20,3 +20,6 @@ SET client_code = (SELECT code_client FROM client WHERE id = last_id);
 
 SET NEW.code_client = client_code;
 END
+
+
+Ajout id_commande dans la table facture

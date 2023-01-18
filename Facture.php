@@ -13,16 +13,22 @@
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <?php
+    include 'PHP/Facture_php.php';
+    $id=1;
+    $cpt=0;
+    $client=getInfoclient(1);
+    ?>
 </head>
 <body>
 <div class="page" id="invoice">
 <img src="Img/Logo_entreprise.png"> <br>
     <img src="Img/nom_entreprise.png">
 <div class="infoClient">
-    <span>No.Client : <span>19-SPR-0302</span></span>
-    <span>Client : <span>Baptiste</span> </span>
-    <span>Adress  : <span>20 rue des Augustins</span></span>
-    <span>Phone  : <span>0620231625</span></span>
+    <span>No.Client : <span><?php echo $client[0]['code_client']?></span></span>
+    <span>Client : <span><?php echo $client[0]['name']?></span> </span>
+    <span>Adress  : <span><?php echo $client[1]['adresse']?></span></span>
+    <span>Phone  : <span><?php echo $client[0]['Phone']?></span></span>
 </div>
         <h1 class="titreFacture">Facture</h1>
 <div class="infoCommande">
@@ -40,20 +46,18 @@
             <th style="width: 2.4cm" >PrixUnité</th>
             <th style="width: 2.4cm">Prix Total</th>
         </tr>
-        <tr class="Item">
-            <td class="tableautd1">1</td>
-            <td class="tableautd1">Caudalie Dio Levre Main : 13$</td>
-            <td class="tableautd1">1</td>
-            <td class="tableautd1">13.00 $</td>
-            <td class="tableautd1">13.00 $</td>
-        </tr>
-        <tr class="Item">
-            <td class="tableautd1">1</td>
-            <td class="tableautd1">Caudalie Dio Levre Main : 13$</td>
-            <td class="tableautd1">1</td>
-            <td class="tableautd1">13.00 $</td>
-            <td class="tableautd1">13.00 $</td>
-        </tr>
+        <?php foreach (getAllitem($id) as $items){ ?>
+            <tr class="Item">
+                <td class="tableautd1"><?php echo $cpt?></td>
+                <?php $cpt++?>
+                <td class="tableautd1"><span><?php echo $items['nom_produit']?></span> <span><?php echo $items['prixvente']?></span> </td>
+                <td class="tableautd1"><?php echo $items['quantité']?></td>
+                <td class="tableautd1"><?php echo $items['PrixUnité']?></td>
+                <td class="tableautd1"><?php echo $items['PrixTotal']?></td>
+            </tr>
+
+        <?php } ?>
+
 
 
         <tr>
@@ -98,7 +102,9 @@
             <td style="border-bottom: 2px solid black " class="tableau2D">346.00 $</td>
         </tr>
     </table>
-
+    <?php
+    getAllitem(0)
+    ?>
 
 
 

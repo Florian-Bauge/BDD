@@ -34,25 +34,68 @@
 </div>
     <table class="TableProduits">
         <tr class="titreTableau">
-            <td>No.</td>
-            <td>Produit</td>
-            <td>Quantité</td>
-            <td>PrixUnité</td>
-            <td>Prix Total</td>
+            <th style="width: 1.5cm">No.</th>
+            <th style="width: 9.6cm">Produit</th>
+            <th style="width: 2.4cm;">Quantité</th>
+            <th style="width: 2.4cm" >PrixUnité</th>
+            <th style="width: 2.4cm">Prix Total</th>
         </tr>
         <tr class="Item">
-            <td>1</td>
-            <td>Caudalie Dio Levre Main : 13$</td>
-            <td>1</td>
-            <td>13.00 $</td>
-            <td>13.00 $</td>
+            <td class="tableautd1">1</td>
+            <td class="tableautd1">Caudalie Dio Levre Main : 13$</td>
+            <td class="tableautd1">1</td>
+            <td class="tableautd1">13.00 $</td>
+            <td class="tableautd1">13.00 $</td>
         </tr>
         <tr class="Item">
-            <td>1</td>
-            <td>Caudalie Dio Levre Main : 13$</td>
-            <td>1</td>
-            <td>13.00 $</td>
-            <td>13.00 $</td>
+            <td class="tableautd1">1</td>
+            <td class="tableautd1">Caudalie Dio Levre Main : 13$</td>
+            <td class="tableautd1">1</td>
+            <td class="tableautd1">13.00 $</td>
+            <td class="tableautd1">13.00 $</td>
+        </tr>
+
+
+        <tr>
+            <td style="border-top: 2px solid black;"></td>
+            <td  style="border-top: 2px solid black;"></td>
+            <td colspan="2"  class="tableau2G"><span>Montant de la commande</span></td>
+            <td class="tableau2D">460.00 $</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td colspan="2" class="tableau2G">Frais de service</td>
+
+            <td class="tableau2D">0.00 $</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td  colspan="2" class="tableau2G">Frais de livraison</td>
+
+            <td class="tableau2D">0.00 $</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="tableau2Exterieur">Promotion to apply next purchase -10$</td>
+            <td colspan="2"  class="tableau2G">Promotion/Remise</td>
+
+            <td class="tableau2D">0.00 $</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="tableau2Exterieur">Bank deposit 06/12/2020 : 100$</td>
+            <td colspan="2"  class="tableau2G">Dépôt</td>
+
+            <td class="tableau2D">114.00 $</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="tableau2Exterieur">Cash deposit 06/12/2020:14$</td>
+            <td colspan="2"  class="tableau2G">Montant de la facture</td>
+
+            <td class="tableau2D">346.00 $</td>
         </tr>
     </table>
 

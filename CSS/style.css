@@ -88,6 +88,19 @@
     max-height: 300px;
 }
 
+input.span{
+    width: 40px;
+    min-width: 40px;
+}
+
+input.span:read-only{
+    border: none;
+}
+
+input.span .editable{
+    border: none;
+}
+
 .button_panel{
     position: relative;
     padding: 10px;

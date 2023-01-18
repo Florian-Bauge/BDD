@@ -154,7 +154,7 @@
 
                 <input id="Panel_checkbox_item" type="checkbox" onchange="UpdateItemcheckbox()"> <span>Créer nouveau</span> <br>
             <span>Information item</span> <span name="Modal_id_item"<br>
-            <span> Prix d'achat</span> <input type="text"id="Panel_Modal_item_prix_achat" name=""> <span>€</span> <br>
+            <span> Prix d'achat</span> <input onchange="resizeInput(this)"type="text"id="Panel_Modal_item_prix_achat" name=""> <span>€</span> <br>
             <span> Prix de vente conseillé </span> <input type="text" id="Panel_Modal_item_prix_vente"> <span>€</span> <br>
             <span> Statuts</span>
             <select id="Panel_Modal_item_statuts">

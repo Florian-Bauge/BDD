@@ -205,7 +205,7 @@
                 <input id="Panel_Modal_item_recherche" class="span" readonly onchange="resizeInput(this)" type="text" placeholder=" ">
 
                  <br>
-                <span>Information item</span> <span name="Modal_id_item"<br>
+                <span>Information item</span><br>
                 <span> Prix d'achat (€):</span> <input class="span" readonly onchange="resizeInput(this)" type="number"id="Panel_Modal_item_prix_achat" name=""> <br>
                 <span> Prix de vente conseillé (€):</span> <input class="span" readonly onchange="resizeInput(this)" type="number" id="Panel_Modal_item_prix_vente"> <br>
                 <span> Statuts</span>

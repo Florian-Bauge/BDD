@@ -1,7 +1,7 @@
 .page{
     width: 19cm;
     height: 27cm;
-    background-color: #cc0000;
+
 
 }
 .infoClient{
@@ -30,13 +30,15 @@
     border: 2px solid black;
     height: 1.1cm;
     border-bottom: 0px;
+    border-left: 0px;
 
 
 }
 .titreTableau{
     border-collapse: collapse;
-    border: 2px solid black;
+
     height: 1.1cm;
+
 }
 
 .tableautd1,th{
@@ -58,10 +60,16 @@
 }
 .tableau2G{
     border: 2px solid black;
-    border-top: 0px;
-
+    border-bottom: 0px;
+    border-right: 0px;
+    font-weight: bold;
     height: 1cm;
+    background-color: #b4b4b4;
 }
 .tableau2D{
-   border-bottom: 2px solid black;
+    border: 2px solid black;
+    border-bottom: 0px;
+    border-right: 0px;
+
+
 }

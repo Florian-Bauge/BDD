@@ -59,7 +59,7 @@
         <tr>
             <td style="border-top: 2px solid black;"></td>
             <td  style="border-top: 2px solid black;"></td>
-            <td colspan="2"  class="tableau2G"><span>Montant de la commande</span></td>
+            <td colspan="2"  class="tableau2G">Montant de la commande</td>
             <td class="tableau2D">460.00 $</td>
         </tr>
         <tr>
@@ -85,17 +85,17 @@
         </tr>
         <tr>
             <td></td>
-            <td class="tableau2Exterieur">Bank deposit 06/12/2020 : 100$</td>
+            <td class="tableau2Exterieur"><span>Bank deposit 06/12/2020 : 100$</span><br> <span> Cash deposit 06/12/2020:14$</span></td>
             <td colspan="2"  class="tableau2G">Dépôt</td>
 
             <td class="tableau2D">114.00 $</td>
         </tr>
         <tr>
             <td></td>
-            <td class="tableau2Exterieur">Cash deposit 06/12/2020:14$</td>
-            <td colspan="2"  class="tableau2G">Montant de la facture</td>
+            <td class="tableau2Exterieur"></td>
+            <td style="border-bottom: 2px solid black "  colspan="2"  class="tableau2G">Montant de la facture</td>
 
-            <td class="tableau2D">346.00 $</td>
+            <td style="border-bottom: 2px solid black " class="tableau2D">346.00 $</td>
         </tr>
     </table>
 

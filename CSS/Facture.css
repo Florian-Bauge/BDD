@@ -1,0 +1,67 @@
+.page{
+    width: 19cm;
+    height: 27cm;
+    background-color: #cc0000;
+
+}
+.infoClient{
+    margin: auto;
+    margin-right: 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: right;
+    width: fit-content;
+    flex-direction: column;
+    align-content: center;
+}
+
+.titreFacture{
+   display: flex;
+    justify-content: center;
+
+}
+.infoCommande{
+    display: flex;
+    flex-direction: column;
+
+}
+.TableProduits{
+    border-collapse: collapse;
+    border: 2px solid black;
+    height: 1.1cm;
+    border-bottom: 0px;
+
+
+}
+.titreTableau{
+    border-collapse: collapse;
+    border: 2px solid black;
+    height: 1.1cm;
+}
+
+.tableautd1,th{
+    border-left:2px solid black;
+}
+.titreTableau{
+    background-color: #888888;
+}
+.table2{
+    border: 2px solid black;
+    border-top: 0px;
+}
+.tableau2Exterieur{
+    float: right;
+    margin-right: 0.2cm;
+    color: #4b4b4b;
+    height: 1cm;
+
+}
+.tableau2G{
+    border: 2px solid black;
+    border-top: 0px;
+
+    height: 1cm;
+}
+.tableau2D{
+   border-bottom: 2px solid black;
+}

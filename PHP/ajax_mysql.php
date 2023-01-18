@@ -399,10 +399,10 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='insertPaiement') {
         if ($array['type'] == "Pourcentage") {
 
             $sql = 'SELECT total from commande where id_commande='.$_POST['data'][1].';';
-            $array = array();
+            $array2 = array();
             if ($result = $mysqli->query($sql)) {
                 while ($row = $result->fetch_assoc()) {
-                    $array = $row;
+                    $array2 = $row;
                 };
             } else {
                 Sendlog("Error: " . $sql . "<br>" . $mysqli->error);
@@ -410,16 +410,21 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='insertPaiement') {
             }
 
             //Pourcentage sur total ou RAP ?
-
+            $cout = $array2['total']  * $array['valeur']/100;
 
         } else if ($array['type'] == "Réduction") {
-            $cout = -$array['valeur'];
+            $cout = $array['valeur'];
         }
+
+        $sql = 'INSERT INTO item (id_item, prixachat, prixvente, nom, statut, id_membership, stock) VALUES (NULL, "' . $_POST['data'][1] . '","' . $_POST['data'][2] . '","' . $_POST['data'][0] . '","' . $_POST['data'][4] . '","' . $_POST['data'][5] . '","' . $_POST['data'][3] . '");';
+        if ($mysqli->query($sql) === FALSE) {
+            echo "Error: " . $sql . "<br>" . $mysqli->error;
+        }
+
     }
 
        $sql = "INSERT INTO paiement (date, cout, id_transaction, id_commande, id_regle) VALUES ('".date('Y-m-d', time())."',".$cout.",".$_POST['data'][2].",".$_POST['data'][1].",".$_POST['data'][0].");";
    //date('Y-m-d', time())
-    echo $sql;
 
        if ($mysqli->query($sql) === FALSE) {
            Sendlog("Error: " . $sql . "<br>" . $mysqli->error);

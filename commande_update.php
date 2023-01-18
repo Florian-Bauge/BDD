@@ -6,6 +6,10 @@
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
     <script src="JS/script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
     <!--<script src="script.js"></script>-->
     <?php
@@ -75,14 +79,14 @@
                             <td><?php echo $delivery['quantité'] ?></td>
                             <td><?php echo $delivery['statut'] ?></td>
                             <td>
-                                <button> Suppr </button>
+                                <button > Suppr </button>
                             </td>
                         </tr>
                         <?php
                     }
                     ?>
                 </table>
-                <button> Ajouter </button>
+                <button onclick="ShowModal('item')"> Ajouter </button>
             </div>
             <div class="multi panel" style="width: 40%">
                     <?php
@@ -189,6 +193,47 @@
         </div>
     </div>
     <script>InitModal("add_paiement");</script>
+
+    <div id="Modal_item" class="modal">
+        <div class="panel pmodal">
+            <span id="Modalclose_item" class="close">&times;</span>
+            <form name="ModalForm">
+                <span>Item</span><br>
+                <div style="white-space: nowrap;margin-right: 25px;"><input id="Panel_Modal_item_id" type="text" placeholder="Rechercher" onchange="UpdateItemInterface(this.value)" >
+                <input id="Panel_checkbox_item" type="checkbox" onchange="UpdateItemcheckbox()"> <span>Créer nouveau</span>
+                </div><br>
+                <input id="Panel_Modal_item_recherche" class="span" readonly onchange="resizeInput(this)" type="text" placeholder=" ">
+
+                 <br>
+                <span>Information item</span><br>
+                <span> Prix d'achat (€):</span> <input class="span" readonly onchange="resizeInput(this)" type="number"id="Panel_Modal_item_prix_achat" name=""> <br>
+                <span> Prix de vente conseillé (€):</span> <input class="span" readonly onchange="resizeInput(this)" type="number" id="Panel_Modal_item_prix_vente"> <br>
+                <span> Statuts</span>
+                <select  name="select" id="Panel_Modal_item_statuts" disabled>
+                    <option value=""> Select type</option>
+                    <option selected value="En stock">En stock</option>
+                    <option value="Vide">vide</option>
+                    <option value="Test">Test</option>
+                </select> <br>
+                <select name="select" id="Panel_Modal_item_Membership" disabled>
+                    <?php
+                    foreach(getArrayAllMembership() as $Membership){
+                        ?>
+                        <option value=<?php echo $Membership['id_membership'] ?>> <?php echo $Membership['nom'] ?></option>
+                    <?php }?>
+                </select> <br>
+                <span> Stock: </span> <input class="span" readonly onchange="resizeInput(this)" type="text" id="Panel_Modal_item_stock"><br>
+                <div class="trait"></div>
+                <input type="image" src="Img/buttonValiderCompte.png" onclick="updateItemBDD()">
+
+
+            </form>
+        </div>
+
+
+    </div>
+    <script>InitModal("item");</script>
+    <script>InitAutoComplete();</script>
 </div>
 
 </body>

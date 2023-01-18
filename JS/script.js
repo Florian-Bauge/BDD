@@ -4,7 +4,7 @@ function InitModal(id){
 
     var span = document.getElementById("Modalclose_"+id);
 
-    span.onclick = function() {
+    span.onmousedown = function() {
         modal.style.display = "none";
 
         document.getElementsByName("ModalForm").forEach(elm => {
@@ -17,7 +17,7 @@ function InitModal(id){
     }
 
 
-    window.onclick = function(event) {
+    window.onmousedown = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
 
@@ -466,9 +466,15 @@ function  UpdateItemcheckbox(){
     var prix_achat=document.getElementById("Panel_Modal_item_prix_achat");
     var prix_vente=document.getElementById("Panel_Modal_item_prix_vente");
     var status=document.getElementById("Panel_Modal_item_statuts");
+    var member=document.getElementById("Panel_Modal_item_Membership");
     var stock=document.getElementById("Panel_Modal_item_stock");
     var recherche=document.getElementById("Panel_Modal_item_recherche");
     var id=document.getElementById("Panel_Modal_item_id");
+    var form=document.getElementById("ModalForm");
+
+    var spans = document.getElementsByClassName("span");
+    spans = [...spans];
+
     if(checked){
 
          prix_achat.value="";
@@ -477,15 +483,31 @@ function  UpdateItemcheckbox(){
          recherche.placeholder="Nouveau nom...";
          recherche.value="";
          id.style.display="none";
+         stock.value="";
 
+        spans.forEach(elm => {
+            elm.removeAttribute("readonly");
+        });
+        member.removeAttribute("disabled");
+        status.removeAttribute("disabled");
 
     }
     else{
 
-        id.style.display="flex";
+        id.style.display="inline-block";
+
+
+        spans.forEach(elm => {
+            elm.setAttribute("readonly", "");
+        });
+        member.setAttribute("disabled", "");
+        status.setAttribute("disabled", "");
     }
 
+
 }
+
+
 function UpdateItemInterface(id){
     if(!isNaN(id)&&id != ""){
         $.ajax
@@ -504,12 +526,16 @@ function UpdateItemInterface(id){
                 selectstatut.value = data[0]['statut'];
                 const selectMemb = document.querySelector('#Panel_Modal_item_Membership');
                 selectMemb.value = data[0]['id_membership'];
+
+                console.log("Resize !");
+                resizeInput();
             }
         });
 
     }else{
 
     }
+
 
 
 }
@@ -558,6 +584,28 @@ function updateItemBDD(){
 
 
 }
+
+function resizeInput(){
+    var spans = document.getElementsByClassName("span");
+    spans = [...spans];
+    console.log(spans);
+    spans.forEach(elm => {
+        console.log(elm);
+        console.log(elm.style.width);
+        elm.style.width = (elm.value.length * 8)+30 + "px";
+        console.log(elm.style.width);
+    });
+    console.lof("?");
+}
+document.addEventListener('keypress', function (e) {
+    if (e.keyCode === 13 || e.which === 13) {
+        e.preventDefault();
+        return false;
+    }
+
+});
+
+
 function InitAutoComplete(){
     $( function() {
         console.log("Salut")

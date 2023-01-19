@@ -73,13 +73,13 @@
                     <?php
                     foreach($command['contenu'] as $delivery){
                         ?>
-                        <tr>
+                        <tr id="Modal_item_<?php echo $delivery['id_item'] ?>">
                             <td><?php echo $delivery['nom'] ?></td>
                             <td><?php echo $delivery['Prix_remise'] ?></td>
                             <td><?php echo $delivery['quantité'] ?></td>
                             <td><?php echo $delivery['statut'] ?></td>
                             <td>
-                                <button > Suppr </button>
+                                    <button onclick="deleteItem(<?php echo $delivery['id_item'] ?>,<?php echo $_GET['id'] ?>)"> Suppr </button>
                             </td>
                         </tr>
                         <?php
@@ -197,7 +197,13 @@
     <div id="Modal_item" class="modal">
         <div class="panel pmodal">
             <span id="Modalclose_item" class="close">&times;</span>
-            <form name="ModalForm">
+            <form name="ModalForm" action="" onsubmit="return updateCommandeBDD(<?php echo $_GET['id'] ?>);"> <!--updateCommandeBDD(<?php echo $_GET['id'] ?>).done(function(result) {
+                    // Code depending on result
+                    console.log('Ajax true ! result:'.result);
+                    }).error(function() {
+                    // An error occurred
+                    console.log('Ajax false !');
+                    });-->
                 <span>Item</span><br>
                 <div style="white-space: nowrap;margin-right: 25px;"><input id="Panel_Modal_item_id" type="text" placeholder="Rechercher" onchange="UpdateItemInterface(this.value)" >
                 <input id="Panel_checkbox_item" type="checkbox" onchange="UpdateItemcheckbox()"> <span>Créer nouveau</span>
@@ -209,13 +215,13 @@
                 <span> Prix d'achat (€):</span> <input class="span" readonly onchange="resizeInput(this)" type="number"id="Panel_Modal_item_prix_achat" name=""> <br>
                 <span> Prix de vente conseillé (€):</span> <input class="span" readonly onchange="resizeInput(this)" type="number" id="Panel_Modal_item_prix_vente"> <br>
                 <span> Statuts</span>
-                <select  name="select" id="Panel_Modal_item_statuts" disabled>
+                <select id="Panel_Modal_item_statuts" disabled>
                     <option value=""> Select type</option>
                     <option selected value="En stock">En stock</option>
                     <option value="Vide">vide</option>
                     <option value="Test">Test</option>
                 </select> <br>
-                <select name="select" id="Panel_Modal_item_Membership" disabled>
+                <select id="Panel_Modal_item_Membership" disabled>
                     <?php
                     foreach(getArrayAllMembership() as $Membership){
                         ?>
@@ -224,8 +230,13 @@
                 </select> <br>
                 <span> Stock: </span> <input class="span" readonly onchange="resizeInput(this)" type="text" id="Panel_Modal_item_stock"><br>
                 <div class="trait"></div>
-                <input type="image" src="Img/buttonValiderCompte.png" onclick="updateItemBDD()">
-
+                <div>
+                    <span> Quantité: </span><input id="Panel_Modal_item_quantité" required type="number"><br>
+                    <span> Prix apppliqué: </span><input id="Panel_Modal_item_prix_remise" required type="number"><br>
+                </div>
+                <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />
+                <!--<input type="image" src="Img/buttonValiderCompte.png">  <!--onclick="updateItemBDD()"-->
+                <input type='submit' value="Valider"/>
 
             </form>
         </div>

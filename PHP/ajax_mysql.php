@@ -338,6 +338,41 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='AddItem') {
 
     unset($_POST['cmd']);
 }
+
+
+if (isset($_POST['cmd']) and $_POST['cmd']=='AddItemCommandAndBDD') {
+    $array = array();
+
+    $mysqli = Connect();
+
+    $sql = 'INSERT INTO item (id_item, prixachat, prixvente, nom, statut, id_membership, stock) VALUES (NULL, "' . $_POST['data'][1] . '","' . $_POST['data'][2] . '","' . $_POST['data'][0] . '","' . $_POST['data'][4] . '","' . $_POST['data'][5] . '","' . $_POST['data'][3] . '");';
+    Sendlog("<br>Error: " . $sql);
+    if ($mysqli->query($sql) === FALSE) {
+        Sendlog("Error: " . $sql . "<br>" . $mysqli->error);
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    $_POST['data'][6] = $mysqli->insert_id;
+    Sendlog("New: " . $_POST['data'][6] );
+    Disconnect($mysqli);
+
+}
+
+if (isset($_POST['cmd']) and ($_POST['cmd']=='AddItemCommandOnly' or $_POST['cmd']=='AddItemCommandAndBDD')){
+    $array = array();
+
+    $mysqli = Connect();
+
+    $sql = 'INSERT INTO envoie (id_item, id_commande, statut, Prix_remise, quantité) VALUES ('.$_POST['data'][6].', "' . $_POST['data'][9] . '","' . $_POST['data'][4] . '","' . $_POST['data'][7] . '","' . $_POST['data'][8] . '");';
+    if ($mysqli->query($sql) === FALSE) {
+        Sendlog("Error: " . $sql . "<br>" . $mysqli->error);
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    Disconnect($mysqli);
+    echo "Success";
+
+    unset($_POST['cmd']);
+}
+
 if (isset($_POST['cmd']) and $_POST['cmd']=='GetXLSclient'){
     $array = array();
 
@@ -433,6 +468,19 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='insertPaiement') {
 
     echo "Success";
 
+    unset($_POST['cmd']);
+}
+
+if (isset($_POST['cmd']) and $_POST['cmd']=='deleteItem') {
+
+    $mysqli = Connect();
+
+    $sql = 'DELETE FROM `envoie` WHERE `envoie`.`id_item` = '.$_POST['id'].' AND `envoie`.`id_commande` = '.$_POST['commande'].';';
+    if ($mysqli->query($sql) === FALSE) {
+        Sendlog("Error: " . $sql . "<br>" . $mysqli->error);
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    Disconnect($mysqli);
     unset($_POST['cmd']);
 }
 

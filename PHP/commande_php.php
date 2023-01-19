@@ -199,7 +199,7 @@ function getRègles(){
 }
 
 
-error_log("Error Test", 3, "./my-errors.log");
+
 
 
 ?>

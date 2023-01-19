@@ -16,6 +16,7 @@ function getAllitem($id){
     }
     $result->close();
 
+
     for($i=0;$i<count($array);$i++) {
         $array[$i]['prixvente']=  $array[$i]['prixvente'].'$';
     if($array[$i]['Prix_remise']==null){
@@ -118,10 +119,10 @@ function AddInfoCommande($id){
 
 
 }
-function tableau2($id){
+function FraisService_livraison($id){
     $array=array();
     $mysqli = Connect();
-    $sql="SELECT fservice,fdelievery, AS montantTot,";
+    $sql="SELECT fservice,fdelivery FROM commande WHERE id_commande='$id'; ";
 
     if ($result = $mysqli->query($sql)) {
         while ($row = $result->fetch_assoc()){
@@ -132,6 +133,68 @@ function tableau2($id){
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
-    $result->close();
+    var_dump($array);
+
+
     return $array;
+}
+function Promotion($id){
+    $array=array();
+    $mysqli = Connect();
+    $sql="SELECT SUM(cout) as cout FROM paiement WHERE id_commande='$id' and id_regle!=0; ";
+
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()){
+            $array[] = $row;
+        }
+
+
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+
+
+
+    return $array;
+
+}
+
+function PrixdepotTOT($id)
+{
+    $array = array();
+    $mysqli = Connect();
+    $sql = "SELECT SUM(cout) as coutDepot FROM paiement WHERE id_commande='$id' and id_regle=0; ";
+
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()) {
+            $array = $row;
+        }
+
+
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+
+    return $array;
+}
+ function depot($id){
+    $array=array();
+     $mysqli = Connect();
+    $sql="SELECT date,cout,moyen.nom FROM paiement INNER JOIN moyen ON paiement.id_transaction=moyen.id_transaction WHERE id_commande='$id' and id_regle=0; ";
+
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()){
+            $array[] = $row;
+        }
+
+
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+
+
+
+
+    return $array;
+
 }

@@ -59,7 +59,7 @@
                 <span>Numéro: </span><span><?php echo $command['commande']['Phone']; ?></span><br>
                 <span>Membership: </span><span><?php echo $command['commande']['nom']; ?></span><br>
             </div>
-                <button class="button_panel" onclick="ShowModal('add_paiement');"> Ajouter </button>
+            <button class="normal middleV button_panel" type="button" onclick="ShowModal('add_paiement');"><img src="./img/icon/cash.png"/><span>Ajouter Paiement</span></button>
             <div class="multi panel" style="width: 45%;">
                 <table>
                     <tr>
@@ -79,14 +79,16 @@
                             <td><?php echo $delivery['quantité'] ?></td>
                             <td><?php echo $delivery['statut'] ?></td>
                             <td>
-                                    <button onclick="deleteItem(<?php echo $delivery['id_item'] ?>,<?php echo $_GET['id'] ?>)"> Suppr </button>
+                                <button class="normal elmInline onlyIcon" type="button" onclick="deleteItem(<?php echo $delivery['id_item'] ?>,<?php echo $_GET['id'] ?>)"><img src="./img/icon/delete.png"/></button>
                             </td>
                         </tr>
                         <?php
                     }
                     ?>
                 </table>
-                <button onclick="ShowModal('item')"> Ajouter </button>
+                <button class="normal middleH" type="button" onclick="ShowModal('item')"><img src="./img/icon/add.png"/><span>Ajouter Item</span></button>
+
+
             </div>
             <div class="multi panel" style="width: 40%">
                     <?php
@@ -102,7 +104,8 @@
                         <?php
                     }
                     ?>
-                                <button onclick="ShowModal('add_livraison');"> Ajouter </button>
+                   <button class="normal middleH" type="button" onclick="ShowModal('add_livraison');"><img src="./img/icon/delivery.png"/><span>Ajouter Livraison</span></button>
+
             </div>
         </div>
     </div>
@@ -141,7 +144,9 @@
                     }
                 }
                 ?><br>
-                        <input type='submit' value="Valider"/>
+                <button class="normal middleH" type="submit"><img src="./img/icon/check.png"/> <span>Valider</span> </button>
+
+
             </form>
 
         </div>
@@ -187,7 +192,7 @@
                 </div>
                 <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />
                 <br>
-                <input type='submit' value="Valider"/>
+                <button class="normal middleH" type="submit"><img src="./img/icon/check.png"/> <span>Valider</span> </button>
             </form>
 
         </div>
@@ -236,7 +241,7 @@
                 </div>
                 <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />
                 <!--<input type="image" src="Img/buttonValiderCompte.png">  <!--onclick="updateItemBDD()"-->
-                <input type='submit' value="Valider"/>
+                <button class="normal middleH" type="submit"><img src="./img/icon/check.png"/> <span>Valider</span> </button>
 
             </form>
         </div>

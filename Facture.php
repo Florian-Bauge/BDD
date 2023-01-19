@@ -19,7 +19,12 @@
     $cpt=0;
     $client=getInfoclient($id);
     $commandeInfo=AddInfoCommande($id);
+    $fraisServiceLivaison=FraisService_livraison($id);
+    $promotion=Promotion($id)[0]['cout'];
+    $prixdepot=PrixdepotTOT($id)['coutDepot'];
+
     $totalCommande=0;
+    $montatFacture=0;
     ?>
 </head>
 <body>
@@ -74,35 +79,37 @@
             <td></td>
             <td colspan="2" class="tableau2G">Frais de service</td>
 
-            <td class="tableau2D">0.00 $</td>
+            <td class="tableau2D"><?php echo $fraisServiceLivaison[0]['fservice'] ?> $</td>
         </tr>
         <tr>
             <td></td>
             <td></td>
             <td  colspan="2" class="tableau2G">Frais de livraison</td>
 
-            <td class="tableau2D">0.00 $</td>
+            <td class="tableau2D"><?php echo $fraisServiceLivaison[0]['fdelivery'] ?>  $</td>
         </tr>
         <tr>
             <td></td>
-            <td class="tableau2Exterieur">Promotion to apply next purchase -10$</td>
-            <td colspan="2"  class="tableau2G">Promotion/Remise</td>
+            <td class="tableau2Exterieur"></td>
+            <td colspan="2"  class="tableau2G"></td>
 
-            <td class="tableau2D">0.00 $</td>
+            <td class="tableau2D"><?php echo $promotion ?>$</td>
         </tr>
         <tr>
             <td></td>
-            <td class="tableau2Exterieur"><span>Bank deposit 06/12/2020 : 100$</span><br> <span> Cash deposit 06/12/2020:14$</span></td>
+
+            <td class="tableau2Exterieur">
+                <?php foreach (depot($id) as $depot){?><span><?php echo $depot['nom'].' ' ?><?php echo $depot['date'] ?> :<?php echo ' '.$depot['cout'] ?>$</span> <br><?php } ?> </td>
             <td colspan="2"  class="tableau2G">Dépôt</td>
 
-            <td class="tableau2D">114.00 $</td>
+            <td class="tableau2D"><?php echo $prixdepot ?> $</td>
         </tr>
         <tr>
             <td></td>
             <td class="tableau2Exterieur"></td>
             <td style="border-bottom: 2px solid black "  colspan="2"  class="tableau2G">Montant de la facture</td>
-
-            <td style="border-bottom: 2px solid black " class="tableau2D">346.00 $</td>
+            <?php $montatFacture=$fraisServiceLivaison[0]['fservice']+$fraisServiceLivaison[0]['fdelivery']+$totalCommande-$promotion-$prixdepot; ?>
+            <td style="border-bottom: 2px solid black " class="tableau2D"><?php echo $montatFacture?> $</td>
         </tr>
     </table>
     <?php

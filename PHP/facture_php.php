@@ -40,12 +40,12 @@ function getAllitem($id){
 function GetInfoClient($id){
     $array=array();
     $mysqli = Connect();
-    $sql="SELECT client.code_client,client.Phone,client.name FROM client INNER JOIN commande ON commande.code_client=client.code_client WHERE commande.id_commande='$id';";
+    $sql="SELECT client.code_client,client.Phone,client.name,commande.date FROM client INNER JOIN commande ON commande.code_client=client.code_client WHERE commande.id_commande='$id';";
     if ($result = $mysqli->query($sql)) {
         while ($row = $result->fetch_assoc()){
             $array[] = $row;
         }
-        var_dump($array);
+
 
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
@@ -57,7 +57,7 @@ function GetInfoClient($id){
         while ($row = $result->fetch_assoc()){
             $array[] = $row;
         }
-        var_dump($array);
+        ;
 
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
@@ -76,7 +76,58 @@ function getInfoCommande($id){
         while ($row = $result->fetch_assoc()){
             $array[] = $row;
         }
-        var_dump($array);
+
+
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    $result->close();
+    return $array;
+}
+function AddInfoCommande($id){
+    $array=array();
+    $nbselect=0;
+    $idFacture=array();
+
+    $array[]=$id;
+    $array[]=date('Y-m-d', time());
+    $idFacture=str_split($id,6);
+
+    $array[]=$idFacture[0].'-MAQ-F'.$idFacture[1];////Changer Ici si l'id de la commande change
+    $mysqli = Connect();
+    $sql="SELECT * FROM facture WHERE id_fact='$array[2]';";
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()){
+            $nbselect++;
+        }
+
+
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    if($nbselect==0){
+        $sql="INSERT INTO facture(id_fact,date,id_commande) VALUES('$array[2]','$array[1]','$array[0]'); ";
+        if ($mysqli->query($sql) === FALSE) {
+            echo "Error: " . $sql . "<br>" . $mysqli->error;}
+    }
+
+    $result->close();
+    return $array;
+
+
+
+
+}
+function tableau2($id){
+    $array=array();
+    $mysqli = Connect();
+    $sql="SELECT fservice,fdelievery, AS montantTot,";
+
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()){
+            $array[] = $row;
+        }
+
 
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;

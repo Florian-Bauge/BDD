@@ -15,9 +15,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
     <?php
     include 'PHP/Facture_php.php';
-    $id=1;
+    $id=211230002;
     $cpt=0;
-    $client=getInfoclient(1);
+    $client=getInfoclient($id);
+    $commandeInfo=AddInfoCommande($id);
+    $totalCommande=0;
     ?>
 </head>
 <body>
@@ -32,11 +34,11 @@
 </div>
         <h1 class="titreFacture">Facture</h1>
 <div class="infoCommande">
-    <span>No.Commande : <span>19-SPR-0302</span></span>
-    <span>Date de commande : <span>02-NOv-2022</span> </span>
-    <span>Facture numéro : <span>02155545</span></span>
-    <span>Date de facture : <span>05-Dec-2022</span></span>
-    <span>Dernière mise à jour : <span>05-Dec-2022</span></span>
+    <span>No.Commande : <span><?php echo $commandeInfo[0]?></span></span>
+    <span>Date de commande : <span><?php echo $client[0]['date']?></span> </span>
+    <span>Facture numéro : <span><?php echo $commandeInfo[2]?></span></span>
+    <span>Date de facture : <span><?php echo $commandeInfo[1]?></span></span>
+    <span>Dernière mise à jour : <span><?php echo $commandeInfo[1]?></span></span>
 </div>
     <table class="TableProduits">
         <tr class="titreTableau">
@@ -53,7 +55,8 @@
                 <td class="tableautd1"><span><?php echo $items['nom_produit']?></span> <span><?php echo $items['prixvente']?></span> </td>
                 <td class="tableautd1"><?php echo $items['quantité']?></td>
                 <td class="tableautd1"><?php echo $items['PrixUnité']?></td>
-                <td class="tableautd1"><?php echo $items['PrixTotal']?></td>
+                <td class="tableautd1"><?php echo $items['PrixTotal']?>$</td>
+                <?php $totalCommande=$totalCommande+$items['PrixTotal']; ?>
             </tr>
 
         <?php } ?>
@@ -64,7 +67,7 @@
             <td style="border-top: 2px solid black;"></td>
             <td  style="border-top: 2px solid black;"></td>
             <td colspan="2"  class="tableau2G">Montant de la commande</td>
-            <td class="tableau2D">460.00 $</td>
+            <td class="tableau2D"><?php echo $totalCommande?>$</td>
         </tr>
         <tr>
             <td></td>

@@ -7,7 +7,7 @@ function getArrayRecapCommand($text){    //Recupération des données pour affic
 	
 	$mysqli = Connect();
 
-	$sql = "SELECT id_commande, client.code_client, total, statut from commande INNER JOIN client ON commande.code_client=client.code_client;";
+	$sql = "SELECT id_commande, client.code_client, total, statut from commande INNER JOIN client ON commande.code_client=client.code_client WHERE client.code_client = '".$text."' OR id_commande LIKE '".$text."%' ORDER BY date DESC ;";
 	$array = array();
 
 	if ($result = $mysqli->query($sql)) {
@@ -24,16 +24,6 @@ function getArrayRecapCommand($text){    //Recupération des données pour affic
 
 	return $array;
 
-}
-
-function deleteCommand($id){
-
-
-
-}
-
-function exportCommands(){
-    
 }
 
 function getArrayAllCommand($id){   //Recupération des données pour affichage

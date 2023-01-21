@@ -18,8 +18,8 @@
 
 <div class="header">
     <div class="search">
-        <input class="search" id="search_text" type="text" placeholder="Recherche..." name="text" value=""/>
-        <button type="submit" name="submit" id="search_button"class="search"><img class="search" id="search_img" src="Img/Search_button.png" alt="" /></button>
+        <input class="search" id="search_text" type="text" placeholder="Recherche id commande ou code_client..." name="text" value=""/>
+        <button id="search_button"class="search" onclick="Search('commande')"><img class="search" id="search_img" src="Img/Search_button.png" alt="" /></button>
     </div>
 </div>
 <div class="page">
@@ -45,17 +45,17 @@
 
                     </tr>
                     <?php
-                    foreach(getArrayRecapCommand("11") as $command){
+                    foreach(getArrayRecapCommand($_GET['txt'] ?? "") as $command){
                     ?>
-                    <tr>
+                    <tr id="Modal_cmd_<?php echo $command['id_commande'] ?>">
                         <td><?php echo $command['id_commande'] ?></td>
                         <td><?php echo $command['code_client'] ?></td>
                         <td><?php echo $command['total'] ?></td>
                         <td><?php echo $command['statut'] ?></td>
                         <td>
 
-                            <button class="normal elmInline onlyIcon" type="button" onclick="ShowModalWith('commande', <?php echo $command['id_commande']?>)"><img src="./Img/icon/see.png"/></button>
-                            <button class="normal elmInline onlyIcon" type="button"><img src="./Img/icon/delete.png"/></button>
+                            <button class="normal elmInline onlyIcon" type="button" onclick="ShowModalWith('commande', <?php echo $command['id_commande']?>)"><img src="./img/icon/see.png"/></button>
+                            <button class="normal elmInline onlyIcon" type="button"><img src="./img/icon/delete.png" onclick="deleteCmd(<?php echo $command['id_commande']?>)"/></button>
                             <button class="normal elmInline onlyIcon" type="button" onclick="CreateFacture(<?php echo $command['id_commande']?>)"><img src="./Img/icon/pdf.png"/></button>
                         </td>
                     </tr>

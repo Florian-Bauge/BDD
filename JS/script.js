@@ -375,10 +375,13 @@ function ValidateLivraison(){
         type: 'POST',
         url: './PHP/ajax_mysql.php',
         data:{ cmd: "insertAndUpdateLivraison", data:arrayData},
-        dataType: 'json',
         async: false,
-        success: function () {
-            resultAjax = true;
+        dataType: 'text',
+        success: function (result) {
+            console.log(result);
+            if(result=="Success") {
+                resultAjax = true;
+            }
         }
     });
 
@@ -451,8 +454,8 @@ function ValidatePaiement(commande){
         type: 'POST',
         url: './PHP/ajax_mysql.php',
         data:{ cmd: "insertPaiement", data: arrayData},
-        dataType: 'text',
         async: false,
+        dataType: 'text',
         success: function (result) {
             console.log(result);
             if(result=="Success"){
@@ -657,6 +660,16 @@ function deleteItem(id, commande){
         data: {cmd: 'deleteItem', id: id, commande: commande}
     });
     document.getElementById("Modal_item_"+id).remove();
+}
+
+function deleteCmd(id){
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data: {cmd: 'deleteCmd', id: id}
+    });
+    document.getElementById("Modal_cmd_"+id).remove();
 }
 /*
 document.addEventListener('keypress', function (e) {
@@ -890,4 +903,8 @@ function commandeToPdf(){
 
     });
 
+}
+
+function Search(url){
+    location.href='./'+url+'.php?txt='+document.getElementById('search_text').value;
 }

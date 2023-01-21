@@ -114,6 +114,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='insertAndUpdateLivraison') {
         Sendlog("Error: " . $sql . "<br>" . $mysqli->error);
     }
 
+    echo 'Success';
 
     Disconnect($mysqli);
 
@@ -516,6 +517,19 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='deleteItem') {
     $mysqli = Connect();
 
     $sql = 'DELETE FROM `envoie` WHERE `envoie`.`id_item` = '.$_POST['id'].' AND `envoie`.`id_commande` = '.$_POST['commande'].';';
+    if ($mysqli->query($sql) === FALSE) {
+        Sendlog("Error: " . $sql . "<br>" . $mysqli->error);
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    Disconnect($mysqli);
+    unset($_POST['cmd']);
+}
+
+if (isset($_POST['cmd']) and $_POST['cmd']=='deleteCmd') {
+
+    $mysqli = Connect();
+
+    $sql = 'DELETE FROM `commande` WHERE id_commande = '.$_POST['id'].';';
     if ($mysqli->query($sql) === FALSE) {
         Sendlog("Error: " . $sql . "<br>" . $mysqli->error);
         echo "Error: " . $sql . "<br>" . $mysqli->error;

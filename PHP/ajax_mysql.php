@@ -10,7 +10,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='commande') {
 
     //Récupération Information de Commande et de Client
 
-    $sql = "SELECT note, id_commande, commande.total, total-coalesce((SELECT sum(cout) from paiement where id_commande = ".$_POST['id']."),0) AS RAP, CONCAT(concierge.nom,' ',concierge.prenom) AS cons, client.name, client.code_client, client.Phone, grillePoint.nom from commande
+    $sql = "SELECT note, id_commande, commande.total ,commande.total+commande.fdelivery+fservice AS totalCmd, fdelivery,fservice, total+commande.fdelivery+fservice-coalesce((SELECT sum(cout) from paiement where id_commande = ".$_POST['id']."),0) AS RAP, CONCAT(concierge.nom,' ',concierge.prenom) AS cons, client.name, client.code_client, client.Phone, grillePoint.nom from commande
     LEFT OUTER JOIN client ON commande.code_client=client.code_client 
     LEFT OUTER JOIN concierge ON concierge.id_con=commande.id_con
     LEFT OUTER JOIN GrillePoint ON client.id_membership=grillepoint.id_membership
@@ -336,7 +336,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='CreateCommande') {
 
     $mysqli = Connect();
 
-    $sql = 'INSERT INTO commande (code_client, commande.date )VALUES ("' . $_POST['data'][0] . '","' .date('Y-m-d', time()). '");';
+    $sql = 'INSERT INTO commande (code_client, commande.date, fdelivery, fservice )VALUES ("' . $_POST['data'][0] . '","' .date('Y-m-d', time()). '",50,10);';
     if ($mysqli->query($sql) === FALSE) {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }

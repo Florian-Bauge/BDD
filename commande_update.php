@@ -47,9 +47,14 @@
             <div class="multi panel" style="width: 35%">
                 <span>N°: </span><span><?php echo $command['commande']['id_commande']; ?></span><br>
                 <br>
-                <span>Points Obtenus: </span><span><?php echo $command['commande']['total']; ?></span><br>
-                <span>Total: </span><span><?php echo $command['commande']['total']; ?></span><br>
+                <span>Prix Commande: </span><span><?php echo $command['commande']['total']; ?></span><br>
+                <span>Frais de livraison: </span><span><?php echo $command['commande']['fdelivery']; ?></span><br>
+                <span>Frais de service: </span><span><?php echo $command['commande']['fservice']; ?></span><br>
+                <br>
+                <span>Total: </span><span><?php echo $command['commande']['totalCmd']; ?></span><br>
                 <span>RAP: </span><span><?php echo $command['commande']['RAP'] ?></span><br>
+                <span>Points Obtenus: </span><span><?php echo $command['commande']['totalCmd']; ?></span><br>
+                <br>
                 <span>Géré par: </span><span><?php echo $command['commande']['cons']; ?></span><br>
             </div>
             <div class="multi panel" style="width: 28%">

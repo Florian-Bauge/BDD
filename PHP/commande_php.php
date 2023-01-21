@@ -45,7 +45,7 @@ function getArrayAllCommand($id){   //Recupération des données pour affichage
 
     //Récupération Information de Commande et de Client
 
-    $sql = "SELECT client.point, client.id_membership, id_commande, commande.total, total-coalesce((SELECT sum(cout) from paiement where id_commande = $id),0) AS RAP, concat(concierge.nom, concierge.prenom) AS cons, client.name, client.code_client, client.Phone, grillePoint.nom from commande 
+    $sql = "SELECT client.point, client.id_membership, id_commande, commande.total ,commande.total+commande.fdelivery+fservice AS totalCmd, fdelivery,fservice, total+commande.fdelivery+fservice-coalesce((SELECT sum(cout) from paiement where id_commande = $id),0) AS RAP, concat(concierge.nom, concierge.prenom) AS cons, client.name, client.code_client, client.Phone, grillePoint.nom from commande 
     LEFT OUTER JOIN client ON commande.code_client=client.code_client 
     LEFT OUTER JOIN concierge ON concierge.id_con=commande.id_con
     LEFT OUTER JOIN GrillePoint ON client.id_membership=grillepoint.id_membership

@@ -80,9 +80,14 @@
             <div class="multi panel" style="width: 35%">
                 <span>N°: </span><span name="Modal_id_commande"></span><br>
                 <br>
-                <span>Points Obtenus: </span><span name='Modal_total'></span><br>
-                <span>Total: </span><span name='Modal_total'></span><br>
+                <span>Prix Produit: </span><span name='Modal_total'></span><br>
+                <span>Frais de livraison: </span><span name='Modal_fdelivery'></span><br>
+                <span>Frais de service: </span><span name='Modal_fservice'></span><br>
+                <br>
+                <span>Total: </span><span name='Modal_totalCmd'></span><br>
                 <span>RAP: </span><span name='Modal_RAP'></span><br>
+                <span>Points Maximum Obtenus: </span><span name='Modal_total'></span><br>
+                <br>
                 <span>Géré par: </span><span name='Modal_cons'></span><br>
             </div>
                 <div class="multi panel" style="width: 28%;">
@@ -121,7 +126,7 @@
                     <span class="title">Note</span>
                     <span name='Modal_note' class="Modal_note" onInput="UpdateNote()" contenteditable=""></span>
                 </div>
-                <div class="multi panel" style="min-width: 100px;">
+                <div class="multi panel" style="min-width: 100px;overflow: visible;">
                     <form id="form_update" method="get" action="commande_update.php">
                     <input type="hidden" name ="id" id="form_update_id" value="null">
                     </form>

@@ -78,6 +78,7 @@
 
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 15px;
+    overflow-y: auto;
 
 }
 
@@ -162,14 +163,27 @@ td {
     margin-left: 10%;
 }
 .Client_span_info{
-    color: red;
+    color: #878787;
+    background-color: #F6F6F6;
+    margin-left: 5%;
+
 }
+.titlePanel{
+
+    font-weight: bold;
+    font-size: xxx-large;
+
+
+}
+
 .TitreNewCompte{
     font-weight: bold;
 }
 .panel_historrique_paiments{
     background-color: white;
     margin-top: 40%;
+    width: 45%;
+    float: right;
 }
 .panel_historrique_paiments_date{
     margin-left: 5%;
@@ -190,6 +204,7 @@ td {
     background-color: white;
     width: 45%;
     float: right;
+    border-radius: 30px;
 }
 .modal {
     display: none; /* Hidden by default */

@@ -113,7 +113,7 @@
     <div id="Modal_account_client" class="modal">
         <div class="content">
             <span id="Modalclose_account_client" class="close">&times;</span> <br>
-            <div class="panel_client">
+            <div class="multi panel">
             <input type="image" src="Img/button_edit.png"  id="Modal_client_valid_edit">
                 <span class="titlePanel">Client</span>
 
@@ -133,7 +133,7 @@
                 <span class="Client_span_info" name="Modal_Facebook" id="Modal_client_span_facebook" contenteditable="false"></span> <br>
                 <p class="TitreNewCompte">Adresse </p>
                 <div id="adress" name="Modal_div_adresse" style="display:none;">  <!--Example for Copy-->
-                            <span id="idAdresse" name="Modal_id_adresse" style="display:flex"  >0</span>
+                            <span id="idAdresse" name="Modal_id_adresse" style="display:none"  >0</span>
                             <span name='Modal_adresse' contenteditable="false"></span><br>
 
                 </div>
@@ -143,7 +143,7 @@
 
 
             </div>
-            <div class="panel_membership">
+            <div class="multi panel" style="width: 40%; height: 80%" >
                 <span class="titlePanel">Membership</span> <br>
                 <img id="Panel_Img_Membership" src="Img/Membership=0.png">
                 <span name="Modal_nom"></span><br>
@@ -151,7 +151,7 @@
 
 
             </div>
-            <div class="panel_historrique_paiments">
+            <div class="multi panel" style="width: 40%" >
                 <span> Historique de paiments </span>
                 <div id="paiement" style="display:none;">  <!--Example for Copy-->
                     <span class="panel_historrique_paiments_date" name='Modal_date' > </span>

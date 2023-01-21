@@ -152,7 +152,7 @@
             </div>
 
 
-        <input type="image" src="Img/button_create_commande.png">
+        <input type="image" src="Img/button_create_commande.png" onclick="CreateNewCommande()">
             <input type="image" src="Img/button_historique_commande.png">
         </div>
     </div>

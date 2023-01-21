@@ -325,6 +325,29 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='ItemUpdate'){
 
     unset($_POST['cmd']);
 }
+if (isset($_POST['cmd']) and $_POST['cmd']=='CreateCommande') {
+    $array = array();
+
+    $mysqli = Connect();
+
+    $sql = 'INSERT INTO commande (code_client, commande.date )VALUES ("' . $_POST['data'][0] . '","' .date('Y-m-d', time()). '");';
+    if ($mysqli->query($sql) === FALSE) {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    $sql='SELECT CONCAT(DATE_FORMAT(commande.date,"%d%m%y"),COALESCE(MAX(SUBSTRING(id_commande, 7, 4)), 0)) as idCommande FROM commande WHERE DATE(date) = CURDATE();';
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()){
+            $array[]= $row;
+        };
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    echo json_encode($array);
+    Disconnect($mysqli);
+
+    unset($_POST['cmd']);
+
+}
 if (isset($_POST['cmd']) and $_POST['cmd']=='AddItem') {
     $array = array();
 

@@ -714,6 +714,28 @@ function createPDFClient(){
 
 
 }
+function  CreateNewCommande(){
+    var id_client=document.getElementById("Modal_client_span_code");
+    var tabInfo=[];
+
+    tabInfo.push(id_client.innerHTML);
+    console.log(tabInfo)
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data: {cmd: 'CreateCommande',data :tabInfo },
+        dataType: 'json',
+        success: function (data) {
+                console.log(data);
+                var adressehtml=document.location.href;
+                adressehtml=adressehtml.substring(0,adressehtml.lastIndexOf("/")+1);
+                adressehtml=adressehtml+"commande_update.php?id="+data[0]['idCommande'];
+                document.location.href=adressehtml;
+
+        }});
+
+}
 function CreateXLSclient(){
     $.ajax
     ({

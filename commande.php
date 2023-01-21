@@ -56,6 +56,7 @@
 
                             <button class="normal elmInline onlyIcon" type="button" onclick="ShowModalWith('commande', <?php echo $command['id_commande']?>)"><img src="./img/icon/see.png"/></button>
                             <button class="normal elmInline onlyIcon" type="button"><img src="./img/icon/delete.png" onclick="deleteCmd(<?php echo $command['id_commande']?>)"/></button>
+                            <button class="normal elmInline onlyIcon" type="button" onclick="CreateFacture(<?php echo $command['id_commande']?>)"><img src="./Img/icon/pdf.png"/></button>
                         </td>
                     </tr>
                     <?php

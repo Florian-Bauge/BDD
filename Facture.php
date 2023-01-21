@@ -15,13 +15,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
     <?php
     include 'PHP/Facture_php.php';
-    $id=211230002;
+    $id=$_GET['id'];
     $cpt=0;
     $client=getInfoclient($id);
     $commandeInfo=AddInfoCommande($id);
     $fraisServiceLivaison=FraisService_livraison($id);
-    $promotion=Promotion($id)[0]['cout'];
-    $prixdepot=PrixdepotTOT($id)['coutDepot'];
+    $promotion=0+Promotion($id)[0]['cout'];
+    $prixdepot=0+PrixdepotTOT($id)['coutDepot'];
 
     $totalCommande=0;
     $montatFacture=0;
@@ -39,7 +39,7 @@
 </div>
         <h1 class="titreFacture">Facture</h1>
 <div class="infoCommande">
-    <span>No.Commande : <span><?php echo $commandeInfo[0]?></span></span>
+    <span>No.Commande : <span id="id_commande"><?php echo $commandeInfo[0]?></span></span>
     <span>Date de commande : <span><?php echo $client[0]['date']?></span> </span>
     <span>Facture numéro : <span><?php echo $commandeInfo[2]?></span></span>
     <span>Date de facture : <span><?php echo $commandeInfo[1]?></span></span>
@@ -91,7 +91,7 @@
         <tr>
             <td></td>
             <td class="tableau2Exterieur"></td>
-            <td colspan="2"  class="tableau2G"></td>
+            <td colspan="2"  class="tableau2G">Promotion/Remise</td>
 
             <td class="tableau2D"><?php echo $promotion ?>$</td>
         </tr>

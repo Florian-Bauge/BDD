@@ -133,7 +133,6 @@ function FraisService_livraison($id){
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
-    var_dump($array);
 
 
     return $array;
@@ -152,7 +151,7 @@ function Promotion($id){
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
-
+    $array[0]['cout']=$array[0]['cout']+0.00;
 
 
     return $array;

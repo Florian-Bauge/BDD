@@ -53,9 +53,9 @@
                         <td><?php echo $command['total'] ?></td>
                         <td><?php echo $command['statut'] ?></td>
                         <td>
-                            <button class="normal elmInline onlyIcon" type="button"><img src="./img/icon/delete.png"/></button>
-                            <button class="normal elmInline onlyIcon" type="button" onclick="ShowModalWith('commande', <?php echo $command['id_commande']?>)"><img src="./img/icon/see.png"/></button>
 
+                            <button class="normal elmInline onlyIcon" type="button" onclick="ShowModalWith('commande', <?php echo $command['id_commande']?>)"><img src="./img/icon/see.png"/></button>
+                            <button class="normal elmInline onlyIcon" type="button"><img src="./img/icon/delete.png"/></button>
                         </td>
                     </tr>
                     <?php
@@ -114,13 +114,12 @@
                         <br>
                             <span>Arrival Date: </span><span name='Modal_dateLivrée'>3</span><br>
                         </div>
-                        <br> --  <br>
                     </div>
                 </div>
                 <div style="display: flex;flex-direction: column;">
                 <div class="multi panel" style="width: auto; height: -webkit-fill-available;">
                     <span class="title">Note</span>
-                    <span name='Modal_note'></span>
+                    <span name='Modal_note' class="Modal_note" onInput="UpdateNote()" contenteditable=""></span>
                 </div>
                 <div class="multi panel" style="min-width: 100px;">
                     <form id="form_update" method="get" action="commande_update.php">

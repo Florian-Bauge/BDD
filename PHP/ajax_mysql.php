@@ -373,6 +373,20 @@ if (isset($_POST['cmd']) and ($_POST['cmd']=='AddItemCommandOnly' or $_POST['cmd
     unset($_POST['cmd']);
 }
 
+if (isset($_POST['cmd']) and $_POST['cmd']=='UpdateNote') {
+    $mysqli = Connect();
+
+    $sql = 'UPDATE commande SET note = "' . $_POST['note'] . '" WHERE commande.id_commande =' . $_POST['id'] . ';';
+    Sendlog($sql);
+    if ($mysqli->query($sql) === FALSE) {
+        Sendlog("Error: " . $sql . "<br>" . $mysqli->error);
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+
+    Disconnect($mysqli);
+    unset($_POST['cmd']);
+}
+
 if (isset($_POST['cmd']) and $_POST['cmd']=='GetXLSclient'){
     $array = array();
 
@@ -451,10 +465,6 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='insertPaiement') {
             $cout = $array['valeur'];
         }
 
-        $sql = 'INSERT INTO item (id_item, prixachat, prixvente, nom, statut, id_membership, stock) VALUES (NULL, "' . $_POST['data'][1] . '","' . $_POST['data'][2] . '","' . $_POST['data'][0] . '","' . $_POST['data'][4] . '","' . $_POST['data'][5] . '","' . $_POST['data'][3] . '");';
-        if ($mysqli->query($sql) === FALSE) {
-            echo "Error: " . $sql . "<br>" . $mysqli->error;
-        }
 
     }
 

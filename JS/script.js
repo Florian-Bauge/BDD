@@ -642,7 +642,6 @@ function resizeInput(){
         elm.style.width = (elm.value.length * 8)+30 + "px";
         console.log(elm.style.width);
     });
-    console.lof("?");
 }
 
 function deleteItem(id, commande){
@@ -690,6 +689,22 @@ function InitAutoComplete(){
             source: autocompleteArray
         });
     } );
+}
+
+function UpdateNote(){
+    let id = document.getElementsByName("Modal_id_commande")[0].innerHTML;
+    let note = document.getElementsByName("Modal_note")[0].innerHTML;
+    console.log("Note: "+id+" : "+note);
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data:{ cmd: "UpdateNote", note: note ,id:id},
+        dataType: 'json',
+        success: function () {
+            return true;
+        }
+    });
 }
 /*
 function createPDFClient(){

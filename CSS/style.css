@@ -311,3 +311,14 @@ color: #959595;
 margin-left: 10px;
 }
 
+.Modal_note{
+    max-width: 200px;
+    display: block;
+    height: calc(100% - 40px);
+    overflow: hidden;
+    box-sizing: border-box;
+    border: solid 1px;
+    border-color: grey;
+    min-height: 50px;
+}
+

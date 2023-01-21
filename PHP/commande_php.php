@@ -124,7 +124,7 @@ function getAdresses($id){
 
     $mysqli = Connect();
 
-    $sql = "SELECT id_adresse, CONCAT(nrue,' ',rue,' ',adresse.codepostal,' ',ville,' ',pays,' ',infoComp) AS adresse from adresse WHERE adresse.code_client=$id;";
+    $sql = "SELECT id_adresse, CONCAT(nrue,' ',rue,' ',typeRue,' ',adresse.codepostal,' ',ville,' ',pays,' ',infoComp) AS adresse from adresse WHERE adresse.code_client=$id;";
     $array = array();
 
     if ($result = $mysqli->query($sql)) {

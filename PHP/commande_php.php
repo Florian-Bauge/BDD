@@ -77,7 +77,7 @@ function getArrayAllCommand($id){   //Recupération des données pour affichage
 
     //Récupération Information de Livraison
 
-    $sql = "SELECT id_delivery, numeroColis, dateVoulu, dateLivrée, DateExpédié, livraison.status, CONCAT(nrue,' ',rue,' ',adresse.codepostal,' ',ville,' ',pays,' ',infoComp) AS adresse from livraison
+    $sql = "SELECT id_delivery, numeroColis, dateLivrée, DateExpédié, CONCAT(nrue,' ',typeRue,' ',rue,' ',adresse.codepostal,' ',ville,' ',pays,' ',infoComp) AS adresse from livraison
     LEFT OUTER JOIN adresse on livraison.id_adresse = adresse.id_adresse
     LEFT OUTER JOIN envoie on livraison.id_delivery = envoie.id_livraison                                                                                                                                                                              
     WHERE envoie.id_commande = $id
@@ -124,7 +124,7 @@ function getAdresses($id){
 
     $mysqli = Connect();
 
-    $sql = "SELECT id_adresse, CONCAT(nrue,' ',rue,' ',adresse.codepostal,' ',ville,' ',pays,' ',infoComp) AS adresse from adresse WHERE adresse.code_client=$id;";
+    $sql = "SELECT id_adresse, CONCAT(nrue,' ',typeRue,' ',rue,' ',adresse.codepostal,' ',ville,' ',pays,' ',infoComp) AS adresse from adresse WHERE adresse.code_client=$id;";
     $array = array();
 
     if ($result = $mysqli->query($sql)) {

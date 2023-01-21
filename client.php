@@ -80,7 +80,7 @@
     </div>
     <div id="Modal_add_client" class="modal">
         <div class="panel pmodal">
-            <form name="ModalForm">
+            <form name="ModalForm" onsubmit="return CreateAccount()">
             <span id="Modalclose_add_client" class="close">&times;</span>
 
             <span class="title">Créer un compte</span>
@@ -102,8 +102,11 @@
             <input type="image" src="Img/buttonAddAdress.png" onclick="AddAdress('Modal_temp_NewCompte_adress_')"> <br>
             <input type="image" src="Img/buttonValiderCompte.png" onclick="CreateAccount()"><br>
             -->
-                <button class="normal middleH" onclick="AddAdress('Modal_temp_NewCompte_adress_')"><img src="./img/icon/add.png"/> <span>Ajouter Adresse</span> </button>
-                <button class="normal middleH" onclick="CreateAccount()"><img src="./img/icon/check.png"/> <span>Valider</span> </button>
+                    <button class="normal middleH" onclick="AddAdress('Modal_temp_NewCompte_adress_')"><img src="./img/icon/add.png"/> <span>Ajouter Adresse</span> </button>
+
+
+                    <button type="submit" class="normal middleH" ><img src="./img/icon/check.png"/> <span>Valider</span> </button>
+
             </form>
 
 

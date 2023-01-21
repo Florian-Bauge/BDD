@@ -180,7 +180,7 @@
                         <?php
                         foreach(getRègles() as $regles){
 
-                            if(strtotime($regles['dateExp']) > time() and $regles['id_membership'] == $command['commande']['id_membership']){
+                            if(strtotime($regles['dateExp']) > time() and $regles['id_membership'] <= $command['commande']['id_membership']){
                                 ?>
                                 <option value=<?php echo $regles['id_regle'] ?>><?php echo $regles['intitule'] ?></option>
                                 <?php

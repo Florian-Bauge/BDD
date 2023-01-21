@@ -56,8 +56,11 @@
                     <td><?php echo $client['Phone']?></td>
                     <td><?php echo $client['nom']?></td>
                     <td>
-                        <input type="image" src="Img/button_research.png" onclick="client_profil('account_client','<?php echo $client['code_client']?>','false')">
+                        <!--<input type="image" src="Img/button_research.png" onclick="client_profil('account_client','<?php echo $client['code_client']?>','false')">
                         <input type="image" src="Img/button_edit.png" onclick="client_profil('account_client',<?php echo $client['code_client']?>,'true')">
+                        -->
+                        <button class="normal elmInline onlyIcon" type="button" onclick="client_profil('account_client','<?php echo $client['code_client']?>','false')"><img src="./img/icon/see.png"/></button>
+                        <button class="normal elmInline onlyIcon" type="button" onclick="client_profil('account_client',<?php echo $client['code_client']?>,'true')"><img src="./img/icon/edit.png"/></button>
                     </td>
                 </tr>
                 <?php
@@ -65,8 +68,14 @@
                 ?>
             </table>
             </div>
+            <!--
             <input type="image" src="Img/button_Creer.png" onclick="ShowModal('add_client')">
             <input type="image" src="Img/button_Export.png" onclick="CreateXLSclient()">
+            -->
+            <div class="actionButton">
+                <button class="normal" type="button" onclick="ShowModal('add_client')"><img src="./img/icon/add.png"/> <span>Créer</span> </button>
+                <button class="normal" type="button" onclick="CreateXLSclient()"><img src="./img/icon/export.png"/> <span>Exporter</span> </button>
+            </div>
         </div>
     </div>
     <div id="Modal_add_client" class="modal">
@@ -89,8 +98,12 @@
             <input required type="text" id="Modal_NewCompte_Facebook">
             <p class="TitreNewCompte">Adresse </p>
             <input type="text" name="Modal_temp_NewCompte_adress_" placeholder="20 rue Jean Moulin 72000 Le mans, FRANCE" class="InputAdressModal"> <br>
+            <!--
             <input type="image" src="Img/buttonAddAdress.png" onclick="AddAdress('Modal_temp_NewCompte_adress_')"> <br>
-            <input type="image" src="Img/buttonValiderCompte.png" onclick="CreateAccount()">
+            <input type="image" src="Img/buttonValiderCompte.png" onclick="CreateAccount()"><br>
+            -->
+                <button class="normal middleH" onclick="AddAdress('Modal_temp_NewCompte_adress_')"><img src="./img/icon/add.png"/> <span>Ajouter Adresse</span> </button>
+                <button class="normal middleH" onclick="CreateAccount()"><img src="./img/icon/check.png"/> <span>Valider</span> </button>
             </form>
 
 

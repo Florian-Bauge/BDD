@@ -53,8 +53,8 @@
                         <td><?php echo $command['total'] ?></td>
                         <td><?php echo $command['statut'] ?></td>
                         <td>
-                            <button type="button"> Suppr </button>
-                            <button type="button" onclick="ShowModalWith('commande', <?php echo $command['id_commande']?>)"> Voir </button>
+                            <button class="normal elmInline onlyIcon" type="button"><img src="./img/icon/delete.png"/></button>
+                            <button class="normal elmInline onlyIcon" type="button" onclick="ShowModalWith('commande', <?php echo $command['id_commande']?>)"><img src="./img/icon/see.png"/></button>
 
                         </td>
                     </tr>
@@ -63,9 +63,13 @@
                     ?>
                 </table>
             </div>
-            <input type="image" src="Img/button_article.png" onclick="ShowModal('item')">
+            <!--<input type="image" src="Img/button_article.png" onclick="ShowModal('item')">
             <input type="image" src="Img/button_Export.png" onclick="CreateXLScommandes()">
-
+            -->
+            <div class="actionButton">
+                <button class="normal" type="button" onclick="ShowModal('item')"><img src="./img/icon/cart.png"/> <span>Article</span> </button>
+                <button class="normal" type="button" onclick="CreateXLScommandes()"><img src="./img/icon/export.png"/> <span>Exporter</span> </button>
+            </div>
         </div>
     </div>
 
@@ -118,12 +122,17 @@
                     <span class="title">Note</span>
                     <span name='Modal_note'></span>
                 </div>
-                <div class="multi panel" style="width: 18%;">
+                <div class="multi panel" style="min-width: 100px;">
                     <form id="form_update" method="get" action="commande_update.php">
                     <input type="hidden" name ="id" id="form_update_id" value="null">
                     </form>
-                    <button type="button" onclick="submitFormAndRedirect('form_update','Modal_id_commande');"> Modif </button>
+                    <!--<button type="button" onclick="submitFormAndRedirect('form_update','Modal_id_commande');"> Modif </button>
                     <button type="button"> Suppr </button>
+                    -->
+                    <div style="display: flex;justify-content: space-evenly;">
+                    <button class="normal elmInline onlyIcon" type="button" onclick="submitFormAndRedirect('form_update','Modal_id_commande');"><img src="./img/icon/edit.png"/></button>
+                    <button class="normal elmInline onlyIcon" type="button"><img src="./img/icon/delete.png"/></button>
+                </div>
                     <p>Action</p>
                 </div>
                 </div>
@@ -144,6 +153,8 @@
     </div>
     </div>
     <script>InitModal("commande");</script>
+
+
     <div id="Modal_item" class="modal">
             <div class="panel pmodal">
             <span id="Modalclose_item" class="close">&times;</span>
@@ -172,7 +183,7 @@
                     </select> <br>
             <span> Stock </span> <input type="text" id="Panel_Modal_item_stock"><br>
             <div class="trait"></div>
-            <input type="image" src="Img/buttonValiderCompte.png" onclick="updateItemBDD()">
+                    <button class="normal middleH" type="submit" onclick="updateItemBDD()"><img src="./img/icon/check.png"/> <span>Valider</span> </button>
 
 
                 </form>

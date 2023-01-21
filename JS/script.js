@@ -364,18 +364,21 @@ function ValidateLivraison(){
     console.log("FUNCTION");
     var arrayData = [date.value, parcel.value, adr.value, checkArray];
     console.log(arrayData);
+
+    let resultAjax = false;
     $.ajax
     ({
         type: 'POST',
         url: './PHP/ajax_mysql.php',
         data:{ cmd: "insertAndUpdateLivraison", data:arrayData},
         dataType: 'json',
+        async: false,
         success: function () {
-            return true;
+            resultAjax = true;
         }
     });
 
-    return false;
+    return resultAjax;
 }
 
 function UpdateArrivalDate(date, id){
@@ -438,25 +441,26 @@ function ValidatePaiement(commande){
     var arrayData = [regle, commande, selectMoyen.value, cout.value];
     console.log(arrayData);
 
+    let resultAjax = false;
     $.ajax
     ({
         type: 'POST',
         url: './PHP/ajax_mysql.php',
         data:{ cmd: "insertPaiement", data: arrayData},
         dataType: 'text',
+        async: false,
         success: function (result) {
             console.log(result);
             if(result=="Success"){
                 console.log("Valid !");
-                return true;
+                resultAjax = true;
             }else{
                 console.log("Failed");
                 return false;
             }
         }
     });
-
-    return false;
+    return resultAjax;
 
 }
 function  UpdateItemcheckbox(){
@@ -583,6 +587,49 @@ function updateItemBDD(){
     }
 
 
+
+
+}
+
+function updateCommandeBDD(commande){
+
+    var tab=[];
+
+    tab.push(document.getElementById("Panel_Modal_item_recherche").value);
+    tab.push(document.getElementById("Panel_Modal_item_prix_achat").value);
+    tab.push(document.getElementById("Panel_Modal_item_prix_vente").value);
+    tab.push(document.getElementById("Panel_Modal_item_stock").value);
+    tab.push(document.querySelector('#Panel_Modal_item_statuts').value);
+    tab.push(document.querySelector('#Panel_Modal_item_Membership').value);
+    tab.push(document.getElementById("Panel_Modal_item_id").value);
+    tab.push(document.getElementById("Panel_Modal_item_prix_remise").value);
+    tab.push(document.getElementById("Panel_Modal_item_quantité").value);
+    tab.push(commande);
+
+    let cmd = 'AddItemCommandAndBDD';
+    if(!document.getElementById("Panel_checkbox_item").checked) {
+        cmd = 'AddItemCommandOnly';
+    }
+    let resultAjax = false;
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data: {cmd: cmd, data: tab},
+        async: false,
+        dataType: 'text',
+        success: function (result) {
+            console.log(result);
+            if(result=="Success"){
+                console.log("Valid !");
+                resultAjax = true;
+            }else{
+                console.log("Failed");
+            }
+        }
+
+    });
+    return resultAjax;
 }
 
 function resizeInput(){
@@ -597,6 +644,17 @@ function resizeInput(){
     });
     console.lof("?");
 }
+
+function deleteItem(id, commande){
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data: {cmd: 'deleteItem', id: id, commande: commande}
+    });
+    document.getElementById("Modal_item_"+id).remove();
+}
+/*
 document.addEventListener('keypress', function (e) {
     if (e.keyCode === 13 || e.which === 13) {
         e.preventDefault();
@@ -604,6 +662,9 @@ document.addEventListener('keypress', function (e) {
     }
 
 });
+*/
+
+
 
 
 function InitAutoComplete(){
@@ -630,6 +691,7 @@ function InitAutoComplete(){
         });
     } );
 }
+/*
 function createPDFClient(){
     console.log('Salut');
     $.ajax
@@ -713,7 +775,7 @@ function createPDFClient(){
 
 
 
-}
+}*/
 function  CreateNewCommande(){
     var id_client=document.getElementById("Modal_client_span_code");
     var tabInfo=[];

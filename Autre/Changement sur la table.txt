@@ -37,3 +37,22 @@ BEGIN
     SET NEW.id_commande = CONCAT(DATE_FORMAT(date_commande, '%d%m%y'), LPAD(num_commande, 4, '0'));
 END
 
+
+
+update_Membership points AFTER INSERT
+BEGIN
+DECLARE totalpoints INT;
+DECLARE Membershipid INT ;
+DECLARE ClientCode INT ;
+DECLARE InitialMembership INT;
+SET ClientCode=(SELECT code_client FROM points WHERE points.id_point=NEW.id_point);
+SET InitialMembership=(SELECT client.id_membership FROM client WHERE client.code_client=ClientCode);
+IF(InitialMembership!=3)
+THEN
+SET totalpoints=(SELECT SUM(points.point) FROM points WHERE points.id_point=NEW.id_point);
+SET Membershipid=(SELECT MAX(grillepoint.id_membership) FROM grillepoint WHERE grillepoint.minPoint>=totalpoints AND grillepoint.maxPoint<=totalpoints);
+
+
+UPDATE client SET client.code_client=Membershipid WHERE client.code_client=ClientCode;
+END IF;
+END

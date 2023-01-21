@@ -47,7 +47,7 @@
                         </tr>
 
                 <?php
-                foreach (getArrayClient("2300") as $client) {
+                foreach (getArrayClient($_GET['txt']  ?? "") as $client) {
                     ?>
                 <tr>
                     <td><?php echo $client['code_client']?></td>

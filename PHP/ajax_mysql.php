@@ -37,11 +37,12 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='commande') {
         };
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
+        Sendlog("Error: " . $sql . "<br>" . $mysqli->error);
     }
 
     //Récupération Information de Livraison
 
-    $sql = "SELECT numeroColis, dateVoulu, dateLivrée, DateExpédié, livraison.status, CONCAT(nrue,' ',rue,' ',adresse.codepostal,' ',ville,' ',pays,' ',infoComp) AS adresse from livraison
+    $sql = "SELECT numeroColis, dateLivrée, DateExpédié, CONCAT(nrue,' ',typeRue,' ',rue,' ',adresse.codepostal,' ',ville,' ',pays,' ',infoComp) AS adresse from livraison
     LEFT OUTER JOIN adresse on livraison.id_adresse = adresse.id_adresse
     LEFT OUTER JOIN envoie on livraison.id_delivery = envoie.id_livraison                                                                                                                                                                              
     WHERE envoie.id_commande = ".$_POST['id']."
@@ -53,6 +54,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='commande') {
         };
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
+        Sendlog("Error: " . $sql . "<br>" . $mysqli->error);
     }
 
     //Récupération Information de contenu de commande
@@ -69,6 +71,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='commande') {
         };
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
+        Sendlog("Error: " . $sql . "<br>" . $mysqli->error);
     }
 
 
@@ -91,6 +94,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='insertAndUpdateLivraison') {
 
     if ($mysqli->query($sql) === FALSE) {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
+        Sendlog("Error: " . $sql . "<br>" . $mysqli->error);
     }
 
     $id_livraison = $mysqli->insert_id;
@@ -107,6 +111,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='insertAndUpdateLivraison') {
 
     if ($mysqli->query($sql) === FALSE) {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
+        Sendlog("Error: " . $sql . "<br>" . $mysqli->error);
     }
 
 
@@ -227,6 +232,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='createaccountclient'){
         if ($mysqli->query($sql) === FALSE) {
             echo "Error: " . $sql . "<br>" . $mysqli->error;}
         }
+    echo  "Succes";
 
 
 
@@ -324,6 +330,29 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='ItemUpdate'){
     Disconnect($mysqli);
 
     unset($_POST['cmd']);
+}
+if (isset($_POST['cmd']) and $_POST['cmd']=='CreateCommande') {
+    $array = array();
+
+    $mysqli = Connect();
+
+    $sql = 'INSERT INTO commande (code_client, commande.date )VALUES ("' . $_POST['data'][0] . '","' .date('Y-m-d', time()). '");';
+    if ($mysqli->query($sql) === FALSE) {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    $sql='SELECT CONCAT(DATE_FORMAT(commande.date,"%d%m%y"),COALESCE(MAX(SUBSTRING(id_commande, 7, 4)), 0)) as idCommande FROM commande WHERE DATE(date) = CURDATE();';
+    if ($result = $mysqli->query($sql)) {
+        while ($row = $result->fetch_assoc()){
+            $array[]= $row;
+        };
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
+    echo json_encode($array);
+    Disconnect($mysqli);
+
+    unset($_POST['cmd']);
+
 }
 if (isset($_POST['cmd']) and $_POST['cmd']=='AddItem') {
     $array = array();
@@ -464,6 +493,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='insertPaiement') {
         } else if ($array['type'] == "Réduction") {
             $cout = $array['valeur'];
         }
+
 
 
     }

@@ -80,7 +80,7 @@
     </div>
     <div id="Modal_add_client" class="modal">
         <div class="panel pmodal">
-            <form name="ModalForm">
+            <form name="ModalForm" onsubmit="return CreateAccount()">
             <span id="Modalclose_add_client" class="close">&times;</span>
 
             <span class="title">Créer un compte</span>
@@ -102,8 +102,11 @@
             <input type="image" src="Img/buttonAddAdress.png" onclick="AddAdress('Modal_temp_NewCompte_adress_')"> <br>
             <input type="image" src="Img/buttonValiderCompte.png" onclick="CreateAccount()"><br>
             -->
-                <button class="normal middleH" onclick="AddAdress('Modal_temp_NewCompte_adress_')"><img src="./img/icon/add.png"/> <span>Ajouter Adresse</span> </button>
-                <button class="normal middleH" onclick="CreateAccount()"><img src="./img/icon/check.png"/> <span>Valider</span> </button>
+                    <button class="normal middleH" onclick="AddAdress('Modal_temp_NewCompte_adress_')"><img src="./img/icon/add.png"/> <span>Ajouter Adresse</span> </button>
+
+
+                    <button type="submit" class="normal middleH" ><img src="./img/icon/check.png"/> <span>Valider</span> </button>
+
             </form>
 
 
@@ -113,7 +116,7 @@
     <div id="Modal_account_client" class="modal">
         <div class="content">
             <span id="Modalclose_account_client" class="close">&times;</span> <br>
-            <div class="panel_client">
+            <div class="multi panel">
             <input type="image" src="Img/button_edit.png"  id="Modal_client_valid_edit">
                 <span class="titlePanel">Client</span>
 
@@ -133,7 +136,7 @@
                 <span class="Client_span_info" name="Modal_Facebook" id="Modal_client_span_facebook" contenteditable="false"></span> <br>
                 <p class="TitreNewCompte">Adresse </p>
                 <div id="adress" name="Modal_div_adresse" style="display:none;">  <!--Example for Copy-->
-                            <span id="idAdresse" name="Modal_id_adresse" style="display:flex"  >0</span>
+                            <span id="idAdresse" name="Modal_id_adresse" style="display:none"  >0</span>
                             <span name='Modal_adresse' contenteditable="false"></span><br>
 
                 </div>
@@ -143,7 +146,7 @@
 
 
             </div>
-            <div class="panel_membership">
+            <div class="multi panel" style="width: 40%; height: 80%" >
                 <span class="titlePanel">Membership</span> <br>
                 <img id="Panel_Img_Membership" src="Img/Membership=0.png">
                 <span name="Modal_nom"></span><br>
@@ -151,7 +154,7 @@
 
 
             </div>
-            <div class="panel_historrique_paiments">
+            <div class="multi panel" style="width: 40%" >
                 <span> Historique de paiments </span>
                 <div id="paiement" style="display:none;">  <!--Example for Copy-->
                     <span class="panel_historrique_paiments_date" name='Modal_date' > </span>
@@ -165,7 +168,7 @@
             </div>
 
 
-        <input type="image" src="Img/button_create_commande.png">
+        <input type="image" src="Img/button_create_commande.png" onclick="CreateNewCommande()">
             <input type="image" src="Img/button_historique_commande.png">
         </div>
     </div>

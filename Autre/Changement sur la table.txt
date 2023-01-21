@@ -23,3 +23,17 @@ END
 
 
 Ajout id_commande dans la table facture
+
+
+Rajout d'un déclencheur dans commande before insert :
+BEGIN
+    DECLARE date_commande DATE;
+    DECLARE num_commande INT;
+
+    SET date_commande = CURDATE();
+    SET num_commande =(SELECT COALESCE(MAX(SUBSTRING(id_commande, 7, 4)), 0) FROM commande WHERE DATE(date) = CURDATE());
+
+    SET num_commande = num_commande + 1;
+    SET NEW.id_commande = CONCAT(DATE_FORMAT(date_commande, '%d%m%y'), LPAD(num_commande, 4, '0'));
+END
+

@@ -123,6 +123,7 @@ function submitFormAndRedirect(form, id){
 function  CreateAccount(){
     console.log("Function start");
     var id_membershipSelect=0;
+    let resultAjax = false;
     var membershipSelect=document.querySelector("#Modal_NewCompte_Select_Membership");
     var iScheckmembershipSelect=document.getElementById("Modal_NewCompte_Ulti").checked;
     var nom=document.getElementById("Modal_NewCompte_nom").value;
@@ -151,10 +152,14 @@ function  CreateAccount(){
             type: 'POST',
             url: './PHP/ajax_mysql.php',
             data:{ cmd:'createaccountclient',data : arraydatadata},
-            dataType: 'json',
+            dataType: 'text',
+            async:false,
             success: function (data) {
-                console.log('succes');
-                return true;
+                console.log(data);
+                if(data=='Succes'){
+                    resultAjax=true;
+                }
+
 
 
             }
@@ -164,9 +169,8 @@ function  CreateAccount(){
 
 
     }
-    else{
-        console.log("mauvais");
-    }
+
+    return resultAjax ;
 
 
 }
@@ -642,6 +646,7 @@ function resizeInput(){
         elm.style.width = (elm.value.length * 8)+30 + "px";
         console.log(elm.style.width);
     });
+
 }
 
 function deleteItem(id, commande){
@@ -791,7 +796,28 @@ function createPDFClient(){
 
 
 }*/
+function  CreateNewCommande(){
+    var id_client=document.getElementById("Modal_client_span_code");
+    var tabInfo=[];
 
+    tabInfo.push(id_client.innerHTML);
+    console.log(tabInfo)
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data: {cmd: 'CreateCommande',data :tabInfo },
+        dataType: 'json',
+        success: function (data) {
+                console.log(data);
+                var adressehtml=document.location.href;
+                adressehtml=adressehtml.substring(0,adressehtml.lastIndexOf("/")+1);
+                adressehtml=adressehtml+"commande_update.php?id="+data[0]['idCommande'];
+                document.location.href=adressehtml;
+
+        }});
+
+}
 function CreateXLSclient(){
     $.ajax
     ({

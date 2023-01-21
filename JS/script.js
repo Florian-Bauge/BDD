@@ -818,6 +818,12 @@ function  CreateNewCommande(){
         }});
 
 }
+function  CreateFacture(id){
+    var adressehtml=document.location.href;
+    adressehtml=adressehtml.substring(0,adressehtml.lastIndexOf("/")+1);
+    adressehtml=adressehtml+"Facture.php?id="+id;
+    window.open(adressehtml);
+}
 function CreateXLSclient(){
     $.ajax
     ({

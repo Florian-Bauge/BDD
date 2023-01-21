@@ -337,8 +337,9 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='CreateCommande') {
 
     $mysqli = Connect();
 
-    $sql = 'INSERT INTO commande (code_client, commande.date, fdelivery, fservice )VALUES ("' . $_POST['data'][0] . '","' .date('Y-m-d', time()). '",50,10);';
+    $sql = 'INSERT INTO commande (code_client, commande.date, fdelivery, fservice, id_con )VALUES ("' . $_POST['data'][0] . '","' .date('Y-m-d', time()). '",50,10,1);';
     if ($mysqli->query($sql) === FALSE) {
+        Sendlog("Error: " . $sql . "<br>" . $mysqli->error);
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
     $sql='SELECT CONCAT(DATE_FORMAT(commande.date,"%d%m%y"),COALESCE(MAX(SUBSTRING(id_commande, 7, 4)), 0)) as idCommande FROM commande WHERE DATE(date) = CURDATE();';
@@ -347,6 +348,7 @@ if (isset($_POST['cmd']) and $_POST['cmd']=='CreateCommande') {
             $array[]= $row;
         };
     } else {
+        Sendlog("Error: " . $sql . "<br>" . $mysqli->error);
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
     echo json_encode($array);

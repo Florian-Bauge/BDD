@@ -18,8 +18,8 @@
 
 <div class="header">
     <div class="search">
-        <input class="search" id="search_text" type="text" placeholder="Recherche..." name="text" value=""/>
-        <button type="submit" name="submit" id="search_button" class="search"><img class="search" id="search_img" src="Img/Search_button.png" alt="" /></button>
+        <input class="search" id="search_text" type="text" placeholder="Recherche nom ou code_client..." name="text" value=""/>
+        <button id="search_button"class="search" onclick="Search('client')"><img class="search" id="search_img" src="Img/Search_button.png" alt="" /></button>
     </div>
 </div>
 <div class="page">
@@ -47,7 +47,7 @@
                         </tr>
 
                 <?php
-                foreach (getArrayClient() as $client) {
+                foreach (getArrayClient("2300") as $client) {
                     ?>
                 <tr>
                     <td><?php echo $client['code_client']?></td>

@@ -121,7 +121,7 @@
             $address = getAdresses($command['commande']['code_client']);
             ?>
                     <span class="title">Livraison</span>
-            <form name="ModalForm" action="javascript:void(0);" onsubmit="return ValidateLivraison()"> <!--javascript:void(0);-->
+            <form name="ModalForm" action="" onsubmit="return ValidateLivraison()"> <!--javascript:void(0);-->
                         <span>Dispatched Date: </span><input required type='date' id="Modal_DateExpédié"/><br>
                         <span>Parcel N°: </span><input required id='Modal_numeroColis'/><br>
                         <span>Adresse: </span><br>

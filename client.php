@@ -116,9 +116,9 @@
     <div id="Modal_account_client" class="modal" >
         <div class="content" style="width: 40%; ">
             <span id="Modalclose_account_client" class="close">&times;</span> <br>
-            <div class="multi panel">
+            <div class="multi panel" style="width: 50%;">
             <input type="image" src="Img/button_edit.png"  id="Modal_client_valid_edit">
-                <span class="titlePanel">Client</span>
+                <span class="titlePanel" style=" margin-left: 23%;">Client</span>
 
                 <p class="TitreNewCompte">Code</p>
                 <span class="Client_span_info" name="Modal_code_client" id="Modal_client_span_code" contenteditable="false"></span> <br>
@@ -146,7 +146,7 @@
 
 
             </div>
-            <div  style="display: flex;flex-direction: column;align-items: flex-end; max-width : 100%; float:  right; text-align: center" >
+            <div  style="display: flex;flex-direction: column;align-items: flex-end; max-width : 100%; float:  right; text-align: center;align-items: center;" >
             <div class="multi panel" style="width: 40%; height: 80%" >
                 <span class="titlePanel">Membership</span> <br>
                 <img id="Panel_Img_Membership" src="Img/Membership=0.png" style="float: left">
@@ -155,7 +155,7 @@
 
 
             </div>
-            <div class="multi panel"  >
+            <div class="multi panel" style="width: 100%" >
                 <span> Historique de paiments </span>
                 <div id="paiement" style="display:none;">  <!--Example for Copy-->
                     <span class="panel_historrique_paiments_date" name='Modal_date' > </span>

@@ -162,16 +162,29 @@ td {
     border: none;
     margin-left: 10%;
 }
-.Client_span_info{
+.Client_span_info[contenteditable='true'] {
+
+    display: flex;
+    color: #000000;
+    background-color: #ffffff;
+    margin-left: 5%;
+    width: 40%;
+    border: 1px solid #878787;
+
+}
+.Client_span_info[contenteditable='false'] {
+    display: flex;
     color: #878787;
     background-color: #F6F6F6;
     margin-left: 5%;
+    width: 40%;
 
 }
 .titlePanel{
 
     font-weight: bold;
     font-size: xxx-large;
+
 
 
 }
@@ -192,7 +205,7 @@ td {
     margin-left: 10%;
 }
 .panel_historrique_paiments_cout{
-    float:right;
+
     margin-right: 5%;
 }
 .panel_client{

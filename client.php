@@ -47,7 +47,7 @@
                         </tr>
 
                 <?php
-                foreach (getArrayClient($_GET['txt']  ?? "") as $client) {
+                foreach (getArrayClient($_GET['txt']  ?? "%") as $client) {
                     ?>
                 <tr>
                     <td><?php echo $client['code_client']?></td>
@@ -146,6 +146,7 @@
 
 
             </div>
+            <div  style="display: flex;flex-direction: column;align-items: flex-end; max-width : 100%" >
             <div class="multi panel" style="width: 40%; height: 80%" >
                 <span class="titlePanel">Membership</span> <br>
                 <img id="Panel_Img_Membership" src="Img/Membership=0.png">
@@ -165,6 +166,7 @@
 
                     <br>
                 </div>
+            </div>
             </div>
 
 

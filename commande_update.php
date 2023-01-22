@@ -47,7 +47,7 @@
             <div class="multi panel" style="width: 35%">
                 <span>N°: </span><span><?php echo $command['commande']['id_commande']; ?></span><br>
                 <br>
-                <span>Prix Commande: </span><span><?php echo $command['commande']['total']; ?></span><br>
+                <span>Prix Commande: </span><span id="Prix_Commande"><?php echo $command['commande']['total']; ?></span><br>
                 <span>Frais de livraison: </span><span><?php echo $command['commande']['fdelivery']; ?></span><br>
                 <span>Frais de service: </span><span><?php echo $command['commande']['fservice']; ?></span><br>
                 <br>

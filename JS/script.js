@@ -645,6 +645,10 @@ function deleteItem(id, commande){
         url: './PHP/ajax_mysql.php',
         data: {cmd: 'deleteItem', id: id, commande: commande}
     });
+    /*Prix_Commande
+    let pricetoRemove = document.getElementById("Modal_item_"+id)
+    document.getElementById("Modal_item_"+id).innerHTML =  document.getElementById("Modal_item_"+id).innerHTML -
+    */
     document.getElementById("Modal_item_"+id).remove();
 }
 

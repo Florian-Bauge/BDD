@@ -116,7 +116,7 @@
     <div id="Modal_account_client" class="modal" >
         <div class="content" style="width: 40%; ">
             <span id="Modalclose_account_client" class="close">&times;</span> <br>
-            <div class="multi panel"  style="width: 50%;>
+            <div class="multi panel"  style="width: 50%;">
             <!--<input type="image" src="Img/button_edit.png"  id="Modal_client_valid_edit">-->
                 <button class="normal elmInline onlyIcon" id="Modal_client_valid_edit" type="button"><img id="Modif_image" src="./img/icon/edit.png"/></button>
                 <span class="titlePanel" style=" margin-left: 23%;">Client</span>

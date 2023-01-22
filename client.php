@@ -118,7 +118,7 @@
             <span id="Modalclose_account_client" class="close">&times;</span> <br>
             <div class="multi panel">
             <!--<input type="image" src="Img/button_edit.png"  id="Modal_client_valid_edit">-->
-                <button class="normal elmInline onlyIcon" id="Modal_client_valid_edit" type="button"><img src="./img/icon/edit.png"/></button>
+                <button class="normal elmInline onlyIcon" id="Modal_client_valid_edit" type="button"><img id="Modif_image" src="./img/icon/edit.png"/></button>
                 <span class="titlePanel">Client</span>
 
                 <p class="TitreNewCompte">Code</p>

@@ -267,14 +267,14 @@ function client_profil_edit(bool){
     if(bool=='true'){// Quand on veut pouvoir éditer le client
         document.getElementById('Modal_client_button_add_adress').style.display='flex';
 
-        document.getElementById('Modal_client_valid_edit').src='Img/button_validate.png';
+        document.getElementById('Modif_image').src='Img/icon/check-small.png';
        // document.getElementById('Modal_client_valid_edit').onclick=`client_profil_edit('false')`;
         document.getElementById('Modal_client_valid_edit').setAttribute('onclick',"client_profil_edit('false')");
 
     }
     else{//quand on valide les modifications
         document.getElementById('Modal_client_button_add_adress').style.display='none';
-        document.getElementById('Modal_client_valid_edit').src='Img/button_edit.png';
+        document.getElementById('Modif_image').src='Img/icon/edit.png';
      //  document.getElementById('Modal_client_valid_edit').onclick=`client_profil_edit('true')`;
         document.getElementById('Modal_client_valid_edit').setAttribute('onclick',"client_profil_edit('true')");
         if(isValidEmail(mail.innerHTML)&&isNotEmpty(tel.innerHTML)&& Innerveririeadress(adresse,1)) {

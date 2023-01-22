@@ -20,8 +20,8 @@
 
 <div class="header">
     <div class="search">
-        <input class="search" id="search_text" type="text" placeholder="Recherche..." name="text" value=""/>
-        <button type="submit" name="submit" id="search_button"class="search"><img class="search" id="search_img" src="Img/Search_button.png" alt="" /></button>
+        <input class="search" id="search_text" type="text" placeholder="Recherche id commande ou code_client..." name="text" value=""/>
+        <button id="search_button"class="search" onclick="Search('commande')"><img class="search" id="search_img" src="Img/Search_button.png" alt="" /></button>
     </div>
 </div>
 <div class="page">
@@ -39,7 +39,7 @@
             <div class="panel title" style="width: 90%; height: 40px;">
                 <span> MODIFIER
                     <?php
-                        echo $_GET['id'];
+
                     $command = getArrayAllCommand($_GET['id']);
                     ?>
                 </span>
@@ -47,7 +47,7 @@
             <div class="multi panel" style="width: 35%">
                 <span>N°: </span><span><?php echo $command['commande']['id_commande']; ?></span><br>
                 <br>
-                <span>Prix Commande: </span><span><?php echo $command['commande']['total']; ?></span><br>
+                <span>Prix Commande: </span><span id="Prix_Commande"><?php echo $command['commande']['total']; ?></span><br>
                 <span>Frais de livraison: </span><span><?php echo $command['commande']['fdelivery']; ?></span><br>
                 <span>Frais de service: </span><span><?php echo $command['commande']['fservice']; ?></span><br>
                 <br>
@@ -241,7 +241,7 @@
                 <span> Stock: </span> <input class="span" readonly onchange="resizeInput(this)" type="text" id="Panel_Modal_item_stock"><br>
                 <div class="trait"></div>
                 <div>
-                    <span> Quantité: </span><input id="Panel_Modal_item_quantité" required type="number"><br>
+                    <span> Quantité: </span><input id="Panel_Modal_item_quantité" required type="number"><br><br>
                     <span> Prix apppliqué: </span><input id="Panel_Modal_item_prix_remise" required type="number"><br>
                 </div>
                 <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />

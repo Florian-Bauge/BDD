@@ -116,8 +116,9 @@
     <div id="Modal_account_client" class="modal" >
         <div class="content" style="width: 40%; ">
             <span id="Modalclose_account_client" class="close">&times;</span> <br>
-            <div class="multi panel" style="width: 50%;">
-            <input type="image" src="Img/button_edit.png"  id="Modal_client_valid_edit">
+            <div class="multi panel"  style="width: 50%;>
+            <!--<input type="image" src="Img/button_edit.png"  id="Modal_client_valid_edit">-->
+                <button class="normal elmInline onlyIcon" id="Modal_client_valid_edit" type="button"><img id="Modif_image" src="./img/icon/edit.png"/></button>
                 <span class="titlePanel" style=" margin-left: 23%;">Client</span>
 
                 <p class="TitreNewCompte">Code</p>
@@ -141,8 +142,9 @@
 
                 </div>
 
-                <input  id="Modal_client_button_add_adress" type="image" src="Img/buttonAddAdress.png" style="display: none" onclick="addSpanAdresse('Modal_div_adresse')">
-
+                <!--<input  id="Modal_client_button_add_adress" type="image" src="Img/buttonAddAdress.png" style="display: none" onclick="addSpanAdresse('Modal_div_adresse')">
+                -->
+                <button class="normal elmInline middleH"  id="Modal_client_button_add_adress" type="button" style="display: none" onclick="addSpanAdresse('Modal_div_adresse')"><img src="./img/icon/add.png"/><span>Ajouter Adresse</span></button>
 
 
             </div>
@@ -167,9 +169,12 @@
             </div>
             </div>
 
-
+<!--
         <input type="image" src="Img/button_create_commande.png" onclick="CreateNewCommande()">
-            <input type="image" src="Img/button_historique_commande.png">
+            <input type="image" src="Img/button_historique_commande.png" onclick="document.getElementById('search_text').value=document.getElementById('Modal_client_span_code').innerHTML || '';Search('commande')">
+          -->
+            <button class="normal elmInline" onclick="CreateNewCommande()"><img src="./img/icon/add.png"/> <span>Créer Commande</span> </button>
+            <button class="normal elmInline" onclick="document.getElementById('search_text').value=document.getElementById('Modal_client_span_code').innerHTML || '';Search('commande')"><img src="./img/icon/view.png"/> <span>Historique Commandes</span> </button>
         </div>
     </div>
     <script>InitModal("account_client");</script>

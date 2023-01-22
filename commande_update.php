@@ -39,7 +39,7 @@
             <div class="panel title" style="width: 90%; height: 40px;">
                 <span> MODIFIER
                     <?php
-                        echo $_GET['id'];
+
                     $command = getArrayAllCommand($_GET['id']);
                     ?>
                 </span>

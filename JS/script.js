@@ -51,8 +51,6 @@ function ShowModalWith(id, param){
         document.getElementsByName("temp")[0].remove();
     };*/
 
-    console.log("ajax ?"+id);
-    console.log(param);
     $.ajax
     ({
         type: 'POST',
@@ -70,7 +68,7 @@ function ShowModalWith(id, param){
                         //console.log(key + "->" + row + "->" + data[key][row] + " : " + document.getElementsByName('Modal_' + row).length);
                         document.getElementsByName('Modal_' + row).forEach(elm => {
                             elm.innerHTML = data[key][row];
-                            console.log(row + " Changed");
+                            //console.log(row + " Changed");
                         });
                     }else{
                        let n = row;
@@ -90,7 +88,7 @@ function ShowModalWith(id, param){
                                 var text = "Modal_"+row;
                                 elm.querySelectorAll("[name="+text).forEach(elm => {
                                         elm.innerHTML = data[key][n][row];
-                                        console.log(row + " Changed with "+data[key][n][row]);
+                                        //console.log(row + " Changed with "+data[key][n][row]);
                                     });
                             }
                         }
@@ -111,12 +109,11 @@ function ShowModalWith(id, param){
             modal.style.display = "flex";
         }
     });
-    console.log("??");
 
 }
 
 function submitFormAndRedirect(form, id){
-    console.log(document.getElementsByName(id)[0].innerHTML);
+    //console.log(document.getElementsByName(id)[0].innerHTML);
     document.getElementById(form+"_id").setAttribute("value", document.getElementsByName(id)[0].innerHTML);
     document.getElementById(form).submit();
 }
@@ -365,9 +362,7 @@ function ValidateLivraison(){
     if(!hasOneChecked)
         return false;
 
-    console.log("FUNCTION");
     var arrayData = [date.value, parcel.value, adr.value, checkArray];
-    console.log(arrayData);
 
     let resultAjax = false;
     $.ajax
@@ -389,7 +384,6 @@ function ValidateLivraison(){
 }
 
 function UpdateArrivalDate(date, id){
-    console.log(date.value);
     $.ajax
     ({
         type: 'POST',
@@ -436,17 +430,15 @@ function ValidatePaiement(commande){
 
     const selectMoyen = document.getElementById("Modal_paiement_Moyen");
     const selectRègle = document.getElementById("Modal_paiement_Regle");
-    /*var type = selectRègle.options[selectRègle.selectedIndex].getAttribute('data-type');
-    var valeur = selectRègle.options[selectRègle.selectedIndex].getAttribute('data-valeur');
-    */
+
     var cout = document.getElementById("Modal_cout");
     var regle = selectRègle.value;
+
     if(document.getElementById("Modal_2").style.display =="none"){
         regle = "NULL";
     }
 
     var arrayData = [regle, commande, selectMoyen.value, cout.value];
-    console.log(arrayData);
 
     let resultAjax = false;
     $.ajax
@@ -459,10 +451,8 @@ function ValidatePaiement(commande){
         success: function (result) {
             console.log(result);
             if(result=="Success"){
-                console.log("Valid !");
                 resultAjax = true;
             }else{
-                console.log("Failed");
                 return false;
             }
         }
@@ -471,7 +461,6 @@ function ValidatePaiement(commande){
 
 }
 function  UpdateItemcheckbox(){
-    console.log("coucou");
     var checked=document.getElementById("Panel_checkbox_item").checked;
     console.log(checked);
     var prix_achat=document.getElementById("Panel_Modal_item_prix_achat");
@@ -628,10 +617,7 @@ function updateCommandeBDD(commande){
         success: function (result) {
             console.log(result);
             if(result=="Success"){
-                console.log("Valid !");
                 resultAjax = true;
-            }else{
-                console.log("Failed");
             }
         }
 
@@ -712,7 +698,6 @@ function InitAutoComplete(){
 function UpdateNote(){
     let id = document.getElementsByName("Modal_id_commande")[0].innerHTML;
     let note = document.getElementsByName("Modal_note")[0].innerHTML;
-    console.log("Note: "+id+" : "+note);
     $.ajax
     ({
         type: 'POST',
@@ -724,91 +709,7 @@ function UpdateNote(){
         }
     });
 }
-/*
-function createPDFClient(){
-    console.log('Salut');
-    $.ajax
-    ({
-        type: 'POST',
-        url: './PHP/ajax_mysql.php',
-        data: {cmd: 'GetPDF' },
-        dataType: 'json',
-        success: function (data) {
-            console.log(data);
 
-            const pdf = new jsPDF({
-                orientation: 'landscape'
-            });
-            pdf.setFontSize(8);
-            let y = 20;
-            // Ajout de la date et de l'heure en haut de la page
-            const date = new Date();
-            pdf.text(date.toLocaleString(), 20, y);
-            y += 20;
-            pdf.setLineWidth(0.5);
-            pdf.line(9, y, 270, y);
-            y+=4;
-            pdf.setFontSize(10);
-            pdf.text("Name of client", 10, y);
-            pdf.text("Code of client", 45, y);
-            pdf.text("Facebook", 80, y);
-            pdf.text("Instagram", 115, y);
-            pdf.text("email", 145, y);
-            pdf.text("phoneNumber", 200, y);
-            pdf.text("Membership", 230, y);
-            pdf.text("points", 250, y);
-            pdf.line(9,y-4,9,y+7);
-            pdf.line(44,y-4,44,y+7);
-            pdf.line(79,y-4,79,y+7);
-            pdf.line(114,y-4,114,y+7);
-            pdf.line(144,y-4,144,y+7);
-            pdf.line(199,y-4,199,y+7);
-            pdf.line(229,y-4,229,y+7);
-            pdf.line(249,y-4,249,y+7);
-            pdf.line(270,y-4,270,y+7);
-
-            y += 1;
-            pdf.line(9, y, 270, y);
-            y+=5;
-            pdf.setFontSize(8);
-            // Boucle pour ajouter les données du tableau au document PDF
-            data.forEach((row,index) => {
-                pdf.text(row.name, 10, y);
-                pdf.line(9,y+1,9,y-7);
-                pdf.text(formatToclientCode(row.code_client), 45, y);
-                pdf.line(44,y+1,44,y-7);
-                pdf.text(row.Facebook, 80, y);
-                pdf.line(79,y+1,79,y-7);
-                pdf.text(row.Instagram, 115, y);
-                pdf.line(114,y+1,114,y-7);
-                pdf.text(row.Email, 145, y);
-                pdf.line(144,y+1,144,y-7);
-                pdf.text(row.Phone, 200, y);
-                pdf.line(199,y+1,199,y-7);
-                pdf.text(row.nom, 230, y);
-                pdf.line(229,y+1,229,y-7);
-                pdf.text(row.point, 250, y);
-                pdf.line(249,y+1,249,y-7);
-                pdf.line(270,y+1,270,y-7);
-                y+=1;
-                pdf.line(9, y, 270, y);
-                y += 5;
-                if(y>200){
-                    pdf.addPage();
-                    y=20;
-                }
-
-            });
-
-            // Enregistrement du document PDF
-            pdf.save(`tableClient${date.toLocaleDateString()}.pdf`);
-
-
-    }});
-
-
-
-}*/
 function  CreateNewCommande(){
     var id_client=document.getElementById("Modal_client_span_code");
     var tabInfo=[];

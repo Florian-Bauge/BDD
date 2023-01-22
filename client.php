@@ -169,7 +169,7 @@
 
 
         <input type="image" src="Img/button_create_commande.png" onclick="CreateNewCommande()">
-            <input type="image" src="Img/button_historique_commande.png">
+            <input type="image" src="Img/button_historique_commande.png" onclick="document.getElementById('search_text').value=document.getElementById('Modal_client_span_code').innerHTML || '';Search('commande')">
         </div>
     </div>
     <script>InitModal("account_client");</script>

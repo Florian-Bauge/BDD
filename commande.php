@@ -40,7 +40,7 @@
                         <td class="title">ID Commande</td>
                         <td class="title">Client</td>
                         <td class="title">Prix</td>
-                        <td class="title">Statut</td>
+                        <td class="title">Date Création</td>
                         <td class="title">Action</td>
 
                     </tr>
@@ -51,7 +51,7 @@
                         <td><?php echo $command['id_commande'] ?></td>
                         <td><?php echo $command['code_client'] ?></td>
                         <td><?php echo $command['total'] ?></td>
-                        <td><?php echo $command['statut'] ?></td>
+                        <td><?php echo $command['date'] ?></td>
                         <td>
 
                             <button class="normal elmInline onlyIcon" type="button" onclick="ShowModalWith('commande', <?php echo $command['id_commande']?>)"><img src="./img/icon/see.png"/></button>

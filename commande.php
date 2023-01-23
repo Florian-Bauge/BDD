@@ -175,9 +175,12 @@
             <span> Statuts</span>
             <select id="Panel_Modal_item_statuts">
                 <option value=""> Select type</option>
-                <option value="En stock">En stock</option>
-                <option value="Vide">vide</option>
-                <option value="Test">Test</option>
+                <option selected value="In stock">In stock</option>
+                <option value="Available">Available</option>
+                <option value="not Available">not Available</option>
+                <option value="out of stock">out of stock</option>
+                <option value="free gift">free gift</option>
+                <option value="Other">Other</option>
             </select> <br>
                     <select id="Panel_Modal_item_Membership">
                         <?php

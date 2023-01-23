@@ -8,12 +8,11 @@ Une copie de données brutes de l'entreprise vous a été communiquée."
 Travail à réaliser:
 <ol>
 <li>Création du modèle EA</li>
-<li>ILG et requête SQL</li>
+<li>IHM et requête SQL</li>
 </ol>
 
 <h1>Description BDD</h1>
-<img src="img/BDD.png"/>
-
+!["BDD"](Img/BDD.png)
 <h3>Trigger</h3>
 
 <ul>
@@ -37,8 +36,25 @@ Travail à réaliser:
 
 
 </li>
+<li>"ajout_point":
+
+
+</li>
+<li>"update_Membership":
+
+
+</li>
+<li>"update_Membership":
+
+
+</li>
 </ul>
 
 
 <h3>Event</h3>
+
+<li>"check_exp_point":
+
+
+</li>
 

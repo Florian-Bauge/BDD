@@ -12,37 +12,26 @@ Travail à réaliser:
 </ol>
 
 <h1>Description BDD</h1>
-![BDD](https://user-images.githubusercontent.com/87482855/214006386-e071a494-328f-4176-98c0-96917c8b2b14.png)
+<img src="https://user-images.githubusercontent.com/87482855/214006386-e071a494-328f-4176-98c0-96917c8b2b14.png"/>
 <h3>Trigger</h3>
 
 <ul>
-<li>"tr_adresse_code_client": 
-
+<li>"tr_adresse_code_client":
 
 
 </li>
-Permet quand un nouvelle est créer de mettre la bon code_client
 <li>"auto_increment_code_client":
 
 
 </li>
-Créer le code client afin qu'il soit telle que dans l'énoncé
-
 <li>"auto_Increment_Idcommande":
 
 
 </li>
-Créer l'id commande afin qu'il soit telle que dans l'énoncé
-
-
 <li>"update_total_commande":
 
 
 </li>
-Ajoute  au total de la commandes, le prix des items qui sont ajoutés dans la commande
-
-
-
 <li>"update_total_commande_onDelete":
 
 
@@ -59,9 +48,6 @@ Ajoute  au total de la commandes, le prix des items qui sont ajoutés dans la co
 
 
 </li>
-Soustrait au total de la commande, les prix des items qui sont retirés de la commande
-<
-
 </ul>
 
 

@@ -117,7 +117,8 @@
         <div class="content" style="width: 40%; ">
             <span id="Modalclose_account_client" class="close">&times;</span>
             <div class="inline">
-            <div class="multi panel"  style="width: 50%;">
+            <div class="multi panel"  style="width: 45%;">
+            <span id="Modalclose_account_client" class="close">&times;</span> <br>
             <!--<input type="image" src="Img/button_edit.png"  id="Modal_client_valid_edit">-->
                 <button class="normal elmInline onlyIcon" id="Modal_client_valid_edit" type="button"><img id="Modif_image" src="./img/icon/edit.png"/></button>
                 <span class="titlePanel" style=" margin-left: 23%;">Client</span>
@@ -139,7 +140,7 @@
                 <p class="TitreNewCompte">Adresse </p>
                 <div id="adress" name="Modal_div_adresse" style="display:none;">  <!--Example for Copy-->
                             <span id="idAdresse" name="Modal_id_adresse" style="display:none"  >0</span>
-                            <span name='Modal_adresse' contenteditable="false"></span><br>
+                            <span name='Modal_adresse' class="Client_span_info" contenteditable="false" style="width: 100%; margin-left: 0%;"></span><br>
 
                 </div>
 

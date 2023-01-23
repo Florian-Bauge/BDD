@@ -56,3 +56,23 @@ SET Membershipid=(SELECT MAX(grillepoint.id_membership) FROM grillepoint WHERE g
 UPDATE client SET client.code_client=Membershipid WHERE client.code_client=ClientCode;
 END IF;
 END
+
+AJOUT trigger sur la table ITEM pour changer le stock : TALBE envoie BEFORE DELETE item_add
+
+BEGIN
+DECLARE Item_id INT;
+DECLARE Item_nb INT;
+SET Item_id=(SELECT envoie.id_item FROM envoie WHERE envoie.id_envoie=OLD.id_envoie);
+SET Item_nb=(SELECT envoie.quantité FROM envoie WHERE envoie.id_envoie=OLD.id_envoie);
+UPDATE item SET item.stock=item.stock+Item_nb WHERE item.id_item=Item_id;
+END
+
+AJOUT trigger sur la table ITEM pour changer le stock : TALBE envoie AFTER INSERT item_consume
+
+BEGIN
+DECLARE Item_id INT;
+DECLARE Item_nb INT;
+SET Item_id=(SELECT envoie.id_item FROM envoie WHERE envoie.id_envoie=NEW.id_envoie);
+SET Item_nb=(SELECT envoie.quantité FROM envoie WHERE envoie.id_envoie=NEW.id_envoie);
+UPDATE item SET item.stock=item.stock-Item_nb WHERE item.id_item=Item_id;
+END

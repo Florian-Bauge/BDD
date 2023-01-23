@@ -8,12 +8,11 @@ Une copie de données brutes de l'entreprise vous a été communiquée."
 Travail à réaliser:
 <ol>
 <li>Création du modèle EA</li>
-<li>ILG et requête SQL</li>
+<li>IHM et requête SQL</li>
 </ol>
 
 <h1>Description BDD</h1>
-<img src="img/BDD.png"/>
-
+![BDD](https://user-images.githubusercontent.com/87482855/214006386-e071a494-328f-4176-98c0-96917c8b2b14.png)
 <h3>Trigger</h3>
 
 <ul>
@@ -48,11 +47,29 @@ Ajoute  au total de la commandes, le prix des items qui sont ajoutés dans la co
 
 
 </li>
+<li>"ajout_point":
+
+
+</li>
+<li>"update_Membership":
+
+
+</li>
+<li>"update_Membership":
+
+
+</li>
 Soustrait au total de la commande, les prix des items qui sont retirés de la commande
 <
 
 </ul>
 
 
+
 <h3>Event</h3>
+
+<li>"check_exp_point":
+
+
+</li>
 

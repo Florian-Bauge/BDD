@@ -17,26 +17,40 @@ Travail à réaliser:
 <h3>Trigger</h3>
 
 <ul>
-<li>"tr_adresse_code_client":
+<li>"tr_adresse_code_client": 
+
 
 
 </li>
+Permet quand un nouvelle est créer de mettre la bon code_client
 <li>"auto_increment_code_client":
 
 
 </li>
+Créer le code client afin qu'il soit telle que dans l'énoncé
+
 <li>"auto_Increment_Idcommande":
 
 
 </li>
+Créer l'id commande afin qu'il soit telle que dans l'énoncé
+
+
 <li>"update_total_commande":
 
 
 </li>
+Ajoute  au total de la commandes, le prix des items qui sont ajoutés dans la commande
+
+
+
 <li>"update_total_commande_onDelete":
 
 
 </li>
+Soustrait au total de la commande, les prix des items qui sont retirés de la commande
+<
+
 </ul>
 
 

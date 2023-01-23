@@ -12,7 +12,7 @@ Travail à réaliser:
 </ol>
 
 <h1>Description BDD</h1>
-!["BDD"](Img/BDD.png)
+!["BDD"](img.png)
 <h3>Trigger</h3>
 
 <ul>

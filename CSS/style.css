@@ -5,6 +5,10 @@
     height: 50px;
 }
 
+body{
+    background-color: #CFCFCF;
+}
+
 .search{
     display:inline-block;
     position:relative;

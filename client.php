@@ -97,7 +97,7 @@
             <img src="Img/logo_Facebook.png">
             <input required type="text" id="Modal_NewCompte_Facebook">
             <p class="TitreNewCompte">Adresse </p>
-            <input type="text" name="Modal_temp_NewCompte_adress_" placeholder="20 rue Jean Moulin 72000 Le mans, FRANCE" class="InputAdressModal"> <br>
+            <input type="text" name="Modal_temp_NewCompte_adress_" placeholder="20 rue Jean Moulin 72000 Le mans, FRANCE" class="InputAdressModal" style="width: 90%; margin-left: 5%" > <br>
             <!--
             <input type="image" src="Img/buttonAddAdress.png" onclick="AddAdress('Modal_temp_NewCompte_adress_')"> <br>
             <input type="image" src="Img/buttonValiderCompte.png" onclick="CreateAccount()"><br>
@@ -118,7 +118,7 @@
             <span id="Modalclose_account_client" class="close">&times;</span>
             <div class="inline">
             <div class="multi panel"  style="width: 45%;">
-            <span id="Modalclose_account_client" class="close">&times;</span> <br>
+
             <!--<input type="image" src="Img/button_edit.png"  id="Modal_client_valid_edit">-->
                 <button class="normal elmInline onlyIcon" id="Modal_client_valid_edit" type="button"><img id="Modif_image" src="./img/icon/edit.png"/></button>
                 <span class="titlePanel" style=" margin-left: 23%;">Client</span>

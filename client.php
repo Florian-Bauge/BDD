@@ -115,7 +115,8 @@
     <script>InitModal("add_client");</script>
     <div id="Modal_account_client" class="modal" >
         <div class="content" style="width: 40%; ">
-            <span id="Modalclose_account_client" class="close">&times;</span> <br>
+            <span id="Modalclose_account_client" class="close">&times;</span>
+            <div class="inline">
             <div class="multi panel"  style="width: 50%;">
             <!--<input type="image" src="Img/button_edit.png"  id="Modal_client_valid_edit">-->
                 <button class="normal elmInline onlyIcon" id="Modal_client_valid_edit" type="button"><img id="Modif_image" src="./img/icon/edit.png"/></button>
@@ -157,7 +158,7 @@
 
 
             </div>
-            <div class="multi panel" style="width: 100%" >
+            <div class="multi panel" style="min-width: 350px;" >
                 <span> Historique de paiments </span>
                 <div id="paiement" style="display:none;">  <!--Example for Copy-->
                     <span class="panel_historrique_paiments_date" name='Modal_date' > </span>
@@ -166,6 +167,7 @@
 
                     <br>
                 </div>
+            </div>
             </div>
             </div>
 

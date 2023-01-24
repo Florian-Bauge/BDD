@@ -156,7 +156,7 @@
 
             </div>
             <div  style="display: flex;flex-direction: column;align-items: flex-end; max-width : 100%; float:  right; text-align: center;align-items: center;" >
-            <div class="multi panel" style="width: 40%; height: 80%" >
+            <div class="multi panel" style="width: 40%; height: 20%" >
                 <span class="titlePanel">Membership</span> <br>
                 <img id="Panel_Img_Membership" src="Img/Membership=0.png" style="float: left">
                 <span name="Modal_nom" style="font-size: xx-large;"></span><br>
@@ -164,7 +164,7 @@
 
 
             </div>
-            <div class="multi panel" style="min-width: 350px;" >
+            <div class="multi panel" style="min-width: 350px; " >
                 <span> Historique de paiments </span>
                 <div id="paiement" style="display:none;">  <!--Example for Copy-->
                     <span class="panel_historrique_paiments_date" name='Modal_date' > </span>

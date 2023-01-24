@@ -166,6 +166,10 @@ function  CreateAccount(){
 
 
     }
+    else {
+        console.log("Info incorecte");
+        alert("Erreur, vérifier que l'adresse est bien écrite, et qu'elle ne comporte pas de '-' et que le type de rue ne possède pas de majuscule !");
+    }
 
     return resultAjax ;
 
@@ -304,7 +308,7 @@ function client_profil_edit(bool){
             document.getElementById('client_form').submit();
         }
         else {
-            console.log("Info incorecte");
+
         }
 
 

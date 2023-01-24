@@ -301,6 +301,7 @@ function client_profil_edit(bool){
                 }
 
             });
+            document.getElementById('client_form').submit();
         }
         else {
             console.log("Info incorecte");
@@ -653,6 +654,7 @@ function deleteItem(id, commande){
 }
 
 function deleteCmd(id){
+    console.log(id);
     $.ajax
     ({
         type: 'POST',
@@ -660,6 +662,17 @@ function deleteCmd(id){
         data: {cmd: 'deleteCmd', id: id}
     });
     document.getElementById("Modal_cmd_"+id).remove();
+}
+
+function deleteCmdOnUpdate(){
+    let id = document.getElementsByName('Modal_id_commande')[0].innerHTML;
+    $.ajax
+    ({
+        type: 'POST',
+        url: './PHP/ajax_mysql.php',
+        data: {cmd: 'deleteCmd', id: id}
+    });
+    //document.getElementById("Modal_cmd_"+id).remove();
 }
 /*
 document.addEventListener('keypress', function (e) {

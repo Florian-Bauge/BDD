@@ -19,7 +19,7 @@
 <div class="header">
     <div class="search">
         <input class="search" id="search_text" type="text" placeholder="Recherche id commande ou code_client..." name="text" value=""/>
-        <button id="search_button"class="search" onclick="Search('commande')"><img class="search" id="search_img" src="Img/Search_button.png" alt="" /></button>
+        <button class="normal elmInline onlyIcon" type="button" onclick="Search('commande')"><img src="./img/icon/see.png"/></button>
     </div>
 </div>
 <div class="page">
@@ -50,7 +50,7 @@
                     <tr id="Modal_cmd_<?php echo $command['id_commande'] ?>">
                         <td><?php echo $command['id_commande'] ?></td>
                         <td><?php echo $command['code_client'] ?></td>
-                        <td><?php echo $command['total'] ?></td>
+                        <td><?php echo $command['totalCmd'] ?></td>
                         <td><?php echo $command['date'] ?></td>
                         <td>
 
@@ -136,8 +136,10 @@
                     -->
                     <div style="display: flex;justify-content: space-evenly;">
                     <button class="normal elmInline onlyIcon" type="button" onclick="submitFormAndRedirect('form_update','Modal_id_commande');"><img src="./img/icon/edit.png"/></button>
-                    <button class="normal elmInline onlyIcon" type="button"><img src="./img/icon/delete.png"/></button>
-                </div>
+                    <form>
+                        <button class="normal elmInline onlyIcon" type="submit" onclick="deleteCmdOnUpdate();" ><img src="./img/icon/delete.png"/></button>
+                    </form>
+                    </div>
                     <p>Action</p>
                 </div>
                 </div>

@@ -21,7 +21,7 @@
 <div class="header">
     <div class="search">
         <input class="search" id="search_text" type="text" placeholder="Recherche id commande ou code_client..." name="text" value=""/>
-        <button id="search_button"class="search" onclick="Search('commande')"><img class="search" id="search_img" src="Img/Search_button.png" alt="" /></button>
+        <button class="normal elmInline onlyIcon" type="button" onclick="Search('commande')"><img src="./img/icon/see.png"/></button>
     </div>
 </div>
 <div class="page">
@@ -53,7 +53,7 @@
                 <br>
                 <span>Total: </span><span><?php echo $command['commande']['totalCmd']; ?></span><br>
                 <span>RAP: </span><span><?php echo $command['commande']['RAP'] ?></span><br>
-                <span>Points Obtenus: </span><span><?php echo $command['commande']['totalCmd']; ?></span><br>
+                <span>Points Obtenus: </span><span><?php echo $command['commande']['total']; ?></span><br>
                 <br>
                 <span>Géré par: </span><span><?php echo $command['commande']['cons']; ?></span><br>
             </div>

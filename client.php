@@ -19,7 +19,7 @@
 <div class="header">
     <div class="search">
         <input class="search" id="search_text" type="text" placeholder="Recherche nom ou code_client..." name="text" value=""/>
-        <button id="search_button"class="search" onclick="Search('client')"><img class="search" id="search_img" src="Img/Search_button.png" alt="" /></button>
+        <button class="normal elmInline onlyIcon" type="button" onclick="Search('client')"><img src="./img/icon/see.png"/></button>
     </div>
 </div>
 <div class="page">
@@ -113,6 +113,7 @@
         </div>
     </div>
     <script>InitModal("add_client");</script>
+
     <div id="Modal_account_client" class="modal" >
         <div class="content" style="width: 40%; ">
             <span id="Modalclose_account_client" class="close">&times;</span>
@@ -120,8 +121,10 @@
             <div class="multi panel"  style="width: 45%;">
 
             <!--<input type="image" src="Img/button_edit.png"  id="Modal_client_valid_edit">-->
+                <form id="client_form">
                 <button class="normal elmInline onlyIcon" id="Modal_client_valid_edit" type="button"><img id="Modif_image" src="./img/icon/edit.png"/></button>
-                <span class="titlePanel" style=" margin-left: 23%;">Client</span>
+                </form>
+                    <span class="titlePanel" style=" margin-left: 23%;">Client</span>
 
                 <p class="TitreNewCompte">Code</p>
                 <span class="Client_span_info" name="Modal_code_client" id="Modal_client_span_code" contenteditable="false"></span> <br>

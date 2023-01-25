@@ -14,7 +14,7 @@ Travail à réaliser:
 <h1>Description BDD</h1>
 <img src="https://user-images.githubusercontent.com/87482855/214006386-e071a494-328f-4176-98c0-96917c8b2b14.png"/>
 <h3>Importation de la BDD</h3>
-La bdd a utilisé est nommé bdd_ensim, elle est situé à la racine du projet sous le nom : "bdd_ensimV9.sql".
+La bdd à utiliser est nommée bdd_ensim, elle est située à la racine du projet sous le nom : "bdd_ensimV9.sql".
 Elle est encodée en UTF8
 <h3>Trigger</h3>
 

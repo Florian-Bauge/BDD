@@ -52,8 +52,8 @@ Cette méthode ne marche pas pour les utilisateurs possédant un rang ultimate, 
 
 </ul>
 <h3>Event</h3>
-
+<ul>
 <li>"check_exp_point":
 </li>
 Cet évènement vérifie chaque jour à minuit si les points d'un client sont périmés. Si c'est le cas, alors les points sont enlevés dans la table client afin que celui-ci ne puisse pas les utiliser.
-
+</ul>

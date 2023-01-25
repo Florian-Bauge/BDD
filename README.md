@@ -45,10 +45,10 @@ Permet ainsi, que pour chaque item enlevé dans une commande, le total soit mise
 Permet que chaque paiement effectué par l'utilisateur, ajoute des points dans la table points si le paiement n'est pas effectué avec des points. De plus, il prend en compte le multiplicateur du membership du client. Ajoute aussi des points dans la colonne point de la table client. <br>
 
 <li>"update_Membership":
+</li>
 Si le total des points accumulé au cours d'une année est compris dans l'intervalle de point, alors le membership de cette personne évolue.
 Cette méthode ne marche pas pour les utilisateurs possédant un rang ultimate, car il possède un grade spécial. <br>
 
-</li>
 
 </ul>
 <h3>Event</h3>
